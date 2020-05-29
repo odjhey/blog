@@ -17,7 +17,7 @@ export default function Post({
   return (
     <Layout>
       <Head>
-        <title>{postData.title}</title>
+        <title>Odee | {postData.title}</title>
       </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
