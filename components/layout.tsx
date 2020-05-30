@@ -52,25 +52,7 @@ export default function Layout({
                 <h1 className={utilStyles.subHeading}>{subName}</h1>
               </>
             ) : (
-              <>
-                <Link href="/">
-                  <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <img
-                      src="/images/profile.jpg"
-                      className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-                      alt={name}
-                    />
-                  </motion.a>
-                </Link>
-                <h2 className={utilStyles.headingLg}>
-                  <Link href="/">
-                    <a className={utilStyles.colorInherit}>{name}</a>
-                  </Link>
-                </h2>
-              </>
+              <div></div>
             )}
           </header>
           <main>{children}</main>
