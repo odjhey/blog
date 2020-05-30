@@ -3,15 +3,21 @@ title: "So many things, so little time."
 date: "2020-05-30"
 ---
 
-Is it though?
+Do I?
 
 On top of my head, here is a quick list of things I want to do.
 
-- Be productive at work
-- Create a youtube channel about my favorite games
-- Write a blog ( -- we'll, atleast I was able to start this now )
+- Ship that feature for work.
+- Start that youtube channel about games.
+- Write a blog ( -- well, tf you think you're reading )
 - Get better at playing the Acoustic Guitar
-- Go through my game stash and at-least complete some
+- Go through my game stash and atleast complete some
 
 * Deploy a solution using the `ELK` stack!
-* Run `kubernetes` in PRD ( -- though honestly, our products are so small that i'm still very happy with `docker-compose`)
+* Run `kubernetes` in PRD ( -- though honestly, my projects are so small i'm still happy with `compose`)
+
+Above list is more like `head wanttodo.txt` haha.
+
+It's getting harder to focus. Gone are those days when I can pick and complete one. My time is spread so thinly progress cannot be seen. Hope to be able to audit and sell soon.
+
+End.
