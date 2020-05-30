@@ -1,6 +1,7 @@
 ---
 title: "So many things, so little time."
 date: "2020-05-30"
+author: "Odee"
 ---
 
 Do I?
