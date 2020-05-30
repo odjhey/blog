@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const name = "Odee Jhey";
 const subName = "@odjhey";
@@ -31,24 +32,26 @@ export default function Layout({
       <header className={styles.header}>
         {home ? (
           <>
-            <img
-              src="/images/profile.jpg"
-              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-              alt={name}
-            />
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <img
+                src="/images/profile.jpg"
+                className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+                alt={name}
+              />
+            </motion.div>
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
             <h1 className={utilStyles.subHeading}>{subName}</h1>
           </>
         ) : (
           <>
             <Link href="/">
-              <a>
+              <motion.a whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <img
                   src="/images/profile.jpg"
                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}
                 />
-              </a>
+              </motion.a>
             </Link>
             <h2 className={utilStyles.headingLg}>
               <Link href="/">
