@@ -20,6 +20,14 @@
   height: 8rem;
 }
 
+.headerToolbar {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  margin-top: 20px;
+  margin-right: 40px;
+}
+
 .backToHome {
   margin: 3rem 0 0;
 }
