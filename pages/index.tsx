@@ -23,7 +23,7 @@ export default function Home({
       <section className={utilStyles.headingMd}>
         <p>
           Lazy coder. Procrastinator at best. <br />
-          This the jamstack test. Hellow world!
+          This is the jamstack test. Hellow world!
           <br /> Random thoughts can be found bellow. Proceed at your own risk.
         </p>
       </section>
