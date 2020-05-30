@@ -4,6 +4,7 @@ import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
 const name = "Odee Jhey";
+const subName = "@odjhey";
 export const siteTitle = "Odee | Blog";
 
 export default function Layout({
@@ -17,10 +18,7 @@ export default function Layout({
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
-        />
+        <meta name="description" content="Odjhey's Random Thoughts" />
         <meta
           property="og:image"
           content={`https://og-image.now.sh/${encodeURI(
@@ -39,6 +37,7 @@ export default function Layout({
               alt={name}
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className={utilStyles.subHeading}>{subName}</h1>
           </>
         ) : (
           <>

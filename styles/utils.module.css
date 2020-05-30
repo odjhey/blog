@@ -25,6 +25,12 @@
   line-height: 1.5;
 }
 
+.subHeading {
+  font-size: 1.2rem;
+  line-height: 0;
+  color: #aaa;
+}
+
 .borderCircle {
   border-radius: 9999px;
 }
