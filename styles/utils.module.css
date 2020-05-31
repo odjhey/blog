@@ -26,6 +26,7 @@
 .headingMd {
   font-size: 1.2rem;
   line-height: 1.5;
+  color: #bbb;
 }
 
 .subHeading {
@@ -58,4 +59,8 @@
 
 .lightText {
   color: #999;
+}
+
+.footerLink {
+  color: #555;
 }
