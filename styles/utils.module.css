@@ -29,6 +29,12 @@
   color: #bbb;
 }
 
+.heading {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #bbb;
+}
+
 .subHeading {
   font-size: 1.2rem;
   line-height: 0;
@@ -43,8 +49,8 @@
   color: inherit;
 }
 
-.padding1px {
-  padding-top: 1px;
+.paddingTop {
+  padding-top: 2rem;
 }
 
 .list {
