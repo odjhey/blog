@@ -21,15 +21,13 @@ export default function Home({
         <Head>
           <title>{siteTitle}</title>
         </Head>
-        <section className={utilStyles.headingMd}>
-          <p>
-            Lazy coder. Procrastinator at best. <br />
-            Hellow world! This is the jamstack test.
-            <br /> Random thoughts can be found bellow. Proceed at your own
-            risk.
+        <section className={utilStyles.heading} style={{ paddingTop: "1rem" }}>
+          <p style={{ textAlign: "center" }}>
+            Hellow world! This is the jamstack test. Random thoughts can be
+            found bellow. Proceed at your own risk.
           </p>
         </section>
-        <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <section className={`${utilStyles.headingMd} ${utilStyles.paddingTop}`}>
           <h2 className={utilStyles.headingLg}>Blog.</h2>
           <ul className={utilStyles.list}>
             {allPostsData.map(({ id, date, title }) => (

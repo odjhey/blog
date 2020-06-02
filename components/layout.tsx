@@ -9,6 +9,7 @@ import { FaInbox, FaGithub } from "react-icons/fa";
 
 const name = "Odee Jhey";
 const subName = "@odjhey";
+const subTitle = "Lazy coder. Procrastinator at best.";
 export const siteTitle = "Odee | Blog";
 
 export default function Layout({
@@ -51,8 +52,26 @@ export default function Layout({
                       alt={name}
                     />
                   </motion.div>
-                  <h1 className={utilStyles.heading2Xl}>{name}</h1>
-                  <h1 className={utilStyles.subHeading}>{subName}</h1>
+                  <h1
+                    className={utilStyles.headingXl}
+                    style={{
+                      lineHeight: 0.2,
+                      paddingTop: "2rem",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {name}
+                  </h1>
+                  <h1
+                    className={utilStyles.headingMd}
+                    style={{
+                      color: "#DDD",
+                      lineHeight: 0,
+                      fontWeight: "normal",
+                    }}
+                  >
+                    {subTitle}
+                  </h1>
                 </>
               ) : (
                 <div></div>
