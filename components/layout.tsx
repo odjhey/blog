@@ -92,7 +92,7 @@ export default function Layout({
           </div>
         </div>
       </section>
-      {home ? null : (
+      {/*home ? null : (
         <section>
           <div className={styles.container}>
             <h4>Comments</h4>
@@ -103,7 +103,7 @@ export default function Layout({
             />
           </div>
         </section>
-      )}
+            )*/}
       <section>
         <div
           style={{
