@@ -29,6 +29,10 @@ export default function Layout({
           <div className={styles.container}>
             <Head>
               <link rel="icon" href="/favicon.ico" />
+              <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&amp;family=Muli:wght@300;400;500;700&amp;display=swap"
+              />
               <meta name="description" content="Odjhey's Random Thoughts" />
               <meta
                 property="og:image"
