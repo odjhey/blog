@@ -93,6 +93,16 @@ export default function Layout({
         </div>
       </section>
       <section>
+        <div className={styles.container}>
+          <h4>Comments</h4>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `<script src="https://utteranc.es/client.js" repo="odjhey/blog-comments" issue-term="url" theme="github-dark" crossOrigin="anonymous" async ></script>`,
+            }}
+          />
+        </div>
+      </section>
+      <section>
         <div
           style={{
             padding: 10,
