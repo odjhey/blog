@@ -26,14 +26,14 @@ export default function Layout({
           <div className={styles.headerToolbar}>
             <ThemeSwitch />
           </div>
-          <div className={styles.container}>
+          <div className={home ? styles.homeContainer : styles.container}>
             <Head>
               <link rel="icon" href="/favicon.ico" />
               <link
                 rel="stylesheet"
                 href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&amp;family=Muli:wght@300;400;500;700&amp;display=swap"
               />
-              <meta name="description" content="Odjhey's Random Thoughts" />
+              <meta name="description" content="odee -random" />
               <meta
                 property="og:image"
                 content={`https://og-image.now.sh/${encodeURI(
