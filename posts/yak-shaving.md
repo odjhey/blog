@@ -7,7 +7,7 @@ author: "Odee"
 Yak Shaving.
 
 I do this a lot. I mean, it is necessary, but, I could, atleast I think, could
-`shave` a little off.
+*shave* a little off.
 
 The last topic I posted was about Text Editing, and yes, it is not a
 coincidence that I am posting about Yak Shaving. You see, I need to update my
@@ -27,7 +27,7 @@ editor.
 On my day to day, I heavily use tmux-sessions + vim buffers. Tmuxinator to spawn
 sessions, and Teamocil to spawn layouts. Recently though, im no longer using 
 tmux panes, I have started using :terminal instead, vim splits and tabs 
-> MassiveTip: please stop using `c-w + o`, use `:tab split` instead ;)
+> *MassiveTip:* Please stop using `c-w + o`, use `:tab split` instead ;)
 
 Hmm, i think we have to pause, idk where this is going now, now that I am
 spending precious braincells on the topic, i feel i just need a Teamocil
