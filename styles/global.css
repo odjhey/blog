@@ -49,6 +49,7 @@ blockquote {
   margin: 0;
   border: solid 1px #444;
   text-align: center;
+  font-size: 0.9em;
 }
 
 code {
