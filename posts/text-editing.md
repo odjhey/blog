@@ -9,7 +9,7 @@ What do I do?
 I mostly read, read plain texts, edit plain texts, create plain texts.
 Currently, im in this rabbit hole of tidying my `init.el` and `init.vim`.
 
-For those who don't get it. Above are config files of these jurassic, 
+For those who don't get it. Above are config files for these jurassic, 
 but still prevalent, text editors, called `emacs` and `vim`.
 
 
