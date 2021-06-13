@@ -25,6 +25,12 @@ export default function Home({
           <p style={{ textAlign: "center" }}>
             Hellow world! This is the jamstack test. Random thoughts can be
             found bellow. Proceed at your own risk.
+            <br/>
+          </p>
+          <p style={{fontSize: ".8em", textAlign: "center"}}>
+            You can also view some deployed junk that i have worked on here:
+            <br/>
+            <a href="http://discover.apps.odee.io/" target="_blank">apps.odee.io</a>
           </p>
         </section>
         <section className={`${utilStyles.headingMd} ${utilStyles.paddingTop}`}>
