@@ -9,7 +9,7 @@ import { FaInbox, FaGithub } from "react-icons/fa";
 
 const name = "Odee Jhey";
 const subName = "@odjhey";
-const subTitle = "Lazy coder. Procrastinator at best.";
+const subTitle = "Hobbyist. Lazy coder. Procrastinator at best.";
 export const siteTitle = "Odee | Blog";
 
 export default function Layout({
