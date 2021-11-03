@@ -28,4 +28,6 @@ After getting familiar with above, some popular (or atleast have good tooling an
 3. rescript/reason
 4. datalog
 
+special mention to smalltalk's message passing.
+
 after getting familiar with above, runtimes would be the next good place to spend time on, if you're already familiar with the nodejs runtime, the jvm, time to look at beam (ther erlang VM) :)
