@@ -5,7 +5,7 @@ author: "Odee"
 ---
 
 After a traditional programming course, if not already discussed, below is highly recommended.
-In no particular order, get familiar (or at least get experience) with below languages.
+In no particular order, get familiar (or at least derive a mental model of the concepts) with below languages.
 
 - SML '97
 - Lisp (any dialect for that matter, i recommend Racket/Scheme)
