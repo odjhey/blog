@@ -32,11 +32,18 @@ export function getSortedPostsData() {
     // Combine the data with the id
     return {
       id,
-      ...(matterResult.data as { date: string; title: string; author: string }),
+      ...(matterResult.data as { date: string; title: string; author: string; tags: string; time: string}),
     };
   });
   // Sort posts by date
   return allPostsData.sort((a, b) => {
+    if (a.date === b.date) {
+      if (a.time < b.time) {
+        return 1;
+      } else {
+        return -1;
+      }
+    }
     if (a.date < b.date) {
       return 1;
     } else {

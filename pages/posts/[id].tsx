@@ -12,6 +12,8 @@ export default function Post({
     title: string;
     date: string;
     author: string;
+    tags: string;
+    time: string;
     contentHtml: string;
   };
 }) {
