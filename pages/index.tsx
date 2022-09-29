@@ -21,20 +21,14 @@ export default function Home({
         <Head>
           <title>{siteTitle}</title>
         </Head>
-        <section className={utilStyles.heading} style={{ paddingTop: "1rem" }}>
-          <p style={{ textAlign: "center" }}>
-            Hellow world! This is the jamstack test. Random thoughts can be
-            found bellow. Proceed at your own risk.
-            <br/>
-          </p>
-          <p style={{fontSize: ".8em", textAlign: "center"}}>
-            You can also view some deployed junk that i have worked on here:
-            <br/>
-            <a href="http://discover.apps.odee.io/" target="_blank">apps.odee.io</a>
-          </p>
-        </section>
         <section className={`${utilStyles.headingMd} ${utilStyles.paddingTop}`}>
           <h2 className={utilStyles.headingLg}>Blog.</h2>
+          <section>
+            <p className={utilStyles.heading}>
+              Testing Jamstack, hellow world! Random thoughts are published
+              bellow.
+            </p>
+          </section>
           <ul className={utilStyles.list}>
             {allPostsData.map(({ id, date, title }) => (
               <li className={utilStyles.listItem} key={id}>

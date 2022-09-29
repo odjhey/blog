@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import ThemeSwitch from "../components/theme-switch";
 
-import { FaInbox, FaGithub } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 const name = "Odee Jhey";
 const subName = "@odjhey";
@@ -46,36 +46,17 @@ export default function Layout({
             <header className={styles.header}>
               {home ? (
                 <>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <img
-                      src="/images/profile.jpg"
-                      className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-                      alt={name}
-                    />
-                  </motion.div>
-                  <h1
-                    className={utilStyles.headingXl}
-                    style={{
-                      lineHeight: 0.2,
-                      paddingTop: "2rem",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {name}
-                  </h1>
-                  <h1
-                    className={utilStyles.headingMd}
-                    style={{
-                      color: "#DDD",
-                      lineHeight: 0,
-                      fontWeight: "normal",
-                    }}
-                  >
-                    {subTitle}
-                  </h1>
+                  <div>
+                    <motion.div>
+                      <img
+                        src="/images/profile.jpg"
+                        className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+                        alt={name}
+                      />
+                    </motion.div>
+                  </div>
+                  <h1 className={utilStyles.headingXl}>{name}</h1>
+                  <h2 className={`${utilStyles.subHeading}`}>{subTitle}</h2>
                 </>
               ) : (
                 <div></div>
@@ -104,47 +85,32 @@ export default function Layout({
           </div>
         </section>
             )*/}
-      <section>
-        <div
-          style={{
-            padding: 10,
-            backgroundColor: "#222",
-            color: "#AAA",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "row",
-            fontSize: 12,
-            verticalAlign: "middle",
-          }}
-        >
-          <a
-            className={utilStyles.footerLink}
-            href={"https://github.com/odjhey"}
-            target={"_blank"}
-          >
-            <div
-              style={{
-                paddingRight: 20,
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <FaGithub title={"hello"} size={12} />
+
+      {home ? (
+        <section>
+          <div className={home ? styles.homeContainer : styles.container}>
+            <div className={styles.footer}>
+              <a
+                className={utilStyles.footerLink}
+                href={"https://github.com/odjhey"}
+                target={"_blank"}
+              >
+                <FaGithub
+                  style={{ verticalAlign: "middle" }}
+                  title={"hello"}
+                  size={20}
+                />
+              </a>
+              <a
+                className={utilStyles.footerLink}
+                href={"mailto:odjhey@gmail.com"}
+              >
+                odjhey@gmail.com
+              </a>
             </div>
-          </a>
-          <a className={utilStyles.footerLink} href={"mailto:odjhey@gmail.com"}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              odjhey@gmail.com
-            </div>
-          </a>
-        </div>
-      </section>
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }
