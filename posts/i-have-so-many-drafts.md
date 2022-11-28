@@ -10,6 +10,6 @@ It is better I feel to publish all my drafts and keep them as-is. Maybe add some
 I originally thought of writing proper posts based on the ideas from these drafts but oh boy they are pilling up.
 Since no one reads these anyways, why not just publish them? right?
 
-Odee of December 2021: *Yes.*
+Me of December 2021: *Yes.*
 
 Cool, will post 'em then.
