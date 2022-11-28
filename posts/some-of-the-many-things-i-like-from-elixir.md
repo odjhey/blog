@@ -13,18 +13,18 @@ time: 1
 {:error, info} = someAction()
 ```
 
-Why is the above construct NOT as common in other languages? Hmmm, maybe they are, i might be just unaware.
+Why is the above construct NOT as common in other languages? Hmmm, maybe they are, i might just be unaware.
 
 Above or something akin to the *Railway Oriented Programming (ROP)* would be a real neat addition to your project's conventions.
 
 There is a lot of things I like about Elixir, you know, OTP and stuff. 
-But when working on non-elixir projects,
+And when working on non-elixir projects,
 I often find myself looking-for/reimplementing some very simple things that are second nature when on ElixirLand.
 
   (1) One of them would be what is shown above; and  
   (2) another would be `Ecto`'s `changesets`. 
 
-I'll leave the details of them to your googling skills, but i'd like to add that it is also somewhat similar to
+I'll leave them details to your googling skills, but i'd like to add that it is also somewhat similar to
 the spirit of the `Parse, don’t validate` mantra, which I first encountered from 
 `colinhacks/zod`'s [readme](https://www.npmjs.com/package/zod) referencing this [article](https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/).
 go take a read.
