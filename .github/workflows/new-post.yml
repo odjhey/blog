@@ -1,0 +1,30 @@
+name: new-post
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'branch name'
+        default: 'new-post'
+        required: true
+
+jobs:
+  run:
+    name: new file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+          
+      - name: copy
+        run: cp ./scripts/templates/new.template ./data/blog/${{ github.event.inputs.name }}.mdx
+      - name: check
+        run: ls ./data/blog
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "post: new ${{ github.event.inputs.name }}"
+          add: './data/blog/*.mdx'
+          new_branch: post/${{ github.event.inputs.name }}
+
