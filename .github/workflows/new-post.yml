@@ -17,9 +17,12 @@ jobs:
         uses: actions/checkout@v3
           
       - name: copy
-        run: cp ./scripts/templates/new.template ./data/blog/${{ github.event.inputs.name }}.mdx
+        #run: cp ./scripts/templates/new.template ./data/blog/${{ github.event.inputs.name }}.mdx
+        run: POST_TITLE=${{ github.event.inputs.name }} POST_DATE=`date -d '+8 hours' '+%Y-%m-%d'` ./scripts/templates/new.template.sh
       - name: check
-        run: ls ./data/blog
+        #run: ls ./data/blog
+        run: cat ./data/blog/${{ github.event.inputs.name }}.mdx
+
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
