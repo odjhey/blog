@@ -28,3 +28,5 @@ jobs:
           add: './data/blog/*.mdx'
           new_branch: post/${{ github.event.inputs.name }}
 
+      - name: create pull request
+        run: gh pr create -B master -H post/${{ github.event.inputs.name }} --fill
