@@ -63,3 +63,7 @@ The responsibility of inferring the dependencies between the effects and their e
 With the compiler, we can also generate a serializable representation of the effects that can be transported and executed in a different environment.
 
 The serialized effects may have to be a series of DAGs where we can identify parallelizable effects and execute them in parallel. It is also critical that the end result is a set of DAGs of the effects to prevent forever loops and reap some other benefits of non-cyclic graphs.
+
+## PS
+
+Some cool things we could do includes pausable workflows, where we do not immediately create shipments until some other events happen, see temporalio for the execution for inspiration.
