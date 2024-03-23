@@ -1,0 +1,69 @@
+---
+title: Business Logic Driven Development
+date: 2024-03-23
+tags: []
+draft: false
+summary: My dream DX for developing business domain logic to use in applications
+---
+
+# The DX Dream
+
+We want to code business domain logic first, which yields a pair of "logic/fn" and a "side-effect" definition list that will be defined during execution.
+
+This domain logic should be the single source of truth for the dependencies and the side-effects definitions that are required to execute the logic.
+
+```typescript
+// domain.ts
+import { somelib } from './somelib'
+
+export const createOrder = (orderInput) => {
+  const { use, effects } = somelib()
+
+  const order = use('createOrder', { input: orderInput })
+
+  // more business logic
+
+  if (order.type === 'ready') {
+    const shipment = use('createShipment', {
+      input: { orderId: orderIdDep },
+      dependencies: { order: orderIdDep },
+    })
+
+    return [{ order, shipment }, { effects }]
+  }
+
+  return [{ order }, { effects }]
+}
+
+// main.ts
+const order = await execute(createOrder, { input: { ... } }, depsImpl)
+```
+
+## considerations
+
+### serializable effects
+
+- we want a serializable effects to be able to transport them, log them, and or augment the development of the details of implementation
+
+### execution strategy and engine
+
+- our effects should be able to be executed in a specific order, an execution strategy, `somelib` should be able to infer the dependencies between the effects
+
+## todos
+
+- of course we should be able to infer a fully typed effect definition based on the usage of these effects
+- fully typed error handling
+- discuss about placeholders for effect results, since we mostly rely of effect results in our business logic. We may need to generate placeholders and replace them with the actual results during runtime/execution.
+
+# Closing Thoughts
+
+I am thinking this calls for a DSL and a compiler.
+The responsibility of inferring the dependencies between the effects and their execution order should be part of this imaginary `compiler`.
+
+With the compiler, we can also generate a serializable representation of the effects that can be transported and executed in a different environment.
+
+The serialized effects may have to be a series of DAGs where we can identify parallelizable effects and execute them in parallel. It is also critical that the end result is a set of DAGs of the effects to prevent forever loops and reap some other benefits of non-cyclic graphs.
+
+## PS
+
+Some cool things we could do includes pausable workflows, where we do not immediately create shipments until some other events happen, see temporalio for the execution for inspiration.
