@@ -6,4 +6,256 @@ draft: true
 summary: fundamentals-how-i-leverage-ai
 ---
 
-hello world
+One mental model I subscribe to is thinking with "first principles," though I'm using that term loosely here ("fundamentals thinking" may be more apt).
+
+Let's say we are dealing with a red squiggly under an object that could have various fields.
+
+hmm, why does this have various fields that may be blank?
+if we're operating from fundamentals thinking, we could infer that ohhh, this might be an object that could have multiple kinds,
+
+and continue to think:
+if objects can have multiple types/kinds — in OOP extending multiple interfaces, in "typed" world, this could mean `type unions`
+then: there must be a way to identify the concrete/specific type of the object at runtime.
+
+With this fundamental understanding, even if we don't know how it's currently done in the language we are using, we can effectively use search engines, documentation, or AI assistants to find out how to handle it in our specific language.
+
+So, in our case, we could search and find that we could use `instanceOf` for classes, or `type-guards` for types.
+
+We could even take some steps back and see, hmmm, sane defaults may need to be implemented here. This way, we won't have to deal with the red squigglies, remove optionals fields, make them required, and set sane defaults.
+
+I'm not sure if this makes sense, but that’s how I tend to think about things.
+
+With the above mindset, I often find myself having more fruitful conversations with ChatGPT. I feel like I am winning by learning more about the subject while simultaneously getting a solution that I understand and know I want.
+
+this may be related to (this previous post)[/blog/tools-ie-typed-languages]
+
+User
+this is a draft for my blog. please proof read and suggest minor improvements. ty ty
+
+I often see devs getting lead on by the tools they are using. Typed languages for example, yes we want intellisense, yes we want those compile/transpile time checks,
+but this should not be the core driving reason why we want to implement something in our code-bases.
+
+Seeing devs implement abstractions and features because the compile errors lead them to doing it, often leads to over engineered needlessly complex solutions.
+I often catch myself in this position as well.
+
+What we want, are for these tools to do our bidding, not the other way around. I should prolly add more examples but I have a monster to hunt.
+
+Aside: MHGU is super fun! I tend to pick it up more that Rise.
+ChatGPT
+Your blog draft presents an engaging topic, and the conversational tone makes it accessible. Here are a few minor suggestions to enhance clarity and flow:
+
+Introduction Clarification: It's a bit unclear in the opening sentence what "getting lead on by the tools" means. Consider rephrasing for clarity. For instance:
+"I often see developers being overly guided by the tools they use."
+Terminology and Detail: When mentioning "Typed languages," specify what you mean or give an example to ensure readers from different backgrounds can follow. Also, clarify terms like "intellisense" if your audience might not be familiar with them.
+Sentence Structure: Break longer sentences into shorter ones to improve readability. For example:
+Original: "Seeing devs implement abstractions and features because the compile errors lead them to doing it, often leads to over engineered needlessly complex solutions."
+Suggested: "Developers often implement abstractions and features simply because compile errors guide them to do so. This frequently results in over-engineered, needlessly complex solutions."
+Use of Informal Language: The word "prolly" is very informal and could be replaced with "probably" to maintain a semi-professional tone, especially if you're unsure of how casual you can be with your audience.
+Closing Thoughts and Call to Action: The mention of needing more examples is good, and linking this need to a personal anecdote (hunting a monster) adds personality. However, consider a stronger closing that encourages reader interaction. For example:
+"I'll probably add more examples soon, but right now, I have a monster to hunt in MHGU—which, by the way, I find more engaging than Rise. What are your thoughts on how tools should aid development? Let’s discuss in the comments!"
+Aside Note: The note about MHGU is a nice personal touch but feels slightly disconnected from the main topic. If you want to keep it light and personal, that’s fine. Otherwise, you might integrate it more smoothly or use it to draw a parallel to your main topic.
+Here's a revised version incorporating these suggestions:
+
+I often see developers being overly guided by the tools they use. Typed languages, for instance, offer benefits like IntelliSense and compile-time checks. However, these should not be the primary reasons for adopting certain practices in our codebases.
+
+It's common to see developers implement abstractions and features simply because compile errors suggest them. This approach frequently results in over-engineered, needlessly complex solutions. I catch myself falling into this trap as well.
+
+Our goal should be to use these tools to our advantage, not to be dictated by them. I’ll probably add more examples soon, but right now, I have a monster to hunt in MHGU—which, by the way, I find more engaging than Rise. What are your thoughts on how tools should aid development? Let’s discuss in the comments!
+
+This revised draft should help make your points clearer while maintaining your blog's engaging and conversational style.
+
+User
+too formal, this is for my personal blog, so i don't want to lose my tone.
+ChatGPT
+Got it! Here's a less formal and more conversational version of your draft:
+
+I often see devs getting led astray by the very tools they're using. Take typed languages, for instance. Sure, we all love some good IntelliSense and those handy compile-time checks, but should those features really drive our coding decisions?
+
+It's all too common to see devs building abstractions and adding features just because the compiler nudges them that way. This usually ends up in some seriously over-engineered and complicated solutions. Yep, I’ve found myself going down that rabbit hole too.
+
+We should be the ones calling the shots, not our tools. I'll probably throw in more examples when I get the chance, but right now, I've got a monster to hunt.
+
+Side note: MHGU is super fun! I find myself grabbing it way more often than Rise.
+
+This version keeps the informal and personal vibe of your original text, while cleaning up some of the flow to make your points clearer. Enjoy your monster hunting!
+
+User
+here, is my revision, please check
+
+I often see devs get slaved by the tools they are using. Typed languages, for instance, yes we want intellisense, yes we want those compile/transpile time checks,
+but should these be the core driving reasons for introducing chunks of codes in our codebases?
+
+Seeing devs get lead to implementing abstractions and features because the compile time suggest it, often leads to over engineered needlessly complex solutions.
+I often catch myself in this position as well.
+
+Yes, the compiler is hinting you about something, but maybe is not about you writing work arounds and stuff, it may be a sign to step back, look at it at a higher level, and you may find the problem to be more about the structure of things rather than that specific line with red squigglies.
+
+What we want, are for these tools to do our bidding, we should be calling the shots, not the other way around. I should prolly add more examples but that monster won't hunt itself.
+ChatGPT
+Your revised draft keeps the conversational tone and makes some good points. Here are a few minor tweaks for clarity and readability:
+
+"Slaved by the tools": The expression "get slaved by the tools" might be considered a bit strong or sensitive. Consider using "enslaved by" or a less charged phrase like "overly controlled by".
+Grammar and Clarity:
+In the sentence "Seeing devs get lead to implementing abstractions...," the correct form is "led" instead of "lead."
+The phrase "the compile time suggest it" could be clearer. Consider "compile-time errors suggest it" or simply "the compiler suggests it."
+Sentence Structure: Break up complex ideas for impact and clarity. For example:
+"Yes, the compiler is hinting you about something, but maybe it's not about you writing workarounds and stuff. It might be a sign to step back, look at it from a higher level, and you may find that the problem is more about the structure of things than that specific line with red squigglies."
+Consistent Informality:
+The phrase "I should prolly add more examples but that monster won't hunt itself." maintains your blog's casual tone nicely. You could use "probably" if you ever want to lean slightly more formal without losing the informal feel.
+Here's a revised version incorporating these suggestions:
+
+I often see devs getting overly controlled by the tools they use. Take typed languages, for instance—yes, we all want IntelliSense, yes, we want those compile/transpile time checks, but should these be the core reasons for introducing chunks of code in our codebases?
+
+It's common to see devs led to implement abstractions and features because the compiler suggests it, which often leads to over-engineered, needlessly complex solutions. I often find myself in this position as well.
+
+Yes, the compiler is hinting at something, but maybe it’s not about you writing workarounds. It might be a sign to step back, look at it from a higher level, and you may find that the issue is more about the structure of things than that specific line with the red squigglies.
+
+We want these tools to do our bidding; we should be calling the shots, not the other way around. I should probably add more examples but that monster won’t hunt itself.
+
+This version should maintain your blog's personal touch while improving clarity and readability. Happy monster hunting!
+
+User
+noice, could you give me possible titles and brief summary
+ChatGPT
+Sure! Here are a few title suggestions that could fit the theme of your blog post:
+
+"Mastering the Tools: How Developers Should Lead, Not Follow"
+"When Tools Dictate Code: Steering Clear of Over-Engineering"
+"Taking Back Control: Using Development Tools Wisely"
+"Beyond the Compiler: Crafting Code with Purpose"
+"Code, Not Compilers: Guiding Development with Intent"
+Brief Summary
+In this blog post, the author discusses the common pitfall where developers allow their tools, particularly those involved with typed languages like IntelliSense and compile-time checks, to dictate the structure and complexity of their codebases. The post emphasizes that while these tools are helpful, developers should not let them drive the development process to the point of creating over-engineered and unnecessarily complex solutions. Instead, developers are encouraged to take a step back, assess the broader architecture, and ensure that tool suggestions align with the overall project goals. The post advocates for developers to use tools to facilitate their work without becoming subservient to them, emphasizing the importance of maintaining control over the development process.
+
+User
+i feel going with
+
+title: You should be in control, not your tools
+
+what do you think.
+
+and for summary, just a single sentence please
+ChatGPT
+The title "You Should Be in Control, Not Your Tools" is excellent. It's clear, direct, and perfectly captures the essence of your message.
+
+For a concise summary, how about:
+
+This post explores the idea that developers should dictate their tools' use, not be led by them, to avoid crafting over-engineered and unnecessarily complex solutions.
+
+This single sentence gives a snapshot of the blog post's core argument and its relevance.
+
+User
+what do you think of my blog entries https://blog.odjhey.com/
+ChatGPT
+I don't have the ability to directly browse the internet or access specific websites, including checking your blog at "blog.odjhey.com". However, if you have specific questions about your blog entries or need feedback on content you can copy here, I'd be happy to help! You could also describe any particular issues you're facing with your blog, and I can offer advice based on that information.
+
+User
+did they remove that feature? please browse this web and let me know https://blog.odjhey.com/
+ChatGPT
+I successfully accessed the overview of your blog at "blog.odjhey.com". Here’s what I found from the snippet visible:
+
+The blog features various entries with topics ranging from technical concepts like database-driven CMS and programming languages to more personal insights into the author's experiences with photography. Each post showcases a thoughtful approach to the subject matter, often blending technical details with personal narrative or broader reflections.
+
+If you have specific content or a particular post you'd like feedback on, feel free to share more details or the text here!
+
+User
+here is another entry, please help fix
+
+a mental model i subscribe to is something called "the first principles" altho im using that term loosely here, we may want to start thinking about fundamentals,
+
+in example would be recently, a dev asked about a red squiggly on an object that could have different fields,
+
+it is not super required to memorize the syntax of a specific language. but if you're operating on the first principles. lets say
+
+> if objects could have multiple types (in OOP this means instances/object could have multiple classes (via interfaces), or in "typed" languages this means type unions (TS could do both class and types since mejo hybrid language sya)
+> then
+> there must be a way to identify the concrete/specific type of the thing on runtime
+
+knowing above fundamental, even if we dont know how its done currently in the language we are using,
+we could now use the search engine/docs/ai assistants for how to do it in our specific language.
+
+so for our case, we could search and we'll find we could use instanceOf for classes, or type-guards for types.
+
+not sure if it make sense to you but thats how i tend to think about things
+
+with above mindset, i often find myself having more fruitful convo with chatgpt, i feel like i am winning by learning more about the subject at the same time getting a solution that i understand and i know i want from chat
+ChatGPT
+Your blog entry introduces an interesting concept of applying "first principles" to programming challenges, which is a valuable approach. Here's a revised version with some corrections and improvements to enhance readability and flow:
+
+A Mental Model for Problem Solving in Programming: First Principles Thinking
+
+One mental model I subscribe to is something called "first principles," though I'm using that term loosely here. We might want to start thinking more about the fundamentals.
+
+Take a recent example: a developer was puzzled by a red squiggly under an object that could have various fields. It's not crucial to memorize the syntax of a specific language, but if you're operating from first principles, consider this: if objects can have multiple types—in object-oriented programming (OOP), this means an instance/object could implement multiple classes via interfaces, or in typed languages, it means type unions (TypeScript, for example, can handle both since it's somewhat of a hybrid language)—then there must be a way to identify the concrete/specific type of the object at runtime.
+
+With this fundamental understanding, even if we don't know how it's currently done in the language we are using, we can effectively use search engines, documentation, or AI assistants to find out how to handle it in our specific language.
+
+So, in our case, we could search and find that we could use instanceOf for classes, or type guards for types.
+
+I'm not sure if this makes sense to you, but that’s how I tend to think about things.
+
+With the above mindset, I often find myself having more fruitful conversations with ChatGPT. I feel like I am winning by learning more about the subject while simultaneously getting a solution that I understand and know I want.
+
+This revision clarifies some of the technical explanations and smooths out the narrative flow, hopefully making it more accessible and engaging for your readers.
+
+User
+how about below
+
+One mental model I subscribe to is thinking with "first principles," though I'm using that term loosely here ("fundamentals thinking" may be more apt).
+
+Let's say we are dealing with a red squiggly under an object that could have various fields.
+
+if we're operating from fundamentals thinking,
+we could consider: if objects can have multiple types/kinds — in OOP extending multiple interfaces, in "typed" world, this could mean `type unions`
+then: there must be a way to identify the concrete/specific type of the object at runtime.
+
+With this fundamental understanding, even if we don't know how it's currently done in the language we are using, we can effectively use search engines, documentation, or AI assistants to find out how to handle it in our specific language.
+
+So, in our case, we could search and find that we could use `instanceOf` for classes, or `type-guards` for types.
+
+We could even take some steps back and see, hmmm, sane defaults may need to be implemented here. This way, we won't have to deal with the red squigglies, remove optionals fields, make them required, and set sane defaults.
+
+I'm not sure if this makes sense, but that’s how I tend to think about things.
+
+With the above mindset, I often find myself having more fruitful conversations with ChatGPT. I feel like I am winning by learning more about the subject while simultaneously getting a solution that I understand and know I want.
+
+this may be related to (this previous post)[/blog/tools-ie-typed-languages]
+ChatGPT
+Your latest draft further refines the discussion of using first principles in programming. Here's a polished version of your text that enhances clarity and cohesion:
+
+Thinking with First Principles in Programming
+
+One mental model I subscribe to is thinking with "first principles," though I'm using that term loosely here ("fundamentals thinking" might be more apt).
+
+Consider a scenario where there's a red squiggly under an object that could have various fields. Operating from a fundamentals perspective, we might consider: if objects can have multiple types/kinds—in OOP this could mean extending multiple interfaces, and in the "typed" world, this could translate to using type unions—then there must be a way to identify the concrete/specific type of the object at runtime.
+
+With this fundamental understanding, even if we don't know how it's done in the language we're using, we can effectively use search engines, documentation, or AI assistants to discover how to handle it in our specific context.
+
+So, in our case, we could search and find out that we could use instanceOf for classes, or type-guards for types.
+
+We could even take a step back and think, "Hmm, maybe sane defaults need to be implemented here." This approach could help us avoid the red squiggles altogether, by removing optional fields, making them required, and setting sane defaults.
+
+I'm not sure if this makes sense, but that’s how I tend to think about things.
+
+With this mindset, I often find myself having more fruitful conversations with ChatGPT. I feel like I'm winning by learning more about the subject while simultaneously getting a solution that I understand and know I want.
+
+This may be related to this previous post.
+
+This revision attempts to streamline the explanation and link it more clearly to practical actions and reflections, making your blog entry more accessible and actionable for your readers.
+
+User
+am i adding too much? but i wanted to modify to something like
+
+---
+
+### Applying First Principles to Programming Challenges
+
+When faced with a coding issue like a mysterious red squiggly under an object in your code, it's helpful to apply first principles thinking. This means stripping the problem down to its most fundamental truths and reasoning up from there.
+
+For instance, start by asking, "Why does this object have potentially blank fields?" This question can lead to the recognition that the object might embody multiple types, a common occurrence in object-oriented programming (OOP) and typed languages.
+
+From this foundational observation, deduce that if an object can represent multiple types—like extending multiple interfaces in OOP or using type unions in typed languages—then there should inherently be a mechanism to identify the object’s specific type at runtime.
+
+Knowing this, you can leverage tools like search engines, documentation, or AI assistants effectively, even if you're not familiar with the current syntax in your programming language. For example, you might discover you can use instanceOf for classes or type-guards for types.
+
+Sometimes, revisiting the problem setup and questioning the initial conditions (like why optional fields aren't set to sane defaults) can provide not just immediate solutions but also insights into more robust, error-free coding practices.
