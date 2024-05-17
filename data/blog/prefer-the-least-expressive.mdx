@@ -7,3 +7,14 @@ summary: prefer-the-least-expressive
 ---
 
 hello world
+
+https://www.youtube.com/watch?v=agkXUp0hCW8
+
+Another thing i'd like to take a note of from this talk, would be the quote
+> least expressive model, that results in a natural program.
+
+I have yet to understand the "that results in a natural program." bit, but i'd like to expand on the right solution is the "least exppressive model" solution.
+
+A graph was shown, where the more expressive a solution is, meaning the more dynamic it is, the move complex it gets. So, we must prefer the least expressive version that solves our problem.
+In other words, the leart dynamic solution, the solution that solves the leart problems, is preferred, coupled by a test case, we like a solution that "only" solve our requirement, paired with a test case, then ship.
+When the time comes that we need to expand the solution to solve other problems, we could, (A) confirm first that updating this current one is the only choice, if so, we could update the logic to solve other problems, and since we have existing test cases to cover our initial purpose, we're not afraid of breaking the original purpose of the implementation.
