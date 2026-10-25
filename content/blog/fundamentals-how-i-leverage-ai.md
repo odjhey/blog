@@ -1,5 +1,5 @@
 ---
-title: "fundamentals-how-i-leverage-ai"
+title: "Leveraging AI"
 date: "2024-04-18"
 tags: ["programming", "ai", "learning"]
 ---

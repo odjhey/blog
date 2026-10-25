@@ -1,5 +1,5 @@
 ---
-title: "when-honesty-unearths-better-implementation"
+title: "When Honesty Unearths Better Implementation"
 date: "2024-07-01"
 tags: ["programming", "application-design"]
 ---

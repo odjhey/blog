@@ -1,5 +1,5 @@
 ---
-title: "prefer-the-least-expressive"
+title: "Prefer the Least Expressive Model"
 date: "2024-05-17"
 tags: ["programming", "application-design"]
 ---
