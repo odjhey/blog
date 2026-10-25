@@ -1,11 +1,11 @@
 /* "Ledger": a dated index with a left rail. Inlined into every page. */
 :root {
-	--bg: #fbfbfa;
+	--bg: #ffffff;
 	--fg: #16181d;
 	--muted: #62666f;
-	--line: #e4e4e0;
-	--accent: #2850d8;
-	--code: #f1f1ee;
+	--line: #e8e8e5;
+	--accent: #db2777;
+	--code: #f4f4f2;
 	--rail: 9rem;
 	--sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 	--mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -13,12 +13,12 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--bg: #0f1115;
+		--bg: #050607;
 		--fg: #e8e9ec;
 		--muted: #969ba5;
-		--line: #262a31;
-		--accent: #8fa9ff;
-		--code: #171a20;
+		--line: #1c1f24;
+		--accent: #ec4899;
+		--code: #111316;
 	}
 }
 
@@ -190,6 +190,17 @@ main > h1 {
 	content: "↳ ";
 	content: "↳ " / "";
 	color: var(--muted);
+}
+
+/* Home: the latest posts, dated in full, then a link to /blog/. */
+.latest .posts li {
+	grid-template-columns: 6rem 1fr auto;
+}
+
+.more {
+	margin: 1rem 0 0 calc(var(--rail) + 1.5rem);
+	font-family: var(--mono);
+	font-size: 0.85rem;
 }
 
 .topics {
@@ -464,7 +475,7 @@ footer a {
 		grid-row: 2;
 		grid-column: 1 / -1;
 	}
-	main > h1, ul.tags, .page {
+	main > h1, ul.tags, .page, .more {
 		margin-left: 0;
 		padding-left: 0;
 	}
@@ -475,6 +486,9 @@ footer a {
 	.posts li {
 		grid-template-columns: 3.8rem 1fr;
 		gap: 0.75rem;
+	}
+	.latest .posts li {
+		grid-template-columns: 5.6rem 1fr;
 	}
 	.posts .topics {
 		display: none;

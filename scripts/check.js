@@ -292,13 +292,14 @@ async function checkSite(siteDir, { label, posts }) {
 		...published.filter(c => rootOf(c) === p).map(c => ({ href: c.url, child: true })),
 	]);
 
-	// Lists: newest first, grouped under a year heading; a row shows "Apr 18"
+	// /blog/: newest first, grouped under a year heading; a row shows "Apr 18".
+	// Home: the 10 newest under "Latest", dated in full, then a link to /blog/.
 	const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	let listDate = (iso) => {
 		let [, m, d] = iso.split("-").map(Number);
 		return `${MONTHS[m - 1]} ${String(d).padStart(2, "0")}`;
 	};
-	let listed = (doc) => DomUtils.findAll(el => el.name === "section" && el.attribs.class === "year", doc.children)
+	let listed = (doc) => DomUtils.findAll(el => el.name === "section" && el.attribs.class?.split(" ").includes("year"), doc.children)
 		.flatMap(section => {
 			let year = textOf(DomUtils.findOne(el => el.name === "h2", section.children) || section);
 			return DomUtils.findAll(el => el.name === "ul" && el.attribs.class === "posts", section.children)
@@ -309,17 +310,26 @@ async function checkSite(siteDir, { label, posts }) {
 				});
 		});
 	let home = parsed.get(path.join(siteDir, "index.html"));
+	let blogIndex = parsed.get(path.join(siteDir, "blog/index.html"));
 	let tagsIndex = parsed.get(path.join(siteDir, "tags/index.html"));
-	if(home && tagsIndex) {
-		let rows = listed(home);
+	if(home && blogIndex && tagsIndex) {
+		let latest = listed(home);
+		let expectedLatest = published.slice(0, 10).map(p => `Latest ${p.date} ${p.url}`);
+		let shownLatest = latest.map(x => `${x.year} ${x.text} ${x.child ? "└ " : ""}${x.href}`);
+		r.ok(JSON.stringify(shownLatest) === JSON.stringify(expectedLatest), `home lists ${shownLatest.join(", ")} but expected ${expectedLatest.join(", ")}`);
+		r.ok(latest.every(x => x.datetime === x.text), "home: a row's <time datetime> differs from its shown date");
+		let more = DomUtils.findOne(el => el.name === "p" && el.attribs.class === "more", home.children);
+		r.ok(more && DomUtils.findOne(el => el.name === "a", more.children)?.attribs.href === "/blog/" && textOf(more) === `All ${published.length} posts →`, `home: missing "All ${published.length} posts →" link to /blog/`);
+
+		let rows = listed(blogIndex);
 		let shown = rows.map(x => `${x.child ? "└ " : ""}${x.href}`);
 		let expected = indexTree.map(x => `${x.child ? "└ " : ""}${x.href}`);
-		r.ok(JSON.stringify(shown) === JSON.stringify(expected), `home lists ${shown.join(", ")} but expected ${expected.join(", ")}`);
+		r.ok(JSON.stringify(shown) === JSON.stringify(expected), `/blog/ lists ${shown.join(", ")} but expected ${expected.join(", ")}`);
 		for(let row of rows) {
 			let p = published.find(q => q.url === row.href);
-			r.ok(p && row.datetime === p.date, `home: ${row.href} has datetime ${row.datetime}, expected ${p?.date}`);
-			r.ok(p && row.text === listDate(p.date), `home: ${row.href} shows "${row.text}", expected "${p && listDate(p.date)}"`);
-			r.ok(p && (row.child || row.year === p.date.slice(0, 4)), `home: ${row.href} listed under ${row.year}, expected ${p?.date.slice(0, 4)}`);
+			r.ok(p && row.datetime === p.date, `/blog/: ${row.href} has datetime ${row.datetime}, expected ${p?.date}`);
+			r.ok(p && row.text === listDate(p.date), `/blog/: ${row.href} shows "${row.text}", expected "${p && listDate(p.date)}"`);
+			r.ok(p && (row.child || row.year === p.date.slice(0, 4)), `/blog/: ${row.href} listed under ${row.year}, expected ${p?.date.slice(0, 4)}`);
 		}
 		let tagNames = DomUtils.findAll(el => el.name === "a" && el.attribs.href?.startsWith("/tags/") && el.attribs.href !== "/tags/", tagsIndex.children).map(textOf);
 		r.ok(JSON.stringify([...tagNames].sort()) === JSON.stringify([...publishedTags].sort()), `tags index shows ${tagNames}, expected ${[...publishedTags]}`);

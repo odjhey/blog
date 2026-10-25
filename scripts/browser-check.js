@@ -187,7 +187,7 @@ try {
 		return "header and footer hidden; article visible";
 	});
 
-	await step("Colours follow the device setting: off-white light, blue-black dark", async () => {
+	await step("Colours follow the device setting: white light, near-black dark", async () => {
 		let colours = {};
 		for(let scheme of ["light", "dark"]) {
 			await page.emulateMedia({ colorScheme: scheme });
@@ -198,9 +198,9 @@ try {
 			});
 		}
 		await page.emulateMedia({ colorScheme: "light" });
-		assert(colours.light.bg === "rgb(251, 251, 250)", `light background is ${colours.light.bg}`);
+		assert(colours.light.bg === "rgb(255, 255, 255)", `light background is ${colours.light.bg}`);
 		assert(colours.light.text === "rgb(22, 24, 29)", `light text is ${colours.light.text}`);
-		assert(colours.dark.bg === "rgb(15, 17, 21)", `dark background is ${colours.dark.bg}`);
+		assert(colours.dark.bg === "rgb(5, 6, 7)", `dark background is ${colours.dark.bg}`);
 		assert(colours.dark.text === "rgb(232, 233, 236)", `dark text is ${colours.dark.text}`);
 		return `light ${colours.light.bg} / ${colours.light.text}; dark ${colours.dark.bg} / ${colours.dark.text}`;
 	});
