@@ -25,14 +25,6 @@ export default function(eleventyConfig) {
 		return toDateTime(value).toFormat("yyyy-LL-dd");
 	});
 
-	// True when `updated` falls on a later calendar day than `published`.
-	eleventyConfig.addFilter("isLaterDay", (updated, published) => {
-		if(!updated) {
-			return false;
-		}
-		return toDateTime(updated).startOf("day") > toDateTime(published).startOf("day");
-	});
-
 	// Index dates: "Apr 18". The year heads its group (see byYear).
 	eleventyConfig.addFilter("listDate", (value) => {
 		return toDateTime(value).toFormat("LLL dd");

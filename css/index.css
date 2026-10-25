@@ -212,11 +212,6 @@ main > h1 {
 	content: "#" / "";
 }
 
-.empty {
-	color: var(--muted);
-	margin-left: calc(var(--rail) + 1.5rem);
-}
-
 /* Tag index. */
 ul.tags {
 	list-style: none;
@@ -302,7 +297,7 @@ h3 {
 	margin: 1.5rem 0 0.4rem;
 }
 
-p, ul, ol, blockquote, pre, details, .table-scroll {
+p, ul, ol, blockquote, pre, details {
 	margin: 0 0 1rem;
 }
 
@@ -342,21 +337,6 @@ blockquote {
 img {
 	max-width: 100%;
 	height: auto;
-}
-
-.table-scroll {
-	overflow-x: auto;
-}
-
-table {
-	border-collapse: collapse;
-}
-
-th, td {
-	border-bottom: 1px solid var(--line);
-	padding: 0.35rem 0.75rem 0.35rem 0;
-	text-align: left;
-	vertical-align: top;
 }
 
 /* Note graph. */
@@ -464,7 +444,7 @@ footer a {
 		grid-row: 2;
 		grid-column: 1 / -1;
 	}
-	main > h1, .empty, ul.tags, .page {
+	main > h1, ul.tags, .page {
 		margin-left: 0;
 		padding-left: 0;
 	}

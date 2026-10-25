@@ -1,8 +1,6 @@
 // Focused checks on the generated site in `_site/`. Run with `npm run check`,
 // which builds first. Exits non-zero when any check fails.
-import { readFile, readdir, mkdtemp, cp, symlink, rm, stat } from "node:fs/promises";
-import { execFileSync } from "node:child_process";
-import os from "node:os";
+import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseDocument, DomUtils } from "htmlparser2";
@@ -70,7 +68,6 @@ async function readPosts(root) {
 			url: `/blog/${slug}/`,
 			title: data.title,
 			date: dayString(data.date),
-			updated: data.updated ? dayString(data.updated) : null,
 			tags: (Array.isArray(data.tags) ? data.tags : data.tags ? [data.tags] : []).filter(t => t !== "posts"),
 			raw_at: typeof data.raw_at === "string" ? data.raw_at : null,
 			extends: typeof data.extends === "string" ? data.extends : null,
@@ -82,7 +79,7 @@ async function readPosts(root) {
 	// reverse file-name order.
 	let byInputPath = (a, b) => a.file < b.file ? -1 : a.file > b.file ? 1 : 0;
 	let published = posts.sort((a, b) => b.date.localeCompare(a.date) || byInputPath(b, a));
-	return { published, drafts: [] };
+	return { published };
 }
 
 class Report {
@@ -144,7 +141,7 @@ const textOf = (node) => DomUtils.textContent(node).replace(/\s+/g, " ").trim();
 
 // ------------------------------------------------------- site-wide checks
 
-async function checkSite(siteDir, { label, posts, expectEmpty = false }) {
+async function checkSite(siteDir, { label, posts }) {
 	let r = new Report(label);
 	let { published } = posts;
 	let all = await walk(siteDir);
@@ -327,9 +324,6 @@ async function checkSite(siteDir, { label, posts, expectEmpty = false }) {
 		let tagNames = DomUtils.findAll(el => el.name === "a" && el.attribs.href?.startsWith("/tags/") && el.attribs.href !== "/tags/", tagsIndex.children).map(textOf);
 		r.ok(JSON.stringify([...tagNames].sort()) === JSON.stringify([...publishedTags].sort()), `tags index shows ${tagNames}, expected ${[...publishedTags]}`);
 		r.ok(!tagNames.includes("posts") && !tagNames.includes("all"), "internal collection exposed as a tag");
-		if(expectEmpty) {
-			r.ok(textOf(home).includes("Nothing is published yet"), "home has no empty-state message");
-		}
 	}
 
 	// Each article: body in initial HTML and published date without time-zone shift
@@ -437,44 +431,6 @@ async function checkSite(siteDir, { label, posts, expectEmpty = false }) {
 	return r;
 }
 
-// --------------------------------------------- builds in a temporary copy
-
-const COPY = ["eleventy.config.js", "package.json", "_config", "_data", "_includes", "content", "css", "public", "scripts"];
-
-async function makeTempProject() {
-	let dir = await mkdtemp(path.join(os.tmpdir(), "blog-check-"));
-	for(let item of COPY) {
-		if(await exists(path.join(projectRoot, item))) {
-			await cp(path.join(projectRoot, item), path.join(dir, item), { recursive: true });
-		}
-	}
-	await symlink(path.join(projectRoot, "node_modules"), path.join(dir, "node_modules"), "dir");
-	return dir;
-}
-
-function run(cwd, args, env = {}) {
-	execFileSync("npm", ["run", "--silent", ...args], { cwd, env: { ...process.env, ...env }, stdio: ["ignore", "ignore", "inherit"] });
-}
-
-async function checkEmptyState() {
-	let dir = await makeTempProject();
-	try {
-		for(let f of await walk(path.join(dir, "content/blog"))) {
-			if(f.endsWith(".md")) {
-				await rm(f);
-			}
-		}
-		run(dir, ["build"]);
-		return await checkSite(path.join(dir, "_site"), {
-			label: "Empty state: every post removed (temporary copy)",
-			posts: await readPosts(dir),
-			expectEmpty: true,
-		});
-	} finally {
-		await rm(dir, { recursive: true, force: true });
-	}
-}
-
 // A note's optional raw dump sits next to it as <slug>.raw.txt. It is
 // published as the same string the author typed (HTML-escaped), so we round-
 // trip its content out of the rendered page and compare.
@@ -527,7 +483,6 @@ if(!await exists(path.join(siteDir, "index.html"))) {
 let posts = await readPosts(projectRoot);
 let reports = [await checkSite(siteDir, { label: "Production output in _site/", posts })];
 reports.push(await checkRaws(siteDir, posts));
-reports.push(await checkEmptyState());
 
 let ok = reports.map(r => r.print()).every(Boolean);
 console.log(ok ? "\nAll checks passed." : "\nSome checks failed.");

@@ -4,9 +4,5 @@ const title = "Blog";
 const permalink = "/blog/";
 ---
 <h1>Blog</h1>
-{%- if collections.posts | length %}
 {%- set postslist = collections.posts | postRows(true) %}
 {% include "postslist.njk" %}
-{%- else %}
-<p class="empty">Nothing is published yet.</p>
-{%- endif %}

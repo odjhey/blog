@@ -31,10 +31,6 @@ layout: layouts/base.njk
 	<dl>
 		<dt>Published</dt>
 		<dd class="date"><time datetime="{{ page.date | htmlDateString }}">{{ page.date | htmlDateString }}</time></dd>
-		{%- if updated | isLaterDay(page.date) %}
-		<dt>Updated</dt>
-		<dd><time datetime="{{ updated | htmlDateString }}">{{ updated | htmlDateString }}</time>{% if revisionNote %}<br>{{ revisionNote }}{% endif %}</dd>
-		{%- endif %}
 		<dt>Reading</dt>
 		<dd>{{ content | readingMinutes }} min</dd>
 		{%- set topics = tags | reject("equalto", "posts") %}

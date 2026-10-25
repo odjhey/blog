@@ -9,7 +9,7 @@ eleventyExcludeFromCollections: true
 	{%- if entry.data.permalink != false %}
 	<url>
 		<loc>{{ entry.url | htmlBaseUrl(metadata.url) }}</loc>
-		<lastmod>{{ (entry.data.updated if entry.data.updated | isLaterDay(entry.date) else entry.date) | htmlDateString }}</lastmod>
+		<lastmod>{{ entry.date | htmlDateString }}</lastmod>
 	</url>
 	{%- endif %}
 {%- endfor %}

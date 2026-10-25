@@ -11,7 +11,7 @@ Requires Node.js >=22 and npm.
 | `npm run dev` | Development server at http://localhost:8081/ |
 | `npm run build` | Clean production build into `_site/` |
 | `npm run preview` | Serves `_site/` as plain static files on http://127.0.0.1:8080/ |
-| `npm run check` | Builds and runs strict HTML, XML, schema, link, and empty-state checks |
+| `npm run check` | Builds, then checks HTML, links, feed, sitemap, note graph and raws |
 | `npm run check:browser` | Headless Chromium check with JavaScript disabled; generates screenshots in `artifacts/preview/` |
 
 ## Writing
@@ -30,8 +30,6 @@ description: "Optional summary for meta description and feed."
 # Optional:
 raw_at: "2026-10-25T12:00"   # When content/blog/<slug>.raw.txt was typed (to the minute)
 extends: "parent-slug"        # Groups this note under another in the index tree
-updated: "YYYY-MM-DD"         # Date of meaningful revision
-revisionNote: "What changed"
 ---
 ```
 

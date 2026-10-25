@@ -5,13 +5,8 @@ const title = "Tags";
 const description = "Topics on the blog.";
 ---
 <h1>Tags</h1>
-{%- set topics = collections | topicList %}
-{%- if topics.length %}
 <ul class="tags">
-{%- for topic in topics %}
+{%- for topic in collections | topicList %}
 	<li><a href="/tags/{{ topic | slugify }}/">{{ topic }}</a><span class="count">{{ collections[topic] | length }}</span></li>
 {%- endfor %}
 </ul>
-{%- else %}
-<p class="empty">No tags yet.</p>
-{%- endif %}
