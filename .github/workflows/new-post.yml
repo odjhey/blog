@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'branch name'
+        description: 'post slug / name'
         default: 'new-post'
         required: true
 
@@ -15,23 +15,28 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-          
-      - name: copy
-        #run: cp ./scripts/templates/new.template ./data/blog/${{ github.event.inputs.name }}.mdx
-        run: POST_TITLE=${{ github.event.inputs.name }} POST_DATE=`date -d '+8 hours' '+%Y-%m-%d'` ./scripts/templates/new.template.sh
-      - name: check
-        #run: ls ./data/blog
-        run: cat ./data/blog/${{ github.event.inputs.name }}.mdx
 
+      - name: copy
+        env:
+          POST_NAME: ${{ github.event.inputs.name }}
+        run: |
+          POST_TITLE="$POST_NAME" POST_DATE=$(date -u '+%Y-%m-%d') ./scripts/templates/new.template.sh
+
+      - name: check
+        env:
+          POST_NAME: ${{ github.event.inputs.name }}
+        run: |
+          cat "./content/blog/${POST_NAME}.md"
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
           message: "post: new ${{ github.event.inputs.name }}"
-          add: './data/blog/*.mdx'
+          add: './content/blog/*.md'
           new_branch: post/${{ github.event.inputs.name }}
 
       - name: create pull request
-        run: gh pr create -B master -H post/${{ github.event.inputs.name }} --fill
+        run: gh pr create -B master -H "post/${POST_NAME}" --fill
         env:
+          POST_NAME: ${{ github.event.inputs.name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
