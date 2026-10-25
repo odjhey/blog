@@ -58,6 +58,7 @@ function build(posts, md) {
 	let incoming = new Map(posts.map(p => [p, []]));
 	let children = new Map(posts.map(p => [p, []]));
 	let top = [];
+	let roots = new Map();
 	for(let p of newest) {
 		let targets = new Set();
 		let parent = parentOf(p);
@@ -77,12 +78,13 @@ function build(posts, md) {
 		let root = rootOf(p);
 		if(root) {
 			children.get(root).push(p);
+			roots.set(p, root);
 		} else {
 			top.push(p);
 		}
 	}
 	let tree = top.flatMap(p => [{ post: p, child: false }, ...children.get(p).map(c => ({ post: c, child: true }))]);
-	return { out, incoming, tree };
+	return { out, incoming, tree, roots, children };
 }
 
 export default function(eleventyConfig) {
@@ -107,6 +109,18 @@ export default function(eleventyConfig) {
 			return graphOf(posts || []).tree;
 		}
 		return [...(posts || [])].reverse().map(post => ({ post, child: false }));
+	});
+
+	// The `n` newest notes, newest first. A note sits under its parent only
+	// when the parent is among them too; otherwise it keeps its date's place.
+	eleventyConfig.addFilter("latestRows", (posts, n) => {
+		let graph = graphOf(posts || []);
+		let kept = [...(posts || [])].reverse().slice(0, n);
+		let shown = new Set(kept);
+		return kept.filter(p => !shown.has(graph.roots.get(p))).flatMap(p => [
+			{ post: p, child: false },
+			...graph.children.get(p).filter(c => shown.has(c)).map(c => ({ post: c, child: true })),
+		]);
 	});
 
 	// { out, in } for the note at `url`: notes it links to (parent first, then
