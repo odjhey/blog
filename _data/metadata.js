@@ -1,9 +1,12 @@
 const url = process.env.SITE_URL || "https://odjhey.com/";
+// How many posts the home page lists; the tagline says the same number.
+const latest = 15;
 
 export default {
 	title: "the blog",
 	headerTitle: "odjhey",
-	description: "`brain | tail -h 10`",
+	description: `\`brain | tail -h ${latest}\``,
+	latest,
 	url: url.endsWith("/") ? url : `${url}/`,
 	language: "en",
 	repo: "https://github.com/odjhey/blog",

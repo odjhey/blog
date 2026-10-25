@@ -6,7 +6,7 @@ const layout = "layouts/base.njk";
 <section class="year latest" aria-labelledby="latest">
 	<h2 id="latest">Latest</h2>
 	<ul class="posts">
-	{%- for row in (collections.posts | postRows).slice(0, 10) %}
+	{%- for row in (collections.posts | postRows).slice(0, metadata.latest) %}
 		<li><time datetime="{{ row.post.date | htmlDateString }}">{{ row.post.date | htmlDateString }}</time><a href="{{ row.post.url }}">{{ row.post.data.title }}</a><span class="topics">{% for topic in row.post.data.tags %}{% if topic != "posts" %}<a href="/tags/{{ topic | slugify }}/">{{ topic }}</a>{% endif %}{% endfor %}</span></li>
 	{%- endfor %}
 	</ul>
