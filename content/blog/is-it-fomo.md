@@ -2,6 +2,7 @@
 title: "Is it really FOMO?"
 date: "2020-05-30"
 tags: ["soliloquy"]
+description: "I'm chasing shiny new libraries instead of doing my work, and calling it growth."
 ---
 
 FOMO (Fear of Missing Out)
@@ -19,4 +20,4 @@ implement this shiny new thing in javascript.
 You thought, ahh maybe he's doing something different for some change of pace and will continue to work on our features in a few.
 Teeet, again, wrong. You see, I've been on this for a week now, an interesting library was mentioned from one of the videos... conference I watched earlier. I'm planning to do that next.
 
-I know. This is how my life goes. I always tell myself it will help me grow, and this will help me do my job better. haha. bs. This is procrastination, i'm describing you mine at it's best.
+I know. This is how my life goes. [I always tell myself it will help me grow](/blog/yak-shaving/), and this will help me do my job better. haha. bs. This is procrastination, i'm describing you mine at it's best.

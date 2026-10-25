@@ -2,6 +2,7 @@
 title: "My Heroes in Tech"
 date: "2023-06-18"
 tags: ["text-editing", "programming"]
+description: "These are some of the tools and influences that made my day-to-day better."
 ---
 
 draft

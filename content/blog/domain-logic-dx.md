@@ -9,7 +9,7 @@ description: "My dream DX for developing business domain logic to use in applica
 
 We want to code business domain logic first, which yields a pair of "logic/fn" and a "side-effect" definition list that will be defined during execution.
 
-This domain logic should be the single source of truth for the dependencies and the side-effects definitions that are required to execute the logic.
+[This domain logic should be the single source of truth](/blog/database-driven-cms/) for the dependencies and the side-effects definitions that are required to execute the logic.
 
 ```typescript
 // domain.ts
@@ -56,7 +56,7 @@ const order = await execute(createOrder, { input: { ... } }, depsImpl)
 
 ## Closing Thoughts
 
-I am thinking this calls for a DSL and a compiler.
+[I am thinking this calls for a DSL and a compiler](/blog/domain-specific-languages/).
 The responsibility of inferring the dependencies between the effects and their execution order should be part of this imaginary `compiler`.
 
 With the compiler, we can also generate a serializable representation of the effects that can be transported and executed in a different environment.

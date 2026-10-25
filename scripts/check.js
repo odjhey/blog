@@ -243,6 +243,11 @@ async function checkSite(siteDir, { label, posts }) {
 		if(name !== "404.html") {
 			r.ok(canonical?.attribs.href === new URL(pageUrl.slice(1), ORIGIN).href, `${name}: canonical is ${canonical?.attribs.href}, expected ${ORIGIN}${pageUrl.slice(1)}`);
 		}
+		// Link preview card: points at this page and at an image that ships.
+		let og = Object.fromEntries(byTag("meta").filter(el => el.attribs.property?.startsWith("og:")).map(el => [el.attribs.property, el.attribs.content]));
+		r.ok(og["og:url"] === canonical?.attribs.href, `${name}: og:url ${og["og:url"]} differs from canonical`);
+		r.ok(og["og:title"] && og["og:description"], `${name}: og:title or og:description missing`);
+		r.ok(og["og:image"]?.startsWith(ORIGIN) && await fileForUrl(siteDir, new URL(og["og:image"]).pathname), `${name}: og:image ${og["og:image"]} is not a shipped absolute URL`);
 
 		// Internal links, assets and fragments resolve
 		for(let el of elements) {

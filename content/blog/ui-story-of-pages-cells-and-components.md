@@ -2,6 +2,7 @@
 title: "UI Story about Pages, Cells, and Components"
 date: "2022-06-01"
 tags: ["application-design"]
+description: "Keep navigation in pages and pass actions to components, not navigation-specific implementations."
 ---
 
 draft

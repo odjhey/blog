@@ -2,6 +2,7 @@
 title: "Peek into the Future of Programming"
 date: "2023-06-18"
 tags: ["programming"]
+description: "I'm curious where Roc and Pen are taking us beyond language runtimes."
 ---
 
 ## Draft

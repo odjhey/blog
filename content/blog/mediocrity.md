@@ -2,6 +2,7 @@
 title: "Mediocrity"
 date: "2020-05-31"
 tags: ["soliloquy"]
+description: "Nothing's wrong with an ordinary life, just find your happiness."
 ---
 
 Ordinary.

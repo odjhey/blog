@@ -12,7 +12,7 @@ I, for the majority of early adulthood, just went with the flow, made micro deci
 and have not really consciously thought of long term goals, just focused on surviving, didn't really care about anything else, come what may.
 
 Now, having the luxury of time and enough resources to pause and think where to go with life,
-I started to wonder, who am I? or rather, what do I want, what do I really want, what are the things I find fun? Things worth chasing?
+I started to wonder, [who am I? or rather, what do I want](/blog/musings-at-30/), what do I really want, what are the things I find fun? Things worth chasing?
 
 And we're also currently confused, with how to identify them experiences we get, whether they're genuinely fun, or just a result of some conditioning that made us believe them is fun.
 

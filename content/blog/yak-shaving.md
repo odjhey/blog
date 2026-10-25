@@ -3,6 +3,7 @@ title: "Yak Shaving"
 date: "2021-04-15"
 tags: ["text-editing", "soliloquy"]
 extends: "text-editing"
+description: "I'm tweaking my vim and emacs workflow to do less yak shaving, or at least do it better."
 ---
 
 Yak Shaving.

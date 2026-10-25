@@ -2,9 +2,9 @@
 title: "Prefer the Least Expressive Model"
 date: "2024-05-17"
 tags: ["programming", "application-design"]
+extends: "expanding-on-3-coupling-of-a-traditional-object"
+description: "Prefer the least dynamic solution that solves the problem, add a test, then ship."
 ---
-
-hello world
 
 https://www.youtube.com/watch?v=agkXUp0hCW8
 

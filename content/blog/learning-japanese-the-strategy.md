@@ -2,6 +2,7 @@
 title: "Our Japanese Study Strat"
 date: "2024-02-01"
 tags: ["learning"]
+description: "Learn Japanese in broad strokes, keep at it, and journal so you can see how far you've come."
 ---
 
 Leverage the following

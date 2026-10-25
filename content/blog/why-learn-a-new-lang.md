@@ -26,7 +26,7 @@ system, so pick Scala/F#. Go hard, go haskell.
 Been comfortable with imperative designs? why not build your next project
 declaratively, using React, or some other component driven UI techs.
 
-Have you heard of the Railway Oriented Programming? How about Flow-based
+[Have you heard of the Railway Oriented Programming](/blog/post-101-concepts/)? How about Flow-based
 programming? You might not need to learn new languages for these, but you know,
 for fun, go find a language that does these best.
 

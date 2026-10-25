@@ -2,9 +2,8 @@
 title: "The 3 Couplings of a Traditional Object"
 date: "2024-05-17"
 tags: ["programming", "application-design"]
+description: "State, behaviour, and mutability are best dealt with separately."
 ---
-
-hello world
 
 https://www.youtube.com/watch?v=agkXUp0hCW8
 

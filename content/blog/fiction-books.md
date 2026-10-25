@@ -2,6 +2,7 @@
 title: "Fiction Books"
 date: "2022-08-20"
 tags: ["storytelling"]
+description: "I'm more used to reading events than walls of world-building, but these fiction books get easier after a few chapters."
 ---
 
 Fiction Books

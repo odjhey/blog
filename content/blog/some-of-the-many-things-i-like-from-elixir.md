@@ -2,6 +2,7 @@
 title: "Some of the many things I like from Elixir"
 date: "2021-12-04"
 tags: ["programming", "application-design"]
+description: "I keep looking for Elixir's ok/error tuples and Ecto changesets when working in other languages."
 ---
 
 ```elixir

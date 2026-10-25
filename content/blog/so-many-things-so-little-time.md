@@ -2,6 +2,7 @@
 title: "So many things, so little time."
 date: "2020-05-30"
 tags: ["soliloquy"]
+description: "I want to do so many things that my time is spread too thin to see progress."
 ---
 
 Do I?
@@ -19,6 +20,6 @@ Off the top of my head, here is a quick list of things I want to do.
 
 Above list is more like `head wanttodo.txt` haha.
 
-It's getting harder to focus. Gone are those days when I can pick and complete one. My time is spread so thinly progress cannot be seen. Hope to be able to audit and sell soon.
+[It's getting harder to focus](/blog/is-it-fomo/). Gone are those days when I can pick and complete one. My time is spread so thinly progress cannot be seen. Hope to be able to audit and sell soon.
 
 End.

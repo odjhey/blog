@@ -2,6 +2,7 @@
 title: "Too old for Palworld"
 date: "2024-02-01"
 tags: ["gaming", "soliloquy"]
+description: "Seven hours into Palworld, I want more say in combat and more ways to finetune the base."
 ---
 
 ## SUPER DRAFT

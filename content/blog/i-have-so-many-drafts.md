@@ -2,6 +2,7 @@
 title: "I have so many drafts"
 date: "2021-12-04"
 tags: ["soliloquy"]
+description: "My drafts are piling up, so why not just publish them as-is?"
 ---
 
 It is better I feel to publish all my drafts and keep them as-is. Maybe add some kind of tagging but that is all.

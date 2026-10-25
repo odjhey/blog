@@ -44,9 +44,11 @@ export default function(eleventyConfig) {
 		return groups;
 	});
 
-	// Whole minutes at 220 words a minute, never less than one.
+	// Whole minutes at 220 words a minute, never less than one. Collapsed
+	// <details class="raw"> folds are not part of the read.
 	eleventyConfig.addFilter("readingMinutes", (html) => {
-		let words = String(html).replace(/<[^>]*>/g, " ").split(/\s+/).filter(Boolean).length;
+		let text = String(html).replace(/<details class="raw">[\s\S]*?<\/details>/g, " ");
+		let words = text.replace(/<[^>]*>/g, " ").split(/\s+/).filter(Boolean).length;
 		return Math.max(1, Math.round(words / 220));
 	});
 

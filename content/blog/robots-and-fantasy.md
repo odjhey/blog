@@ -5,7 +5,7 @@ tags: ["anime", "storytelling"]
 description: "Anime called Knight's & Magic"
 ---
 
-I loled hard when I saw this, an LOL with anticipation and giddiness. Imagine how I felt when I first saw the tags in my feed, marrying my trash Isekai taste and some form of programming? just like the Shield Hero experience all over again, hope it stands or at least be on par my very low and shallow expectations haha. Currently at episode 2, still 50/50 whether a boo or a yay.
+I loled hard when I saw this, an LOL with anticipation and giddiness. Imagine how I felt when I first saw the tags in my feed, [marrying my trash Isekai taste and some form of programming](/blog/power-fantasy-with-great-world-building/)? just like the Shield Hero experience all over again, hope it stands or at least be on par my very low and shallow expectations haha. Currently at episode 2, still 50/50 whether a boo or a yay.
 
 ## Footnotes
 

@@ -2,6 +2,7 @@
 title: "Leveraging AI"
 date: "2024-04-18"
 tags: ["programming", "ai", "learning"]
+description: "Thinking from fundamentals helps me ask AI better questions and get solutions I actually understand."
 ---
 
 One mental model I subscribe to is thinking with "first principles," though I'm using that term loosely here ("fundamentals thinking" may be more apt).
@@ -27,6 +28,10 @@ With the above mindset, I often find myself having more fruitful conversations w
 
 this may be related to [this previous post](/blog/tools-ie-typed-languages/)
 
+<details class="raw">
+<summary>proofreading session with ChatGPT</summary>
+
+<pre>
 User
 this is a draft for my blog. please proof read and suggest minor improvements. ty ty
 
@@ -165,9 +170,9 @@ in example would be recently, a dev asked about a red squiggly on an object that
 
 it is not super required to memorize the syntax of a specific language. but if you're operating on the first principles. lets say
 
-> if objects could have multiple types (in OOP this means instances/object could have multiple classes (via interfaces), or in "typed" languages this means type unions (TS could do both class and types since mejo hybrid language sya)
-> then
-> there must be a way to identify the concrete/specific type of the thing on runtime
+&gt; if objects could have multiple types (in OOP this means instances/object could have multiple classes (via interfaces), or in "typed" languages this means type unions (TS could do both class and types since mejo hybrid language sya)
+&gt; then
+&gt; there must be a way to identify the concrete/specific type of the thing on runtime
 
 knowing above fundamental, even if we dont know how its done currently in the language we are using,
 we could now use the search engine/docs/ai assistants for how to do it in our specific language.
@@ -257,3 +262,6 @@ From this foundational observation, deduce that if an object can represent multi
 Knowing this, you can leverage tools like search engines, documentation, or AI assistants effectively, even if you're not familiar with the current syntax in your programming language. For example, you might discover you can use instanceOf for classes or type-guards for types.
 
 Sometimes, revisiting the problem setup and questioning the initial conditions (like why optional fields aren't set to sane defaults) can provide not just immediate solutions but also insights into more robust, error-free coding practices.
+</pre>
+
+</details>

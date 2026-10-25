@@ -2,6 +2,7 @@
 title: "Post 101 concepts to learn"
 date: "2021-11-01"
 tags: ["programming", "learning"]
+description: "After programming 101, go get familiar with SML, Lisp, Prolog, and the ideas they bring."
 ---
 
 After a traditional programming course, if not already discussed, below is highly recommended.
@@ -17,7 +18,7 @@ If i have to list important concepts we can take from above, on top of my head w
 2. encapsulation through interfaces (interface files, headers)
 3. if not already familiar, HOC's and lambda fns
 4. macros
-5. managing side effects (and/or purity)
+5. [managing side effects (and/or purity)](/blog/some-programming-paradigms/)
 6. functions as data, data as functions
 7. REPL driven development
 8. declarative programming

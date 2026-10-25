@@ -9,7 +9,7 @@ A Primer on my thoughts about Programming Languages.
 
 Java, SAP ABAP, Javascript, Go, Elixir, Scala.
 
-After Turbo C in an orientation summer program I attended pre-university, I got introduced to Java next, in school, like most of my peers. It is the language that taught me fundamentals -- syntax and semantics. How texts -> some assembly/bytecode -> some machine code -> to a virtual machine or bare metal -> back to IOs happen.
+After Turbo C in an orientation summer program I attended pre-university, I got introduced to Java next, in school, like most of my peers. It is the language that taught me fundamentals -- syntax and semantics. How texts -> some assembly/bytecode -> some machine code -> [to a virtual machine or bare metal](/blog/peek-into-the-future-of-programming/) -> back to IOs happen.
 
 Except for those times when I script (AutoIT, lua) to create bots for some games, It is the language I used the most during my schooling, fun times. I will say it is the language that opened the world of programming for me. I have more things to say, about `java`, but that might be better shared on other times we tell school-life stuffs.
 
