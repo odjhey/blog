@@ -9,7 +9,7 @@ const description = "Topics on the blog.";
 {%- if topics.length %}
 <ul class="tags">
 {%- for topic in topics %}
-	<li><a href="/tags/{{ topic | slugify }}/">{{ topic }}</a></li>
+	<li><a href="/tags/{{ topic | slugify }}/">{{ topic }}</a><span class="count">{{ collections[topic] | length }}</span></li>
 {%- endfor %}
 </ul>
 {%- else %}

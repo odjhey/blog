@@ -20,6 +20,6 @@ const eleventyComputed = {
 	}
 };
 ---
-<h1>{{ tag }}</h1>
+<h1>#{{ tag }}</h1>
 {%- set postslist = collections[tag] | postRows %}
 {% include "postslist.njk" %}

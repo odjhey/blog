@@ -33,11 +33,29 @@ export default function(eleventyConfig) {
 		return toDateTime(updated).startOf("day") > toDateTime(published).startOf("day");
 	});
 
-	// Index dates: "12 Oct" in the year of the build, "30 Dec '25" otherwise.
-	let buildYear = DateTime.utc().year;
+	// Index dates: "Apr 18". The year heads its group (see byYear).
 	eleventyConfig.addFilter("listDate", (value) => {
-		let date = toDateTime(value);
-		return date.toFormat(date.year === buildYear ? "d LLL" : "d LLL ''yy");
+		return toDateTime(value).toFormat("LLL dd");
+	});
+
+	// postRows output grouped by the year of each top-level post, newest first.
+	// A child row (`extends`) stays under its parent's year.
+	eleventyConfig.addFilter("byYear", (rows) => {
+		let groups = [];
+		for(let row of rows) {
+			let year = toDateTime(row.post.date).year;
+			if(!groups.length || (!row.child && groups.at(-1).year !== year)) {
+				groups.push({ year, rows: [] });
+			}
+			groups.at(-1).rows.push(row);
+		}
+		return groups;
+	});
+
+	// Whole minutes at 220 words a minute, never less than one.
+	eleventyConfig.addFilter("readingMinutes", (html) => {
+		let words = String(html).replace(/<[^>]*>/g, " ").split(/\s+/).filter(Boolean).length;
+		return Math.max(1, Math.round(words / 220));
 	});
 
 	// Reader-facing topics, alphabetical.

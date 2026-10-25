@@ -295,18 +295,21 @@ async function checkSite(siteDir, { label, posts, expectEmpty = false }) {
 		...published.filter(c => rootOf(c) === p).map(c => ({ href: c.url, child: true })),
 	]);
 
-	// Lists: newest first
+	// Lists: newest first, grouped under a year heading; a row shows "Apr 18"
 	const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-	let buildYear = new Date().getUTCFullYear();
 	let listDate = (iso) => {
-		let [y, m, d] = iso.split("-").map(Number);
-		return `${d} ${MONTHS[m - 1]}${y === buildYear ? "" : ` '${String(y).slice(2)}`}`;
+		let [, m, d] = iso.split("-").map(Number);
+		return `${MONTHS[m - 1]} ${String(d).padStart(2, "0")}`;
 	};
-	let listed = (doc) => DomUtils.findAll(el => el.name === "ul" && el.attribs.class === "posts", doc.children)
-		.flatMap(ul => DomUtils.findAll(el => el.name === "li", ul.children))
-		.map(li => {
-			let time = DomUtils.findOne(el => el.name === "time", li.children);
-			return { href: DomUtils.findOne(el => el.name === "a", li.children)?.attribs.href, child: li.attribs.class === "child", datetime: time?.attribs.datetime, text: time && textOf(time) };
+	let listed = (doc) => DomUtils.findAll(el => el.name === "section" && el.attribs.class === "year", doc.children)
+		.flatMap(section => {
+			let year = textOf(DomUtils.findOne(el => el.name === "h2", section.children) || section);
+			return DomUtils.findAll(el => el.name === "ul" && el.attribs.class === "posts", section.children)
+				.flatMap(ul => DomUtils.findAll(el => el.name === "li", ul.children))
+				.map(li => {
+					let time = DomUtils.findOne(el => el.name === "time", li.children);
+					return { href: DomUtils.findOne(el => el.name === "a", li.children)?.attribs.href, child: li.attribs.class === "child", datetime: time?.attribs.datetime, text: time && textOf(time), year };
+				});
 		});
 	let home = parsed.get(path.join(siteDir, "index.html"));
 	let tagsIndex = parsed.get(path.join(siteDir, "tags/index.html"));
@@ -319,6 +322,7 @@ async function checkSite(siteDir, { label, posts, expectEmpty = false }) {
 			let p = published.find(q => q.url === row.href);
 			r.ok(p && row.datetime === p.date, `home: ${row.href} has datetime ${row.datetime}, expected ${p?.date}`);
 			r.ok(p && row.text === listDate(p.date), `home: ${row.href} shows "${row.text}", expected "${p && listDate(p.date)}"`);
+			r.ok(p && (row.child || row.year === p.date.slice(0, 4)), `home: ${row.href} listed under ${row.year}, expected ${p?.date.slice(0, 4)}`);
 		}
 		let tagNames = DomUtils.findAll(el => el.name === "a" && el.attribs.href?.startsWith("/tags/") && el.attribs.href !== "/tags/", tagsIndex.children).map(textOf);
 		r.ok(JSON.stringify([...tagNames].sort()) === JSON.stringify([...publishedTags].sort()), `tags index shows ${tagNames}, expected ${[...publishedTags]}`);
@@ -336,7 +340,7 @@ async function checkSite(siteDir, { label, posts, expectEmpty = false }) {
 		}
 		let article = DomUtils.findOne(el => el.name === "article", doc.children);
 		r.ok(article, `${p.url}: no <article>`);
-		let date = article && DomUtils.findOne(el => el.name === "p" && el.attribs.class === "date", article.children);
+		let date = DomUtils.findOne(el => el.attribs?.class === "date", doc.children);
 		let time = date && DomUtils.findOne(el => el.name === "time", date.children);
 		r.ok(time?.attribs.datetime === p.date, `${p.url}: published datetime ${time?.attribs.datetime} does not match front matter ${p.date}`);
 		if(p.bodyLength > 100) {

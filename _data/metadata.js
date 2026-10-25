@@ -10,6 +10,7 @@ export default {
 	branch: "master",
 	github: "https://github.com/odjhey",
 	email: "odjhey@gmail.com",
+	year: new Date().getUTCFullYear(),
 	author: {
 		name: "odjhey",
 		email: "odjhey@gmail.com",

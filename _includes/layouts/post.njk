@@ -1,27 +1,49 @@
 ---
 layout: layouts/base.njk
 ---
-<article>
-	<h1>{{ title }}</h1>
-	<p class="date"><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate("d LLL yyyy") }}</time></p>
-	{{ content | safe }}
-</article>
-{%- if raw_at %}
-<details class="raw">
-	<summary>raw · typed <time datetime="{{ raw_at | htmlDatetimeString }}">{{ raw_at | rawAt }}</time></summary>
-	{#- HTML drops one newline right after <pre>; this one, so the raw keeps its own. #}
-	<pre>
+<div class="post">
+<div class="body">
+	<article>
+		<h1>{{ title }}</h1>
+		{{ content | safe }}
+	</article>
+	{%- set links = collections.posts | noteLinks(page.url) %}
+	{%- if links.out.length or links.in.length %}
+	<nav class="links" aria-label="Linked posts">
+		{%- if links.out.length %}
+		<div class="row"><span role="img" aria-label="Links to">→</span><div>{% for note in links.out %}<a href="{{ note.url }}">{{ note.data.title }}</a>{% endfor %}</div></div>
+		{%- endif %}
+		{%- if links.in.length %}
+		<div class="row"><span role="img" aria-label="Linked from">←</span><div>{% for note in links.in %}<a href="{{ note.url }}">{{ note.data.title }}</a>{% endfor %}</div></div>
+		{%- endif %}
+	</nav>
+	{%- endif %}
+	{%- if raw_at %}
+	<details class="raw">
+		<summary>raw · typed <time datetime="{{ raw_at | htmlDatetimeString }}">{{ raw_at | rawAt }}</time></summary>
+		{#- HTML drops one newline right after <pre>; this one, so the raw keeps its own. #}
+		<pre>
 {{ raw | escape }}</pre>
-</details>
-{%- endif %}
-{%- set links = collections.posts | noteLinks(page.url) %}
-{%- if links.out.length or links.in.length %}
-<nav class="links" aria-label="Linked notes">
-	{%- if links.out.length %}
-	<div class="row"><span role="img" aria-label="Links to">→</span><div>{% for note in links.out %}<a href="{{ note.url }}">{{ note.data.title }}</a>{% endfor %}</div></div>
+	</details>
 	{%- endif %}
-	{%- if links.in.length %}
-	<div class="row"><span role="img" aria-label="Linked from">←</span><div>{% for note in links.in %}<a href="{{ note.url }}">{{ note.data.title }}</a>{% endfor %}</div></div>
-	{%- endif %}
-</nav>
-{%- endif %}
+</div>
+<aside aria-label="About this post">
+	<dl>
+		<dt>Published</dt>
+		<dd class="date"><time datetime="{{ page.date | htmlDateString }}">{{ page.date | htmlDateString }}</time></dd>
+		{%- if updated | isLaterDay(page.date) %}
+		<dt>Updated</dt>
+		<dd><time datetime="{{ updated | htmlDateString }}">{{ updated | htmlDateString }}</time>{% if revisionNote %}<br>{{ revisionNote }}{% endif %}</dd>
+		{%- endif %}
+		<dt>Reading</dt>
+		<dd>{{ content | readingMinutes }} min</dd>
+		{%- set topics = tags | reject("equalto", "posts") %}
+		{%- if topics | length %}
+		<dt>Tags</dt>
+		<dd class="topics">{% for topic in topics %}<a href="/tags/{{ topic | slugify }}/">{{ topic }}</a>{% endfor %}</dd>
+		{%- endif %}
+		<dt>Source</dt>
+		<dd><a href="{{ metadata.repo }}/blob/{{ metadata.branch }}/{{ page.inputPath | replace('./', '') }}">view on github</a></dd>
+	</dl>
+</aside>
+</div>

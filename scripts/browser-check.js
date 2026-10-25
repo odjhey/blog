@@ -87,7 +87,7 @@ try {
 		let response = await page.goto(base + START_ARTICLE);
 		assert(response.status() === 200, `article returned ${response.status()}`);
 		assert(await page.locator("article p").first().isVisible(), "article body not visible");
-		assert(await page.locator("article .date time").isVisible(), "article date not visible");
+		assert(await page.locator(".post .date time").isVisible(), "article date not visible");
 		let trail = [START_ARTICLE];
 		let nav = () => page.getByRole("navigation", { name: "Site" });
 		let go = async (locator, expected) => {
@@ -95,7 +95,7 @@ try {
 			assert(await page.locator("h1").count() === 1, `${expected} has no single h1`);
 			trail.push(expected);
 		};
-		let back = () => go(page.locator("header .site a"), "/");
+		let back = () => go(page.locator("header a.brand"), "/");
 		await back();
 		await go(nav().getByRole("link", { name: "Tags", exact: true }), "/tags/");
 		await go(page.locator("main").getByRole("link", { name: "programming", exact: true }), "/tags/programming/");
@@ -135,7 +135,7 @@ try {
 	await step("Keyboard: header links reachable in order with a visible focus outline", async () => {
 		await page.goto(base + "/");
 		let order = [];
-		for(let i = 0; i < 6; i++) {
+		for(let i = 0; i < 5; i++) {
 			await page.keyboard.press("Tab");
 			let info = await page.evaluate(() => {
 				let el = document.activeElement;
@@ -145,7 +145,7 @@ try {
 			assert(info.outline !== "none" && info.width >= 2, `"${info.text}" has no visible focus outline`);
 			order.push(info.text);
 		}
-		let expected = ["skip to content", "odjhey", "Blog", "Tags", "About", "RSS"];
+		let expected = ["skip to content", "odjhey", "Blog", "Tags", "About"];
 		assert(JSON.stringify(order) === JSON.stringify(expected), `focus order was ${order.join(", ")}`);
 		return order.join(" → ");
 	});
@@ -167,11 +167,11 @@ try {
 
 	await step("Note graph: → / ← rows after the article, followed with JavaScript off", async () => {
 		await page.goto(base + START_ARTICLE);
-		let links = page.getByRole("navigation", { name: "Linked notes" });
+		let links = page.getByRole("navigation", { name: "Linked posts" });
 		assert(await links.evaluate(nav => nav.previousElementSibling?.tagName === "ARTICLE"), "link rows are not right after the article");
 		assert(await links.getByRole("img", { name: "Links to" }).isVisible(), "→ row missing");
 		await Promise.all([page.waitForURL(base + LINKED_ARTICLE), links.getByRole("link", { name: "Languages" }).click()]);
-		let back = page.getByRole("navigation", { name: "Linked notes" });
+		let back = page.getByRole("navigation", { name: "Linked posts" });
 		assert(await back.getByRole("img", { name: "Linked from" }).isVisible(), "← row missing on the linked note");
 		await Promise.all([page.waitForURL(base + START_ARTICLE), back.getByRole("link", { name: "Why Learn a NEW Language (Programming)" }).click()]);
 		return `${START_ARTICLE} → ${LINKED_ARTICLE} ← back`;
@@ -187,7 +187,7 @@ try {
 		return "header and footer hidden; article visible";
 	});
 
-	await step("Dark mode follows the device setting: true black background, grey text", async () => {
+	await step("Colours follow the device setting: off-white light, blue-black dark", async () => {
 		let colours = {};
 		for(let scheme of ["light", "dark"]) {
 			await page.emulateMedia({ colorScheme: scheme });
@@ -198,21 +198,26 @@ try {
 			});
 		}
 		await page.emulateMedia({ colorScheme: "light" });
-		assert(colours.light.bg === "rgb(255, 255, 255)", `light background is ${colours.light.bg}`);
-		assert(colours.dark.bg === "rgb(0, 0, 0)", `dark background is ${colours.dark.bg}`);
-		assert(colours.dark.text === "rgb(184, 184, 184)", `dark text is ${colours.dark.text}, expected #b8b8b8`);
+		assert(colours.light.bg === "rgb(251, 251, 250)", `light background is ${colours.light.bg}`);
+		assert(colours.light.text === "rgb(22, 24, 29)", `light text is ${colours.light.text}`);
+		assert(colours.dark.bg === "rgb(15, 17, 21)", `dark background is ${colours.dark.bg}`);
+		assert(colours.dark.text === "rgb(232, 233, 236)", `dark text is ${colours.dark.text}`);
 		return `light ${colours.light.bg} / ${colours.light.text}; dark ${colours.dark.bg} / ${colours.dark.text}`;
 	});
 
-	await step("Column is left-pinned: 16px gutter on phones, 2rem from 900px, 15vw from 1600px", async () => {
+	await step("Post rail: metadata left of the article above 720px, below it on phones", async () => {
 		let seen = [];
-		for(let [width, left] of [[390, 16], [1000, 32], [1440, 32], [1920, 288]]) {
+		for(let width of [390, 721, 1440]) {
 			await page.setViewportSize({ width, height: 900 });
 			await page.goto(base + LONG_ARTICLE);
-			let x = (await page.locator("body").boundingBox()).x;
-			let pad = await page.evaluate(() => parseFloat(getComputedStyle(document.body).paddingLeft));
-			assert(Math.abs(x + pad - left) < 2, `at ${width}px the content starts at ${x + pad}px, expected ${left}px`);
-			seen.push(`${width}→${x + pad}`);
+			let rail = await page.locator(".post aside").boundingBox();
+			let body = await page.locator(".post .body").boundingBox();
+			if(width > 720) {
+				assert(rail.x + rail.width <= body.x && Math.abs(rail.y - body.y) < 2, `at ${width}px the rail is not beside the article`);
+			} else {
+				assert(rail.y >= body.y + body.height && Math.abs(rail.x - body.x) < 2, `at ${width}px the rail is not below the article`);
+			}
+			seen.push(`${width}→${width > 720 ? "beside" : "below"}`);
 		}
 		return seen.join(", ");
 	});
@@ -233,7 +238,7 @@ try {
 				await p.goto(base + url);
 				let { scrollWidth, clientWidth } = await p.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, clientWidth: document.documentElement.clientWidth }));
 				assert(scrollWidth <= clientWidth, `${url}: page is ${scrollWidth}px wide in a ${clientWidth}px viewport`);
-				for(let name of ["Blog", "Tags", "About", "RSS"]) {
+				for(let name of ["Blog", "Tags", "About"]) {
 					assert(await p.getByRole("navigation", { name: "Site" }).getByRole("link", { name, exact: true }).isVisible(), `${url}: nav link ${name} hidden`);
 				}
 			}

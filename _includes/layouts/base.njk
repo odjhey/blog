@@ -23,34 +23,28 @@
 		<a href="#main" class="skip-link">skip to content</a>
 		{%- set home = page.url == "/" %}
 		<header>
-		{%- if home %}
-			<p class="site"><a href="/" aria-current="page">{{ metadata.headerTitle }}</a></p>
+			<a class="brand" href="/"{% if home %} aria-current="page"{% endif %}><img src="/static/logo.svg" alt="" width="30" height="30">{{ metadata.headerTitle }}</a>
+			{%- if home %}
 			<h1 class="tagline">{{ metadata.description }}</h1>
+			{%- else %}
+			<p class="tagline">{{ metadata.description }}</p>
+			{%- endif %}
 			<nav aria-label="Site">
 				<ul>
-					<li><a href="/blog/">Blog</a></li>
-					<li><a href="/tags/">Tags</a></li>
-					<li><a href="/about/">About</a></li>
-					<li><a href="/feed.xml" type="application/atom+xml">RSS</a></li>
+				{%- for item in metadata.nav %}
+					<li><a href="{{ item.url }}"{% if page.url == item.url or (item.url == "/blog/" and page.url.startsWith("/blog/")) or (item.url == "/tags/" and page.url.startsWith("/tags/")) %} aria-current="{{ 'page' if page.url == item.url else 'true' }}"{% endif %}>{{ item.title }}</a></li>
+				{%- endfor %}
 				</ul>
 			</nav>
-		{%- else %}
-			<p class="site"><a href="/">{{ metadata.headerTitle }}</a></p>
-			<nav aria-label="Site">
-				<ul>
-					<li><a href="/blog/"{% if page.url == "/blog/" %} aria-current="page"{% endif %}>Blog</a></li>
-					<li><a href="/tags/"{% if page.url == "/tags/" %} aria-current="page"{% endif %}>Tags</a></li>
-					<li><a href="/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a></li>
-					<li><a href="/feed.xml" type="application/atom+xml">RSS</a></li>
-				</ul>
-			</nav>
-		{%- endif %}
 		</header>
 
 		<main id="main" tabindex="-1">
 			{{ content | safe }}
 		</main>
 
-		<footer><a href="mailto:{{ metadata.email }}" aria-label="email"><svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a> · <a href="/feed.xml" type="application/atom+xml">rss</a></footer>
+		<footer>
+			<span>© {{ metadata.year }} {{ metadata.headerTitle }}</span>
+			<span><a href="/feed.xml" type="application/atom+xml">feed.xml</a> · <a href="{{ metadata.github }}">github</a> · <a href="mailto:{{ metadata.email }}">email</a></span>
+		</footer>
 	</body>
 </html>

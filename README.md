@@ -28,7 +28,7 @@ tags:
   - programming
 description: "Optional summary for meta description and feed."
 # Optional:
-raw_at: "2026-10-25T12:00:00"  # When content/blog/<slug>.raw.txt was typed
+raw_at: "2026-10-25T12:00"   # When content/blog/<slug>.raw.txt was typed (to the minute)
 extends: "parent-slug"        # Groups this note under another in the index tree
 updated: "YYYY-MM-DD"         # Date of meaningful revision
 revisionNote: "What changed"
@@ -50,5 +50,9 @@ Tags are declared in front matter. The site generates `/tags/` as an index of al
 Hosted on Vercel as a static site via `vercel.json`:
 - Build Command: `npm run build`
 - Output Directory: `_site`
-- Clean URLs enabled (`cleanUrls: true`), no trailing slash (`trailingSlash: false`).
-- Redirects: `/blog/page/:n` redirects to `/blog`.
+- `trailingSlash: true`: pages are `/blog/<slug>/`; the old slash-less URLs (`/blog/<slug>`, `/tags/<tag>`, `/about`) 308 to them. `/feed.xml` and `/sitemap.xml` keep their paths.
+- Redirect: the old paginated `/blog/page/:n` goes to `/blog/`.
+
+## Design
+
+"Ledger": a year-grouped index with mono dates, and on posts a left rail with date, reading time, tags and the source link. One inlined stylesheet (`css/index.css`), system fonts, light/dark from the device setting.
