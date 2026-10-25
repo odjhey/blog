@@ -2,31 +2,32 @@
 title: "Leveraging AI"
 date: "2024-04-18"
 tags: ["programming", "ai", "learning"]
-description: "Thinking from fundamentals helps me ask AI better questions and get solutions I actually understand."
+description: "Thinking from fundamentals gets me better convos with ChatGPT, and I learn the subject along the way."
 ---
 
-One mental model I subscribe to is thinking with "first principles," though I'm using that term loosely here ("fundamentals thinking" may be more apt).
+A mental model I subscribe to is something called "first principles", although I'm using the term loosely here. "Fundamentals thinking" may be closer.
 
-Let's say we are dealing with a red squiggly under an object that could have various fields.
+An example from recently, a dev asked about a red squiggly on an object that could have different fields.
 
-hmm, why does this have various fields that may be blank?
-if we're operating from fundamentals thinking, we could infer that ohhh, this might be an object that could have multiple kinds,
+hmm, why does this object have fields that may be blank? If we think from fundamentals, ohhh, this might be an object that can be of multiple kinds.
 
-and continue to think:
-if objects can have multiple types/kinds — in OOP extending multiple interfaces, in "typed" world, this could mean `type unions`
-then: there must be a way to identify the concrete/specific type of the object at runtime.
+You don't need to memorize the syntax of a specific language for this. If you're operating on first principles, let's say
 
-With this fundamental understanding, even if we don't know how it's currently done in the language we are using, we can effectively use search engines, documentation, or AI assistants to find out how to handle it in our specific language.
+> if objects can have multiple types (in OOP, an object can have multiple classes via interfaces, in "typed" languages these are type unions, TS can do both since mejo hybrid language sya)
+> then
+> there must be a way to identify the concrete/specific type of the thing at runtime
 
-So, in our case, we could search and find that we could use `instanceOf` for classes, or `type-guards` for types.
+Knowing the above, even if we don't know how it's done in the language we're using, we can now ask the search engine, the docs or an AI assistant how to do it in our specific language.
 
-We could even take some steps back and see, hmmm, sane defaults may need to be implemented here. This way, we won't have to deal with the red squigglies, remove optionals fields, make them required, and set sane defaults.
+So for our case, we search and find that we can use `instanceof` for classes, or type guards for types.
 
-I'm not sure if this makes sense, but that’s how I tend to think about things.
+We could even take a few steps back, hmmm, maybe this needs sane defaults. Remove the optional fields, make them required, set sane defaults, and the red squigglies go away.
 
-With the above mindset, I often find myself having more fruitful conversations with ChatGPT. I feel like I am winning by learning more about the subject while simultaneously getting a solution that I understand and know I want.
+Not sure if it makes sense to you, but that's how I tend to think about things.
 
-this may be related to [this previous post](/blog/tools-ie-typed-languages/)
+With this mindset, I often find myself having more fruitful convos with ChatGPT. I feel like I'm winning by learning more about the subject while getting a solution that I understand and know I want.
+
+This may be related to [this previous post](/blog/tools-ie-typed-languages/).
 
 <details class="raw">
 <summary>proofreading session with ChatGPT</summary>
