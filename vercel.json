@@ -6,7 +6,7 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/blog/page/:n",
+      "source": "/blog/page/:n/",
       "destination": "/blog/",
       "permanent": true
     }
