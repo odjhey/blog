@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+---
+<article>
+	<h1>{{ title }}</h1>
+	<p class="date"><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate("d LLL yyyy") }}</time></p>
+	{{ content | safe }}
+</article>
+{%- if raw_at %}
+<details class="raw">
+	<summary>raw · typed <time datetime="{{ raw_at | htmlDatetimeString }}">{{ raw_at | rawAt }}</time></summary>
+	{#- HTML drops one newline right after <pre>; this one, so the raw keeps its own. #}
+	<pre>
+{{ raw | escape }}</pre>
+</details>
+{%- endif %}
+{%- set links = collections.posts | noteLinks(page.url) %}
+{%- if links.out.length or links.in.length %}
+<nav class="links" aria-label="Linked notes">
+	{%- if links.out.length %}
+	<div class="row"><span role="img" aria-label="Links to">→</span><div>{% for note in links.out %}<a href="{{ note.url }}">{{ note.data.title }}</a>{% endfor %}</div></div>
+	{%- endif %}
+	{%- if links.in.length %}
+	<div class="row"><span role="img" aria-label="Linked from">←</span><div>{% for note in links.in %}<a href="{{ note.url }}">{{ note.data.title }}</a>{% endfor %}</div></div>
+	{%- endif %}
+</nav>
+{%- endif %}

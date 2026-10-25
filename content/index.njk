@@ -1,0 +1,10 @@
+---js
+const layout = "layouts/base.njk";
+---
+{#- The tagline is this page's h1, in the header (base.njk). #}
+{%- if collections.posts | length %}
+{%- set postslist = collections.posts | postRows(true) %}
+{% include "postslist.njk" %}
+{%- else %}
+<p class="empty">Nothing is published yet.</p>
+{%- endif %}

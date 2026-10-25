@@ -1,0 +1,25 @@
+---js
+const layout = "layouts/base.njk";
+const pagination = {
+	data: "collections",
+	size: 1,
+	alias: "tag",
+	filter: ["all", "posts"],
+	before: function(tags, data) {
+		return tags.filter(tag => data.collections[tag].length > 0);
+	},
+};
+
+const eleventyExcludeFromCollections = true;
+
+const eleventyComputed = {
+	title: "Tagged “{{ tag }}”",
+	description: "Posts tagged “{{ tag }}”.",
+	permalink: function(data) {
+		return `/tags/${this.slugify(data.tag)}/`;
+	}
+};
+---
+<h1>{{ tag }}</h1>
+{%- set postslist = collections[tag] | postRows %}
+{% include "postslist.njk" %}
