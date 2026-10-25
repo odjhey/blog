@@ -1,0 +1,144 @@
+---
+title: "Photography in the Eyes of a Newb"
+date: "2023-06-18"
+tags: ["photography"]
+description: "Photography in the Eyes of someone who picked up a camera just a couple of weeks ago."
+---
+
+I bought a camera on impulse during the lock down, around the end of 2020. Haven't held it until recently, intending to take portraits, so went on, clicked them buttons,
+got home, rendered, and then it hit me, they, for lack of a better word, kinda suck, how to make these better?
+
+With the quest to improve them portraits, i went to the netz, looked about the whats and hows of photography,
+fascination and intrigue cloaked me, a few hours later in the rabbit hole, I got hooked, got hooked by a topic, by the concept of photo composition.
+
+what is composition?
+
+with the help of youtubes, below is a summary of what i have gathered so far,
+this blog entry also serves as a reference whenever I get stuck on how to progress.
+
+## Composition
+
+> what is in the frame, where it is located, and the relationship established by these elements and how they're positioned to convey meaning.
+
+not sure what is it yet, but from above, i understand it means "framing a subject, and the setting". As someone famous also said
+
+> What you put in the frame determines the photograph. <small>Joel Meyerowitz</small>
+
+He went on and continued to mention about what you put in and what you decide to leave out determines the photo. I highly suggest we go and rewatch that episode.
+
+So composition is essentially the concept of where and what we put in a frame. Along this definition, below are notes from some of the videos about composition that i think will be useful.
+
+1. take away as much as you can, focus on a subject, have a dominant subject
+1. introduce depth, have a background, foreground, midground, control these by adjusting your aperture, by applying blur (also related, headrooms)
+1. use the rule of thirds - subject on one of the four crossings, above or below the lines
+1. balance
+   - care with negative and dead space, i find this valid with stills
+   - i find that negative space is wanted in places like subjects intending to do action, have space in the direction of action (related, leading/looking room)
+1. leading lines, unsure if this is under geometry, but separating as i feel their is much more to understand here
+1. geometry, patterns, repetitions, shapes, textures
+1. symmetry - their is beauty in symmetry (and asymmetry)
+1. fill the frame, for stills, fill the frame
+1. framing/frame within frame - also look for "non-frame" frames like colors, shadows, etc
+1. use contrast
+1. use shadows
+1. break the rules
+
+Above is a list of things i thought should be recorded, will update them as we learn more about composing our photos.
+Also, do not forget, you do you
+
+> embrace imperfections - shown in Ernst Haas works
+
+During the search, several photography topics were also touched on, and not knowing where to fit them, i decided to continue below.
+
+## Composition (After)
+
+Things to mull over after above, think about the elements in below perspectives ;), incorporate these to above after sometime.
+
+> Story telling from a single image. Characters, situation, power dynamic, sense of drama, theme, movement.
+
+1. aspect ratio.
+1. points (Focal Points)
+   - direct the viewers eyes, direct attention
+1. lines
+   - vertical => height and strength
+   - horizontal => distance and calm
+   - diagonals => off-tilted energy
+   - curved => graceful
+   - leading lines to pull the eyes
+1. shapes
+   - irregular => organic, natural, chaotic
+   - geometric => tidy and order
+1. texture and patterns
+   - with textures, we can pop or blend in subject against the background
+   - patterns and repetitions to show, power and control, harmony, insanity
+   - breaking patterns to highlight
+   - more tangible connection of the viewer to the image
+1. spaces
+   - positive => area given to the subject
+   - negative => empty space that surrounds them
+   - large space taken => more important
+   - filled frame => more chaotic
+   - spacious/simplified frame => soothing/sad
+1. depth
+   - fg, mg, bg
+   - shows hierarchy of importance/power
+1. balance
+   - to control order
+   - odds is mostly better
+   - the horizon line
+1. angles/perspective
+1. color and tone
+   - tone => brightness and contrast of an image
+
+> combine these all, plan ahead!
+
+## Where to go next?
+
+### Elements/Building Blocks
+
+#### shape
+
+The outline of the object, length, width.
+Shape creates balance and harmony.
+Try the easy hack of squinting or defocusing the lens, you'll for sure see shapes.
+
+#### form
+
+depth, dimension, to look real, to look 3d rather than flat. Enhance form and shape to introduce depth.
+Introduce form through lighting, use light and shadow to give a sense of volume.
+
+#### texture
+
+This elevates the surface detail, makes you able to connect with it, touch it.
+Our brain makes a connection based on how things feel like.
+Emphasize by making the light skid along the surface, thats why golden hour photos has dem nice effects.
+
+#### light
+
+Warm light normally mean calm, direct light is to dramatic and intense mood.
+Pay attention to the quality, intensity, direction, the color of light in the scene.
+
+#### color
+
+Separates your subject, makes subjects pop, used to show more of previous building blocks.
+
+#### mood
+
+Not sure.
+
+### Why i think i started
+
+take photos to tell a story, show the world a face of a state of a fragment in time in a bounded miniscule space, to not forget.
+I just want to photograph mundane stuff, portraits, the streets, what happens in the streets.
+
+> Am I a photographer now? No, I would like to think that I am someone who just wants to show a story
+
+## Sources
+
+Below is where I got the most of whats bulleted in this post, but a lot lot more can be found and digested in the netz
+
+1. https://www.youtube.com/watch?v=fqypq8rNSDs
+1. https://www.youtube.com/watch?v=KVBc2Pg81rw
+1. https://www.youtube.com/watch?v=zMOGSxgY5yc
+1. https://www.youtube.com/watch?v=Xumo7_JUeMo
+1. https://www.youtube.com/watch?v=hUmZldt0DTg

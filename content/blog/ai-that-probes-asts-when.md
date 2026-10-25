@@ -1,0 +1,9 @@
+---
+title: "AI that probes ASTs, When?"
+date: "2023-08-23"
+description: "When?"
+---
+
+When? An AI that probes and converts ASTs (Abstract Syntax Trees). I don't think this is a rare thought, just need to dive in that huge pile-o-haystacks of AI papers. Please let me know if you find an interesting one that is close to this.
+
+Related: [DSLs](/blog/domain-specific-languages/)

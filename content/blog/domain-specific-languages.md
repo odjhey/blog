@@ -1,0 +1,8 @@
+---
+title: "Domain Specific Languages"
+date: "2023-07-21"
+description: "DSLs"
+---
+
+I just want to make a record, that with all these AI advancements in the Language space, DSLs are the future.
+Define your bounds, semantics and rules, in a DSL, then AI will take care of the rest.
