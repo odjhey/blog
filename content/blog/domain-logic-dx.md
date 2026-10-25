@@ -42,7 +42,7 @@ const order = await execute(createOrder, { input: { ... } }, depsImpl)
 
 #### serializable effects
 
-- we want a serializable effects to be able to transport them, log them, and or augment the development of the details of implementation
+- we want serializable effects to be able to transport them, log them, and/or augment the development of the details of implementation
 
 #### execution strategy and engine
 
@@ -52,7 +52,7 @@ const order = await execute(createOrder, { input: { ... } }, depsImpl)
 
 - of course we should be able to infer a fully typed effect definition based on the usage of these effects
 - fully typed error handling
-- discuss about placeholders for effect results, since we mostly rely of effect results in our business logic. We may need to generate placeholders and replace them with the actual results during runtime/execution.
+- discuss about placeholders for effect results, since we mostly rely on effect results in our business logic. We may need to generate placeholders and replace them with the actual results during runtime/execution.
 
 ## Closing Thoughts
 
@@ -65,8 +65,7 @@ The serialized effects may have to be a series of DAGs where we can identify par
 
 ### PS
 
-Some cool things we could do includes pausable workflows, where we do not immediately create shipments until some other events happen, see temporalio for the execution for inspiration.
+Some cool things we could do include pausable workflows, where we do not immediately create shipments until some other events happen, see [Temporal](https://temporal.io/) for inspiration on the execution.
 
-
-### Update: May 09, 2023
+### Update: May 09, 2024
 > https://github.com/Effect-TS/effect is getting traction.

@@ -9,7 +9,7 @@ description: "Seven hours into Palworld, I want more say in combat and more ways
 
 https://store.steampowered.com/app/1623730/Palworld/
 
-So I bit the bullet, sat down @6PM after office, paid some items in my steam cart, then played for 7 straight hours. I beat the first tower, explored, then called it a day.
+So I bit the bullet, sat down @6PM after office, paid for some items in my Steam cart, then played for 7 straight hours. I beat the first tower, explored, then called it a day.
 
 Initial thoughts, **I am too old for this**, IDK y, but the experience felt lacking,
 i think i mainly want 2 things, among others.
@@ -17,12 +17,12 @@ i think i mainly want 2 things, among others.
 1. More influence of my Pals in battle, more strategy?
 1. More options, ways to finetune, resource gathering at the base.
 
-Again, i merely played 7hours, so for sure I have missed a lot. But in general, the combat and resource gathering aspect, which are the aspects I was looking forward about, left me lacking.
+Again, i merely played 7 hours, so for sure I have missed a lot. But in general, the combat and resource gathering aspect, which are the aspects I was looking forward to, left me lacking.
 
 ## Combat
 
 Do i raise my pals? How?
-4 pals, rotate when dieing,they gain some HP while out of combat.
+4 pals, rotate when dying, they gain some HP while out of combat.
 It pains me to think that the gameplay loop is only about dropping your pals and bringing out your guns.
 I want more control and influence over the combat.
 like

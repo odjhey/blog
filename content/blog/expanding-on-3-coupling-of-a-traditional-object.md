@@ -7,11 +7,11 @@ description: "State, behaviour, and mutability are best dealt with separately."
 
 https://www.youtube.com/watch?v=agkXUp0hCW8
 
-I got it from this talk of one of my Heroes after Sir Joe Armstrong, Jose Valim, creator of Elixir.
+I got it from this talk of one of my heroes after Sir Joe Armstrong, José Valim, creator of Elixir.
 
-The 3 coupling for a triditional OO Object are
+The 3 couplings of a traditional OO object are
 - state
 - behaviour
 - mutability (temporal, state in a specific time i guess)
 
-Its best to identify these and deal with them separately.
+It's best to identify these and deal with them separately.

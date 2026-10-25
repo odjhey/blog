@@ -5,10 +5,10 @@ tags: ["application-design", "programming"]
 description: "Current plan, is to build side-car clients/frontends alongside a monolith, and a database driven CMS may be one of the possible cores."
 ---
 
-Okay, so i've yet to research on current offerings available out in the wild, and my current limited exposure to something like a "database driven headless CMS" is just SAP's CDS (Core Data Services - which is proprietary right?). But man, the DX is so good. Atleast superior to other things we tried for our specific usecases. Have to probably write the pros and cons of this kind of approach from a DX perspective.
+Okay, so i've yet to research on current offerings available out in the wild, and my current limited exposure to something like a "database driven headless CMS" is just SAP's CDS (Core Data Services - which is proprietary right?). But man, the DX is so good. At least superior to other things we tried for our specific use cases. Have to probably write the pros and cons of this kind of approach from a DX perspective.
 
-A headless solution, a code generator, scaffolder, i don't really mind the form it comes. So long as the crux is about having our data layer be the single-source-of-truth of our api designs. Reference a definition, an DSL, heck, a db definition pull, in our side-car consumers would be super.
+A headless solution, a code generator, scaffolder, i don't really mind the form it comes in. So long as the crux is about having our data layer be the single-source-of-truth of our api designs. Reference a definition, a DSL, heck, a db definition pull, in our side-car consumers would be super.
 
-## Note:
+## Note
 
 Now that i am writing about this, using gRPC and/or Apache Thrift is maybe what i am looking for. But we oready using GraphQL, and i feel like the network transport layer decisions are normally driven by the client/customer's whims, whereas the data layer is normally accepted as a black box in most cases. hmmmm.

@@ -12,5 +12,5 @@ Not sure why, but mostly versioning and diffing I feel.
 
 Tools:
 
-- Diagrams, plantuml/mermaid and friends.
-- IaC, pulumi & terraform
+- Diagrams, PlantUML/Mermaid and friends.
+- IaC, Pulumi & Terraform
