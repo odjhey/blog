@@ -339,44 +339,35 @@ img {
 	height: auto;
 }
 
-/* Note graph, then more reading: same tag, older/newer. */
-.links, .reading {
+/* Note graph, then older/newer. */
+.links, .pager {
 	margin-top: 2.5rem;
 	padding-top: 1rem;
 	border-top: 1px solid var(--line);
 	font-size: 0.95rem;
 }
 
-.links + .reading {
+.links + .pager {
 	margin-top: 1rem;
 }
 
-.links .row, .reading .row {
+.links .row {
 	display: grid;
 	grid-template-columns: 1.5rem 1fr;
 	padding: 0.2rem 0;
 }
 
-.reading .row {
-	grid-template-columns: 9rem 1fr;
-	gap: 0 1rem;
-}
-
-.links .row > span, .reading .tag {
+.links .row > span {
 	color: var(--accent);
 	font-family: var(--mono);
 }
 
-.reading .tag::before {
-	content: "#";
-}
-
-.links .row div, .reading .row div, .pager a {
+.links .row div, .pager a {
 	display: flex;
 	flex-direction: column;
 }
 
-.links a, .reading .row div a, .pager a {
+.links a, .pager a {
 	color: var(--fg);
 }
 
@@ -384,7 +375,6 @@ img {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 1rem;
-	margin-top: 1rem;
 }
 
 .pager a[rel="next"] {
@@ -510,7 +500,7 @@ footer a {
 	article h1, .page h1 {
 		font-size: 2rem;
 	}
-	.reading .row, .pager {
+	.pager {
 		grid-template-columns: minmax(0, 1fr);
 	}
 	.pager a[rel="next"] {
@@ -525,7 +515,7 @@ footer a {
 		--fg: #000;
 		--muted: #444;
 	}
-	header, footer, .skip-link, .post aside, .reading {
+	header, footer, .skip-link, .post aside, .pager {
 		display: none;
 	}
 	.post {

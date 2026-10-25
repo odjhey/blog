@@ -18,18 +18,12 @@ layout: layouts/base.njk
 		{%- endif %}
 	</nav>
 	{%- endif %}
-	{%- set groups = collections.posts | sameTag(page.url) %}
 	{#- collections.posts is oldest first, so "previous" is older. #}
 	{%- set older = collections.posts | getPreviousCollectionItem %}
 	{%- set newer = collections.posts | getNextCollectionItem %}
-	<nav class="reading" aria-label="More reading">
-		{%- for group in groups %}
-		<div class="row"><a class="tag" href="/tags/{{ group.tag | slugify }}/">{{ group.tag }}</a><div>{% for note in group.posts %}<a href="{{ note.url }}">{{ note.data.title }}</a>{% endfor %}</div></div>
-		{%- endfor %}
-		<div class="pager">
-			{%- if older %}<a rel="prev" href="{{ older.url }}"><span>← Older</span>{{ older.data.title }}</a>{% endif %}
-			{%- if newer %}<a rel="next" href="{{ newer.url }}"><span>Newer →</span>{{ newer.data.title }}</a>{% endif %}
-		</div>
+	<nav class="pager" aria-label="Older and newer posts">
+		{%- if older %}<a rel="prev" href="{{ older.url }}"><span>← Older</span>{{ older.data.title }}</a>{% endif %}
+		{%- if newer %}<a rel="next" href="{{ newer.url }}"><span>Newer →</span>{{ newer.data.title }}</a>{% endif %}
 	</nav>
 	{%- if raw_at %}
 	<details class="raw">

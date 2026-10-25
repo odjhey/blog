@@ -372,31 +372,17 @@ async function checkSite(siteDir, { label, posts }) {
 		r.ok(nav.length === (expected.length ? 1 : 0) && JSON.stringify(shown) === JSON.stringify(expected), `${p.url}: link rows ${JSON.stringify(shown)}, expected ${JSON.stringify(expected)}`);
 	}
 
-	// More reading: up to 5 newest posts per tag, each post shown once and never
-	// one already in the → / ← rows; then the older and newer post by date.
+	// Older and newer post by date, after the → / ← rows.
 	published.forEach((p, i) => {
 		let doc = parsed.get(path.join(siteDir, "blog", p.slug, "index.html"));
 		if(!doc) {
 			return;
 		}
-		let seen = new Set([p, ...linksOut.get(p), ...published.filter(q => linksOut.get(q).includes(p))]);
-		let expected = [];
-		for(let tag of p.tags) {
-			let shown = published.filter(q => !seen.has(q) && q.tags.includes(tag)).slice(0, 5);
-			shown.forEach(q => seen.add(q));
-			if(shown.length) {
-				expected.push(`${tag} ${shown.map(q => q.url).join(" ")}`);
-			}
-		}
-		let older = published[i + 1], newer = published[i - 1];
-		expected.push(`older ${older?.url ?? "-"} newer ${newer?.url ?? "-"}`);
-		let nav = DomUtils.findAll(el => el.name === "nav" && el.attribs.class === "reading", doc.children);
-		let rows = nav.flatMap(n => DomUtils.findAll(el => el.name === "div" && el.attribs.class === "row", n.children))
-			.map(row => DomUtils.findAll(el => el.name === "a", row.children).map((a, j) => j ? a.attribs.href : textOf(a)).join(" "));
-		let pager = nav.flatMap(n => DomUtils.findAll(el => el.name === "a" && ["prev", "next"].includes(el.attribs.rel), n.children));
-		let rel = (name) => pager.find(a => a.attribs.rel === name)?.attribs.href ?? "-";
-		let shown = [...rows, `older ${rel("prev")} newer ${rel("next")}`];
-		r.ok(nav.length === 1 && JSON.stringify(shown) === JSON.stringify(expected), `${p.url}: more reading ${JSON.stringify(shown)}, expected ${JSON.stringify(expected)}`);
+		let expected = `older ${published[i + 1]?.url ?? "-"} newer ${published[i - 1]?.url ?? "-"}`;
+		let nav = DomUtils.findAll(el => el.name === "nav" && el.attribs.class === "pager", doc.children);
+		let rel = (name) => nav.flatMap(n => DomUtils.findAll(el => el.name === "a" && el.attribs.rel === name, n.children))[0]?.attribs.href ?? "-";
+		let shown = `older ${rel("prev")} newer ${rel("next")}`;
+		r.ok(nav.length === 1 && shown === expected, `${p.url}: pager "${shown}", expected "${expected}"`);
 	});
 
 	// `extends` names an existing note other than itself, without a cycle

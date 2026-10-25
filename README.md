@@ -53,4 +53,4 @@ Hosted on Vercel as a static site via `vercel.json`:
 
 ## Design
 
-"Ledger": a year-grouped index with mono dates, and on posts a left rail with date, reading time, tags and the source link. One inlined stylesheet (`css/index.css`), system fonts, light/dark from the device setting.
+"Ledger": a year-grouped index with mono dates, and on posts a left rail with date, reading time, tags and the source link, plus older/newer links under the article. One inlined stylesheet (`css/index.css`), system fonts, light/dark from the device setting.
