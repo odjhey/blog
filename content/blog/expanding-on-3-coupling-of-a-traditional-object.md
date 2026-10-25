@@ -1,6 +1,7 @@
 ---
 title: "expanding-on-3-coupling-of-a-traditional-object"
 date: "2024-05-17"
+tags: ["programming", "application-design"]
 ---
 
 hello world

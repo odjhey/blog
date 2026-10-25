@@ -1,7 +1,7 @@
 ---
 title: "Database Driven CMS"
 date: "2023-08-24"
-tags: ["application-design"]
+tags: ["application-design", "programming"]
 description: "Current plan, is to build side-car clients/frontends alongside a monolith, and a database driven CMS may be one of the possible cores."
 ---
 

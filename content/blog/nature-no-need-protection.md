@@ -1,6 +1,7 @@
 ---
 title: "Nature Does Not Need Protection"
 date: "2023-07-22"
+tags: ["soliloquy"]
 description: "Yep"
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Is it really FOMO?"
 date: "2020-05-30"
+tags: ["soliloquy"]
 ---
 
 FOMO (Fear of Missing Out)

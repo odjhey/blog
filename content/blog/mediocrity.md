@@ -1,6 +1,7 @@
 ---
 title: "Mediocrity"
 date: "2020-05-31"
+tags: ["soliloquy"]
 ---
 
 Ordinary.

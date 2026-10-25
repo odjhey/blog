@@ -1,6 +1,7 @@
 ---
 title: "Post 101 concepts to learn"
 date: "2021-11-01"
+tags: ["programming", "learning"]
 ---
 
 After a traditional programming course, if not already discussed, below is highly recommended.

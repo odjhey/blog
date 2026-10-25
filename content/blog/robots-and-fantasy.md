@@ -1,7 +1,7 @@
 ---
 title: "Robots & Fantasy"
 date: "2023-08-20"
-tags: ["anime"]
+tags: ["anime", "storytelling"]
 description: "Anime called Knight's & Magic"
 ---
 

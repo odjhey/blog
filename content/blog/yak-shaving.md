@@ -1,6 +1,8 @@
 ---
 title: "Yak Shaving"
 date: "2021-04-15"
+tags: ["text-editing", "soliloquy"]
+extends: "text-editing"
 ---
 
 Yak Shaving.

@@ -1,6 +1,7 @@
 ---
 title: "Some Programming Paradigms"
 date: "2023-06-18"
+tags: ["programming", "learning"]
 ---
 
 Read on below

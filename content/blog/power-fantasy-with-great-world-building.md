@@ -1,6 +1,7 @@
 ---
 title: "Power Fantasy with great world building"
 date: "2023-08-30"
+tags: ["storytelling"]
 description: "Exploring the unknown is fun when you are overpowered"
 ---
 

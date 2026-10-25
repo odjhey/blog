@@ -1,6 +1,7 @@
 ---
 title: "fundamentals-how-i-leverage-ai"
 date: "2024-04-18"
+tags: ["programming", "ai", "learning"]
 ---
 
 One mental model I subscribe to is thinking with "first principles," though I'm using that term loosely here ("fundamentals thinking" may be more apt).
@@ -24,7 +25,7 @@ I'm not sure if this makes sense, but that’s how I tend to think about things.
 
 With the above mindset, I often find myself having more fruitful conversations with ChatGPT. I feel like I am winning by learning more about the subject while simultaneously getting a solution that I understand and know I want.
 
-this may be related to (this previous post)[/blog/tools-ie-typed-languages]
+this may be related to [this previous post](/blog/tools-ie-typed-languages/)
 
 User
 this is a draft for my blog. please proof read and suggest minor improvements. ty ty
@@ -216,7 +217,7 @@ I'm not sure if this makes sense, but that’s how I tend to think about things.
 
 With the above mindset, I often find myself having more fruitful conversations with ChatGPT. I feel like I am winning by learning more about the subject while simultaneously getting a solution that I understand and know I want.
 
-this may be related to (this previous post)[/blog/tools-ie-typed-languages]
+this may be related to [this previous post](/blog/tools-ie-typed-languages/)
 ChatGPT
 Your latest draft further refines the discussion of using first principles in programming. Here's a polished version of your text that enhances clarity and cohesion:
 

@@ -1,6 +1,7 @@
 ---
 title: "Business Logic Driven Development"
 date: "2024-03-23"
+tags: ["application-design", "programming"]
 description: "My dream DX for developing business domain logic to use in applications"
 ---
 

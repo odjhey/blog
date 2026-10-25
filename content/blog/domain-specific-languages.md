@@ -1,6 +1,7 @@
 ---
 title: "Domain Specific Languages"
 date: "2023-07-21"
+tags: ["programming", "ai"]
 description: "DSLs"
 ---
 

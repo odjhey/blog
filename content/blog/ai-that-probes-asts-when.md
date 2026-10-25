@@ -1,6 +1,7 @@
 ---
 title: "AI that probes ASTs, When?"
 date: "2023-08-23"
+tags: ["programming", "ai"]
 description: "When?"
 ---
 

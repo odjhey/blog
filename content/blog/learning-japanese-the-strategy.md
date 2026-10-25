@@ -1,6 +1,7 @@
 ---
 title: "Our Japanese Study Strat"
 date: "2024-02-01"
+tags: ["learning"]
 ---
 
 Leverage the following

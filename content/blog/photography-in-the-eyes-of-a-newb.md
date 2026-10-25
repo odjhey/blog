@@ -1,7 +1,7 @@
 ---
 title: "Photography in the Eyes of a Newb"
 date: "2023-06-18"
-tags: ["photography"]
+tags: ["storytelling", "learning"]
 description: "Photography in the Eyes of someone who picked up a camera just a couple of weeks ago."
 ---
 

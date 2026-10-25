@@ -1,6 +1,7 @@
 ---
 title: "when-honesty-unearths-better-implementation"
 date: "2024-07-01"
+tags: ["programming", "application-design"]
 ---
 
 one time, we were talking about how to correctly name a function, the function in question checks the value and mutates it to null if certain conditions are met, like a reset

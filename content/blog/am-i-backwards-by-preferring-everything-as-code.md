@@ -1,6 +1,7 @@
 ---
 title: "Am I backwards by preferring everything-as-code (text, really)"
 date: "2023-08-30"
+tags: ["text-editing", "programming"]
 description: "As text really, IaC, Diagrams-as-code"
 ---
 

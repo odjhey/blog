@@ -1,6 +1,7 @@
 ---
 title: "I have so many drafts"
 date: "2021-12-04"
+tags: ["soliloquy"]
 ---
 
 It is better I feel to publish all my drafts and keep them as-is. Maybe add some kind of tagging but that is all.

@@ -1,6 +1,7 @@
 ---
 title: "Team Comp Archetypes"
 date: "2023-08-30"
+tags: ["gaming", "storytelling"]
 description: "Games, Sports, Stories, and Games"
 ---
 

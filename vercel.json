@@ -9,6 +9,11 @@
       "source": "/blog/page/:n/",
       "destination": "/blog/",
       "permanent": true
+    },
+    {
+      "source": "/tags/photography/",
+      "destination": "/tags/storytelling/",
+      "permanent": true
     }
   ]
 }

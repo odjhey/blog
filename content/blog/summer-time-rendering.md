@@ -1,7 +1,7 @@
 ---
 title: "Summer Time Rendering"
 date: "2023-08-20"
-tags: ["anime"]
+tags: ["anime", "soliloquy"]
 description: "The good qualities of Shinpei Ajiro"
 ---
 

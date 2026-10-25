@@ -1,7 +1,7 @@
 ---
 title: "Languages"
 date: "2021-07-08"
-tags: ["programming"]
+tags: ["programming", "learning"]
 description: "They're not just some new syntax, they also have their own perspective on things, own paradigms, own beliefs."
 ---
 

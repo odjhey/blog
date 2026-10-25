@@ -1,7 +1,7 @@
 ---
 title: "You call the shots, not your tools"
 date: "2024-04-18"
-tags: ["programming"]
+tags: ["programming", "application-design"]
 description: "getting led to crafting over-engineered and unnecessarily complex solutions."
 ---
 

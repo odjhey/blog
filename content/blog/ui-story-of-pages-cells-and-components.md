@@ -1,6 +1,7 @@
 ---
 title: "UI Story about Pages, Cells, and Components"
 date: "2022-06-01"
+tags: ["application-design"]
 ---
 
 draft

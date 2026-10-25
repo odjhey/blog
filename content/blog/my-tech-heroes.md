@@ -1,6 +1,7 @@
 ---
 title: "My Heroes in Tech"
 date: "2023-06-18"
+tags: ["text-editing", "programming"]
 ---
 
 draft

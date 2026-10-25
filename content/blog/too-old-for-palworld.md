@@ -1,6 +1,7 @@
 ---
 title: "Too old for Palworld"
 date: "2024-02-01"
+tags: ["gaming", "soliloquy"]
 ---
 
 ## SUPER DRAFT

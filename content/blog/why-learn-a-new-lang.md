@@ -1,8 +1,9 @@
 ---
 title: "Why Learn a NEW Language (Programming)"
 date: "2021-07-19"
-tags: ["programming"]
+tags: ["programming", "learning"]
 description: "Be mindful of what you spend your time on. Learn a language that offers something new, not just syntax."
+extends: "languages"
 ---
 
 I was rereading the [mess of a post](/blog/languages/) I previously made about

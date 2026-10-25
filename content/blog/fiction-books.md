@@ -1,6 +1,7 @@
 ---
 title: "Fiction Books"
 date: "2022-08-20"
+tags: ["storytelling"]
 ---
 
 Fiction Books

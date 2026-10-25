@@ -1,6 +1,7 @@
 ---
 title: "prefer-the-least-expressive"
 date: "2024-05-17"
+tags: ["programming", "application-design"]
 ---
 
 hello world

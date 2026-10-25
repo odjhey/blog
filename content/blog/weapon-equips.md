@@ -1,6 +1,7 @@
 ---
 title: "Weapon Equips"
 date: "2023-08-12"
+tags: ["anime", "storytelling"]
 ---
 
 So we got some time, and started distracting myself with the new [Trigun](https://en.wikipedia.org/wiki/Trigun_Stampede), it reminded me about the old fascination with weapons,
