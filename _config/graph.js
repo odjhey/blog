@@ -3,9 +3,8 @@ import metadata from "../_data/metadata.js";
 // Notes form a graph: the links the author wrote between notes, plus
 // `extends`. It is shown as the index tree and the → / ← rows on each note.
 
-// Links to another note: /blog/<slug>/ (relative or on the production origin,
-// any #fragment or ?query), or a Markdown path ending in <slug>.md, which the
-// InputPathToUrl plugin rewrites to the same URL.
+// Links to another note: /blog/<slug>/, relative or on the production origin,
+// with any #fragment or ?query.
 function slugOf(href) {
 	if(!href) {
 		return undefined;
@@ -13,8 +12,12 @@ function slugOf(href) {
 	if(href.startsWith(metadata.url)) {
 		href = "/" + href.slice(metadata.url.length);
 	}
-	let p = href.split(/[?#]/)[0];
-	return (p.match(/^\/blog\/([^/]+)\/?$/) || p.match(/(?:^|\/)([^/]+)\.md$/))?.[1];
+	return href.split(/[?#]/)[0].match(/^\/blog\/([^/]+)\/?$/)?.[1];
+}
+
+function topicsOf(post) {
+	let tags = post.data.tags;
+	return (Array.isArray(tags) ? tags : tags ? [tags] : []).filter(t => t !== "posts");
 }
 
 // Hrefs in Markdown body order. Parsing tokens rather than text skips link
@@ -117,5 +120,23 @@ export default function(eleventyConfig) {
 		let graph = graphOf(posts || []);
 		let note = (posts || []).find(p => p.url === url);
 		return { out: graph.out.get(note) || [], in: graph.incoming.get(note) || [] };
+	});
+
+	// For the note at `url`: one { tag, posts } group per tag, each listing up
+	// to `limit` other notes with that tag, newest first. A note shows up once:
+	// notes already in the → / ← rows, or in an earlier group, are skipped.
+	eleventyConfig.addFilter("sameTag", (posts, url, limit = 5) => {
+		let graph = graphOf(posts || []);
+		let note = (posts || []).find(p => p.url === url);
+		if(!note) {
+			return [];
+		}
+		let newest = [...posts].reverse();
+		let seen = new Set([note, ...graph.out.get(note), ...graph.incoming.get(note)]);
+		return topicsOf(note).map(tag => {
+			let shown = newest.filter(p => !seen.has(p) && topicsOf(p).includes(tag)).slice(0, limit);
+			shown.forEach(p => seen.add(p));
+			return { tag, posts: shown };
+		}).filter(group => group.posts.length);
 	});
 }

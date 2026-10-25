@@ -339,32 +339,62 @@ img {
 	height: auto;
 }
 
-/* Note graph. */
-.links {
+/* Note graph, then more reading: same tag, older/newer. */
+.links, .reading {
 	margin-top: 2.5rem;
 	padding-top: 1rem;
 	border-top: 1px solid var(--line);
 	font-size: 0.95rem;
 }
 
-.links .row {
+.links + .reading {
+	margin-top: 1rem;
+}
+
+.links .row, .reading .row {
 	display: grid;
 	grid-template-columns: 1.5rem 1fr;
 	padding: 0.2rem 0;
 }
 
-.links .row > span {
+.reading .row {
+	grid-template-columns: 9rem 1fr;
+	gap: 0 1rem;
+}
+
+.links .row > span, .reading .tag {
 	color: var(--accent);
 	font-family: var(--mono);
 }
 
-.links .row div {
+.reading .tag::before {
+	content: "#";
+}
+
+.links .row div, .reading .row div, .pager a {
 	display: flex;
 	flex-direction: column;
 }
 
-.links a {
+.links a, .reading .row div a, .pager a {
 	color: var(--fg);
+}
+
+.pager {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.pager a[rel="next"] {
+	grid-column: 2;
+	text-align: right;
+}
+
+.pager span {
+	color: var(--muted);
+	font: 0.8rem var(--mono);
 }
 
 /* Raw dump, closed by default. */
@@ -480,6 +510,13 @@ footer a {
 	article h1, .page h1 {
 		font-size: 2rem;
 	}
+	.reading .row, .pager {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.pager a[rel="next"] {
+		grid-column: 1;
+		text-align: left;
+	}
 }
 
 @media print {
@@ -488,7 +525,7 @@ footer a {
 		--fg: #000;
 		--muted: #444;
 	}
-	header, footer, .skip-link, .post aside {
+	header, footer, .skip-link, .post aside, .reading {
 		display: none;
 	}
 	.post {
