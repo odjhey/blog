@@ -1,0 +1,41 @@
+### A desk, not a dispatcher
+
+ Our agents don't wait for someone to open a terminal. Requests come in where the team already talks, in chat threads and pull requests. Each one lands on a desk: a small shared board that records what was
+ asked, who is working on it, and what came back. The desk doesn't run agents and doesn't decide how the work is done.
+
+ ┌──────────────────────┐                       ┌────────────────┐                   ┌─────────────┐
+ │                      │                       │                │                   │             │
+ │                      │                       │                │                   │             │
+ │      Machine A       ├─pullo clai, what fits►│      Desk      ├◄one requests card►┤    People   │
+ │ coordinator + agents │                       │ board + ledger │                   │ (chat, PRs) │
+ │                      │                       │                │                   │             │
+ └──────────────────────┘                       └────────────────┘                   └─────────────┘
+                                                         ▲
+                                                         │
+                                                         │
+                                                         │
+                                                         │
+ ┌──────────────────────┐                                │
+ │                      │                                │
+ │                      │                                │
+ │      Machine B       ├─────pullo clai, what fits──────┘
+ │ coordinator + agents │
+ │                      │
+ └──────────────────────┘
+
+ Work is pulled, never pushed. Every request becomes a quest card: what's wanted, what access it needs, and a few criteria anyone can check. Each machine runs a coordinator that knows its own agents and access.
+ It looks at the board, claims what it can actually finish, and passes on the rest with a reason. The desk never assigns work to a machine. A machine that's busy, offline or not suited simply doesn't take it.
+
+ Waiting costs nothing. Coordinators don't burn model turns watching for work. Small background processes do the waiting and wake the coordinator only when something real happens: a claim, a message, a finished
+ task. A wake is just a hint. The coordinator always re-reads the desk before acting, so a duplicate or late notification never repeats work.
+
+ Small, honest reports. Agents report as they go: a progress line, a criterion met or partly met, a link to what they produced. People see one card that updates in place, and every request ends with a short
+ reply. When nobody can do something, the request closes with the reasons, which is more useful than silence.
+
+ People keep the authority. Agents draft, test and comment. Merging and other consequential steps happen only when a person explicitly asks. Agent work goes out under its own bot identity, so it's always clear
+ who did what. A message between agents is information, never permission.
+
+ Anything can restart. The desk holds the state, so a coordinator can crash, cool down or move to another machine, and the next one picks up from the record.
+
+ What surprised us is how little of this needs to be clever. The biggest gains came from plain plumbing: the right context on each request, criteria anyone can check, honest "I can't do this" answers, and quiet
+ notifications. Better models helped less than that. 

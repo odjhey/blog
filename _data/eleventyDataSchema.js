@@ -1,8 +1,9 @@
 import { z } from "zod";
 
-const dateOnly = z.union([
+// A calendar day; an optional UTC time only orders same-day posts.
+const postDate = z.union([
 	z.date(),
-	z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use a YYYY-MM-DD date"),
+	z.string().regex(/^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$/, "Use a YYYY-MM-DD or YYYY-MM-DDTHH:MM date"),
 ]);
 
 // Validates post front matter fields. Every post is published; no drafts or demo fields.
@@ -10,7 +11,7 @@ export default function() {
 	return function(data) {
 		let result = z.object({
 			title: z.optional(z.string()),
-			date: z.optional(dateOnly),
+			date: z.optional(postDate),
 			tags: z.optional(z.union([z.array(z.string()), z.string()])),
 			description: z.optional(z.string()),
 			// When the raw was typed. The raw sits next to the post as <slug>.raw.txt

@@ -67,18 +67,20 @@ async function readPosts(root) {
 			slug,
 			url: `/blog/${slug}/`,
 			title: data.title,
-			date: dayString(data.date),
+			date: dayString(data.date).slice(0, 10),
+			stamp: dayString(data.date),
 			tags: (Array.isArray(data.tags) ? data.tags : data.tags ? [data.tags] : []).filter(t => t !== "posts"),
 			raw_at: typeof data.raw_at === "string" ? data.raw_at : null,
 			extends: typeof data.extends === "string" ? data.extends : null,
 			bodyLength: content.trim().length,
 		});
 	}
-	// Newest first. Eleventy orders collections by date, then input path (both
-	// ascending) and the site lists them reversed, so same-day posts appear in
-	// reverse file-name order.
+	// Newest first. Eleventy orders collections by date (a front matter time
+	// orders same-day posts), then input path, both ascending, and the site
+	// lists them reversed, so untimed same-day posts appear in reverse
+	// file-name order.
 	let byInputPath = (a, b) => a.file < b.file ? -1 : a.file > b.file ? 1 : 0;
-	let published = posts.sort((a, b) => b.date.localeCompare(a.date) || byInputPath(b, a));
+	let published = posts.sort((a, b) => b.stamp.localeCompare(a.stamp) || byInputPath(b, a));
 	return { published };
 }
 
@@ -298,8 +300,8 @@ async function checkSite(siteDir, { label, posts }) {
 	]);
 
 	// /blog/: newest first, grouped under a year heading; a row shows "Apr 18".
-	// Home: the `metadata.latest` newest under "Latest", dated in full, a note
-	// under its parent when both are listed, then a link to /blog/.
+	// Home: the `metadata.latest` newest, grouped the same way, a note under
+	// its parent when both are listed, then a link to /blog/.
 	const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	let listDate = (iso) => {
 		let [, m, d] = iso.split("-").map(Number);
@@ -321,13 +323,14 @@ async function checkSite(siteDir, { label, posts }) {
 	if(home && blogIndex && tagsIndex) {
 		let latest = listed(home);
 		let newest = published.slice(0, metadata.latest);
+		let row = (p, child) => `${(rootOf(p) && child ? rootOf(p) : p).date.slice(0, 4)} ${listDate(p.date)} ${child ? "└ " : ""}${p.url}`;
 		let expectedLatest = newest.filter(p => !newest.includes(rootOf(p))).flatMap(p => [
-			`Latest ${p.date} ${p.url}`,
-			...newest.filter(c => rootOf(c) === p).map(c => `Latest ${c.date} └ ${c.url}`),
+			row(p, false),
+			...newest.filter(c => rootOf(c) === p).map(c => row(c, true)),
 		]);
 		let shownLatest = latest.map(x => `${x.year} ${x.text} ${x.child ? "└ " : ""}${x.href}`);
 		r.ok(JSON.stringify(shownLatest) === JSON.stringify(expectedLatest), `home lists ${shownLatest.join(", ")} but expected ${expectedLatest.join(", ")}`);
-		r.ok(latest.every(x => x.datetime === x.text), "home: a row's <time datetime> differs from its shown date");
+		r.ok(latest.every(x => x.datetime === published.find(p => p.url === x.href)?.date), "home: a row's <time datetime> differs from its post's date");
 		let more = DomUtils.findOne(el => el.name === "p" && el.attribs.class === "more", home.children);
 		r.ok(more && DomUtils.findOne(el => el.name === "a", more.children)?.attribs.href === "/blog/" && textOf(more) === `All ${published.length} posts →`, `home: missing "All ${published.length} posts →" link to /blog/`);
 
@@ -382,9 +385,10 @@ async function checkSite(siteDir, { label, posts }) {
 		if(!doc) {
 			continue;
 		}
+		let linkedFrom = published.filter(q => linksOut.get(q).includes(p) && !linksOut.get(p).includes(q));
 		let expected = [
 			["→", linksOut.get(p)],
-			["←", published.filter(q => linksOut.get(q).includes(p))],
+			["←", linkedFrom],
 		].filter(([, list]) => list.length).map(([arrow, list]) => `${arrow} ${list.map(q => q.url).join(" ")}`);
 		let nav = DomUtils.findAll(el => el.name === "nav" && el.attribs.class === "links", doc.children);
 		let shown = nav.flatMap(n => DomUtils.findAll(el => el.name === "div" && el.attribs.class === "row", n.children))
@@ -392,17 +396,20 @@ async function checkSite(siteDir, { label, posts }) {
 		r.ok(nav.length === (expected.length ? 1 : 0) && JSON.stringify(shown) === JSON.stringify(expected), `${p.url}: link rows ${JSON.stringify(shown)}, expected ${JSON.stringify(expected)}`);
 	}
 
-	// Older and newer post by date, after the → / ← rows.
+	// Older and newer post by date, after the → / ← rows, unless already in
+	// them; no pager when both are.
 	published.forEach((p, i) => {
 		let doc = parsed.get(path.join(siteDir, "blog", p.slug, "index.html"));
 		if(!doc) {
 			return;
 		}
-		let expected = `older ${published[i + 1]?.url ?? "-"} newer ${published[i - 1]?.url ?? "-"}`;
+		let linked = (q) => linksOut.get(p).includes(q) || linksOut.get(q).includes(p);
+		let side = (q) => q && !linked(q) ? q.url : "-";
+		let expected = `older ${side(published[i + 1])} newer ${side(published[i - 1])}`;
 		let nav = DomUtils.findAll(el => el.name === "nav" && el.attribs.class === "pager", doc.children);
 		let rel = (name) => nav.flatMap(n => DomUtils.findAll(el => el.name === "a" && el.attribs.rel === name, n.children))[0]?.attribs.href ?? "-";
 		let shown = `older ${rel("prev")} newer ${rel("next")}`;
-		r.ok(nav.length === 1 && shown === expected, `${p.url}: pager "${shown}", expected "${expected}"`);
+		r.ok(nav.length === (expected === "older - newer -" ? 0 : 1) && shown === expected, `${p.url}: pager "${shown}", expected "${expected}"`);
 	});
 
 	// `extends` names an existing note other than itself, without a cycle

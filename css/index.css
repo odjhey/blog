@@ -192,11 +192,7 @@ main > h1 {
 	color: var(--muted);
 }
 
-/* Home: the latest posts, dated in full, then a link to /blog/. */
-.latest .posts li {
-	grid-template-columns: 6rem 1fr auto;
-}
-
+/* Home: after the newest posts, a link to /blog/. */
 .more {
 	margin: 1rem 0 0 calc(var(--rail) + 1.5rem);
 	font-family: var(--mono);
@@ -350,6 +346,73 @@ img {
 	height: auto;
 }
 
+/* Inline SVG diagrams in posts: drawn in the theme's colours, mono labels. */
+.diagram {
+	margin: 1.5rem 0;
+}
+
+.diagram svg {
+	display: block;
+	width: 100%;
+	max-width: 27rem;
+	height: auto;
+	margin: 0 auto;
+	font: 12px var(--mono);
+}
+
+.diagram rect, .diagram line, .diagram path {
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.5;
+}
+
+.diagram marker path {
+	fill: currentColor;
+	stroke: none;
+}
+
+.diagram text {
+	fill: currentColor;
+}
+
+.diagram text:not([text-anchor]) {
+	text-anchor: middle;
+}
+
+.diagram .solid {
+	fill: var(--accent);
+	stroke: none;
+}
+
+.diagram .accent {
+	stroke: var(--accent);
+}
+
+.diagram text.accent {
+	fill: var(--accent);
+	stroke: none;
+}
+
+.diagram .muted {
+	fill: var(--muted);
+}
+
+.diagram .small {
+	font-size: 10px;
+}
+
+.diagram .dashed {
+	stroke: var(--muted);
+	stroke-dasharray: 4 4;
+}
+
+.diagram figcaption {
+	margin-top: 0.5rem;
+	color: var(--muted);
+	font-size: 0.85rem;
+	text-align: center;
+}
+
 /* Note graph, then older/newer. */
 .links, .pager {
 	margin-top: 2.5rem;
@@ -486,9 +549,6 @@ footer a {
 	.posts li {
 		grid-template-columns: 3.8rem 1fr;
 		gap: 0.75rem;
-	}
-	.latest .posts li {
-		grid-template-columns: 5.6rem 1fr;
 	}
 	.posts .topics {
 		display: none;

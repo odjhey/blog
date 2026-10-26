@@ -23,7 +23,7 @@ Every post in `content/blog/<slug>.md` is published; there are no drafts.
 ```yaml
 ---
 title: "Post Title"
-date: "YYYY-MM-DD"
+date: "YYYY-MM-DD"            # or "YYYY-MM-DDTHH:MM" (UTC) to order same-day posts; pages show the day
 tags:
   - programming
 description: "Optional summary for meta description and feed."
@@ -37,7 +37,7 @@ extends: "parent-slug"        # Groups this note under another in the index tree
 An unedited text dump can be placed alongside a note as `<slug>.raw.txt`. Adding `raw_at` to the post front matter includes the raw verbatim under a `<details class="raw">` fold on the post page.
 
 ### Note graph
-- Author-written internal links like `/blog/<slug>/` automatically generate `→` (links to) and `←` (linked from) navigation rows at the end of connected notes.
+- Author-written internal links like `/blog/<slug>/` automatically generate `→` (links to) and `←` (linked from) navigation rows at the end of connected notes. Each note is listed once per page: a note linked both ways shows under `→` only, and the older/newer links skip notes already in the rows.
 - The `extends: <slug>` field nests child notes under their parent in list views.
 
 ### Tags
@@ -53,4 +53,4 @@ Hosted on Vercel as a static site via `vercel.json`:
 
 ## Design
 
-"Ledger": the home page lists the latest posts (`latest` in `_data/metadata.js`, 15, which also sets the `tail -h` tagline); `/blog/` has every post, grouped by year, with mono dates. Posts have a left rail with date, reading time, tags and the source link, plus older/newer links under the article. One inlined stylesheet (`css/index.css`), system fonts, light/dark from the device setting, pink accent.
+"Ledger": the home page lists the latest posts (`latest` in `_data/metadata.js`, 15, which also sets the `tail -h` tagline) and `/blog/` has every post, both grouped by year with mono dates. Posts have a left rail with date, reading time, tags and the source link, plus older/newer links under the article. One inlined stylesheet (`css/index.css`), system fonts, light/dark from the device setting, pink accent.

@@ -124,10 +124,12 @@ export default function(eleventyConfig) {
 	});
 
 	// { out, in } for the note at `url`: notes it links to (parent first, then
-	// body order, deduplicated) and notes linking to it, newest first.
+	// body order, deduplicated) and the other notes linking to it, newest
+	// first. A note linked both ways is listed once, under →.
 	eleventyConfig.addFilter("noteLinks", (posts, url) => {
 		let graph = graphOf(posts || []);
 		let note = (posts || []).find(p => p.url === url);
-		return { out: graph.out.get(note) || [], in: graph.incoming.get(note) || [] };
+		let out = graph.out.get(note) || [];
+		return { out, in: (graph.incoming.get(note) || []).filter(p => !out.includes(p)) };
 	});
 }
