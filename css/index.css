@@ -383,6 +383,11 @@ img {
 	text-anchor: middle;
 }
 
+.diagram .solid {
+	fill: var(--accent);
+	stroke: none;
+}
+
 .diagram .accent {
 	stroke: var(--accent);
 }
