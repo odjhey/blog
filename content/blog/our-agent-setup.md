@@ -1,6 +1,6 @@
 ---
 title: "How I currently run agents"
-date: "2026-10-26"
+date: "2026-10-26T19:10"
 tags: ["ai", "programming"]
 description: "A cockpit with our own taste in it, a long-running primary agent that fans work out to sub-agents and folds it back in, and a short agreement that keeps them in line."
 raw_at: "2026-10-26T19:10"

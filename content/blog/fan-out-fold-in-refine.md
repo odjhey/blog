@@ -1,6 +1,6 @@
 ---
 title: "Fan-Out, Fold-In, Refine"
-date: "2026-10-26"
+date: "2026-10-26T19:50"
 tags: ["ai", "programming"]
 extends: "our-agent-setup"
 description: "The loop our primary agent runs: a thin slice first, fan it out, fold it back in, refine breadth first, and keep the loop in the harness's own task list."

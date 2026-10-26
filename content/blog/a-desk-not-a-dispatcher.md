@@ -1,6 +1,6 @@
 ---
 title: "A Desk, Not a Dispatcher"
-date: "2026-10-26"
+date: "2026-10-26T20:01"
 tags: ["ai", "programming"]
 extends: "our-agent-setup"
 description: "How requests from chat and pull requests reach our agents: a shared board they pull from, quiet waiting, small honest reports, and people keeping the authority."

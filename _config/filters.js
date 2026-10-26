@@ -3,9 +3,10 @@ import { DateTime } from "luxon";
 // Internal collection names that must never appear as reader-facing topics.
 const INTERNAL_TAGS = ["all", "posts"];
 
-// Front matter dates are calendar days. YAML may hand us a Date (unquoted
-// value, parsed at UTC midnight) or a "YYYY-MM-DD" string (quoted value).
-// Both are read in UTC so the server's time zone never shifts the day.
+// Front matter dates are calendar days, with an optional time that only
+// orders same-day posts. YAML may hand us a Date (unquoted value, parsed at
+// UTC midnight) or a "YYYY-MM-DD[THH:MM]" string (quoted value). Both are
+// read in UTC so the server's time zone never shifts the day.
 function toDateTime(value) {
 	if(value instanceof Date) {
 		return DateTime.fromJSDate(value, { zone: "utc" });

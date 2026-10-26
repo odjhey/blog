@@ -67,18 +67,20 @@ async function readPosts(root) {
 			slug,
 			url: `/blog/${slug}/`,
 			title: data.title,
-			date: dayString(data.date),
+			date: dayString(data.date).slice(0, 10),
+			stamp: dayString(data.date),
 			tags: (Array.isArray(data.tags) ? data.tags : data.tags ? [data.tags] : []).filter(t => t !== "posts"),
 			raw_at: typeof data.raw_at === "string" ? data.raw_at : null,
 			extends: typeof data.extends === "string" ? data.extends : null,
 			bodyLength: content.trim().length,
 		});
 	}
-	// Newest first. Eleventy orders collections by date, then input path (both
-	// ascending) and the site lists them reversed, so same-day posts appear in
-	// reverse file-name order.
+	// Newest first. Eleventy orders collections by date (a front matter time
+	// orders same-day posts), then input path, both ascending, and the site
+	// lists them reversed, so untimed same-day posts appear in reverse
+	// file-name order.
 	let byInputPath = (a, b) => a.file < b.file ? -1 : a.file > b.file ? 1 : 0;
-	let published = posts.sort((a, b) => b.date.localeCompare(a.date) || byInputPath(b, a));
+	let published = posts.sort((a, b) => b.stamp.localeCompare(a.stamp) || byInputPath(b, a));
 	return { published };
 }
 

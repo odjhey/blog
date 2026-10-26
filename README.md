@@ -23,7 +23,7 @@ Every post in `content/blog/<slug>.md` is published; there are no drafts.
 ```yaml
 ---
 title: "Post Title"
-date: "YYYY-MM-DD"
+date: "YYYY-MM-DD"            # or "YYYY-MM-DDTHH:MM" (UTC) to order same-day posts; pages show the day
 tags:
   - programming
 description: "Optional summary for meta description and feed."
