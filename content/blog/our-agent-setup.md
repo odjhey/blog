@@ -44,7 +44,6 @@ Some notes on how we run coding agents these days. This isn't a recipe. Take the
 ## A primary agent and its sub-agents
 
 - I talk to one agent only, the primary agent. It's the communication point.
-- Requests don't only come from me. The team drops them in chat and pull requests, and our agents pull them from [a desk](/blog/a-desk-not-a-dispatcher/).
 - The primary agent splits the request into pieces and hands each piece to a sub-agent. These are the harness's normal sub-agents, nothing custom.
 - A sub-agent doesn't get the whole conversation, it gets a brief:
   - which project, and which of its instructions to read
@@ -130,3 +129,5 @@ A short doc every agent reads. Just guardrails, nothing fancy.
   - The rest, authority, scope and what done means, stay no matter how good the models get.
 
 We could probably write about focus, and human plus agent attention, next time.
+
+We have also recently started using a [desk](/blog/a-desk-not-a-dispatcher/), to put several machines to work, minis and linux boxes inside a tailnet.

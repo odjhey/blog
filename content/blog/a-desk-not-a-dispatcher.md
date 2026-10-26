@@ -7,7 +7,7 @@ description: "How requests from chat and pull requests reach our agents: a share
 raw_at: "2026-10-26T20:01"
 ---
 
-Our agents don't wait for someone to open a terminal. Requests come in where the team already talks, in chat threads and pull requests. Same deal as [our agent setup](/blog/our-agent-setup/), take the ideas, not the recipe.
+We have recently started using a desk, to put several machines to work, minis and linux boxes inside a tailnet. Our agents don't wait for someone to open a terminal. Requests come in where the team already talks, in chat threads and pull requests. Same deal as [our agent setup](/blog/our-agent-setup/), take the ideas, not the recipe.
 
 ## The desk
 
