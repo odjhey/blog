@@ -298,8 +298,8 @@ async function checkSite(siteDir, { label, posts }) {
 	]);
 
 	// /blog/: newest first, grouped under a year heading; a row shows "Apr 18".
-	// Home: the `metadata.latest` newest under "Latest", dated in full, a note
-	// under its parent when both are listed, then a link to /blog/.
+	// Home: the `metadata.latest` newest, grouped the same way, a note under
+	// its parent when both are listed, then a link to /blog/.
 	const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	let listDate = (iso) => {
 		let [, m, d] = iso.split("-").map(Number);
@@ -321,13 +321,14 @@ async function checkSite(siteDir, { label, posts }) {
 	if(home && blogIndex && tagsIndex) {
 		let latest = listed(home);
 		let newest = published.slice(0, metadata.latest);
+		let row = (p, child) => `${(rootOf(p) && child ? rootOf(p) : p).date.slice(0, 4)} ${listDate(p.date)} ${child ? "└ " : ""}${p.url}`;
 		let expectedLatest = newest.filter(p => !newest.includes(rootOf(p))).flatMap(p => [
-			`Latest ${p.date} ${p.url}`,
-			...newest.filter(c => rootOf(c) === p).map(c => `Latest ${c.date} └ ${c.url}`),
+			row(p, false),
+			...newest.filter(c => rootOf(c) === p).map(c => row(c, true)),
 		]);
 		let shownLatest = latest.map(x => `${x.year} ${x.text} ${x.child ? "└ " : ""}${x.href}`);
 		r.ok(JSON.stringify(shownLatest) === JSON.stringify(expectedLatest), `home lists ${shownLatest.join(", ")} but expected ${expectedLatest.join(", ")}`);
-		r.ok(latest.every(x => x.datetime === x.text), "home: a row's <time datetime> differs from its shown date");
+		r.ok(latest.every(x => x.datetime === published.find(p => p.url === x.href)?.date), "home: a row's <time datetime> differs from its post's date");
 		let more = DomUtils.findOne(el => el.name === "p" && el.attribs.class === "more", home.children);
 		r.ok(more && DomUtils.findOne(el => el.name === "a", more.children)?.attribs.href === "/blog/" && textOf(more) === `All ${published.length} posts →`, `home: missing "All ${published.length} posts →" link to /blog/`);
 

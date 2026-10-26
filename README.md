@@ -53,4 +53,4 @@ Hosted on Vercel as a static site via `vercel.json`:
 
 ## Design
 
-"Ledger": the home page lists the latest posts (`latest` in `_data/metadata.js`, 15, which also sets the `tail -h` tagline); `/blog/` has every post, grouped by year, with mono dates. Posts have a left rail with date, reading time, tags and the source link, plus older/newer links under the article. One inlined stylesheet (`css/index.css`), system fonts, light/dark from the device setting, pink accent.
+"Ledger": the home page lists the latest posts (`latest` in `_data/metadata.js`, 15, which also sets the `tail -h` tagline) and `/blog/` has every post, both grouped by year with mono dates. Posts have a left rail with date, reading time, tags and the source link, plus older/newer links under the article. One inlined stylesheet (`css/index.css`), system fonts, light/dark from the device setting, pink accent.

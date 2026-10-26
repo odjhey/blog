@@ -192,11 +192,7 @@ main > h1 {
 	color: var(--muted);
 }
 
-/* Home: the latest posts, dated in full, then a link to /blog/. */
-.latest .posts li {
-	grid-template-columns: 6rem 1fr auto;
-}
-
+/* Home: after the newest posts, a link to /blog/. */
 .more {
 	margin: 1rem 0 0 calc(var(--rail) + 1.5rem);
 	font-family: var(--mono);
@@ -553,9 +549,6 @@ footer a {
 	.posts li {
 		grid-template-columns: 3.8rem 1fr;
 		gap: 0.75rem;
-	}
-	.latest .posts li {
-		grid-template-columns: 5.6rem 1fr;
 	}
 	.posts .topics {
 		display: none;
