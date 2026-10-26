@@ -101,14 +101,7 @@ We also use a mini workgraph approach.
 
 A short doc every agent reads. Just guardrails, nothing fancy.
 
-- **Authority.** To keep them from asking, and to stop them from doing bad things.
-- **Harness native first.** To not build what the tool already gives us. Use what it has, no new machinery.
-- **Scope & sizing.** To keep work from quietly growing. The request fixes what done is. Tiny work gets done directly. Bigger work gets split by outcome.
-- **Communication.** To keep it readable, for me and for the primary agent's context. Outcomes and decisions, short.
-- **What done looks like.** To stop "done" from meaning "tried". Judged by the outcome, not the activity.
-- **Continuity.** To pick up where we left off without re-explaining. At a handoff or a pause, the primary agent leaves a pickup note in the cockpit.
-- **Lessons for learning.** To not repeat mistakes we've already hit. Every return carries one observation, and lessons become proposed changes to the agreement.
-- **Staying focused.** To keep them from drifting. Some rules exist only because current models slip. We call them shims, and they're meant to go once the models stop slipping.
+Authority, harness native first, scope & sizing, communication, what done looks like, continuity, lessons for learning, staying focused.
 
 We could probably write about focus, and human plus agent attention, next time. Also ledgers, ha... agents and ledgers, they match well together.
 
