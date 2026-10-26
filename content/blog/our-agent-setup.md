@@ -102,31 +102,14 @@ That's what we call the approach.
 A short doc every agent reads. Just guardrails, nothing fancy.
 
 - **Authority.** The project's own rules, my intent and what I've already allowed. The agreement itself grants nothing.
-  - Agents don't re-ask for things I already decided.
-  - They only ask me when it's a new call that only I can make.
-- **Harness native first.** Use what the tool already has: its sub-agents, task list, the forge, CI.
-  - Something missing? Do a manual step or say the limit. No new machinery.
+- **Harness native first.** Use what the tool already has. No new machinery.
 - **Scope.** The request fixes what done is.
-  - Findings can change how we get there, never silently grow what we deliver.
-- **Sizing.** Tiny work gets done directly, no plan, no sub-agent. Bigger work gets split by outcome.
+- **Sizing.** Tiny work gets done directly. Bigger work gets split by outcome.
 - **Communication.** Outcomes and decisions, short.
-  - Bulky evidence stays where it lives and gets linked.
-  - Brief in, compact return out, always the same shape.
 - **What done looks like.** Judged by the outcome, not the activity.
-  - The primary agent runs the combined thing and checks the actual behavior before calling it done.
-  - A pause, a handoff or a missing permission isn't success.
-- **Continuity.** At a handoff or a pause, the primary agent leaves a pickup note in the cockpit:
-  - the outcome and where things are
-  - what's done, and the proof
-  - what's left, and the next step
-  - The next session starts from that note and the real files, not from memory.
-- **Lessons.** Every return carries one observation, or "nothing material".
-  - Facts about the project go to the project.
-  - Lessons about the process become a proposed change to the agreement, never a silent rule change.
-- **Staying focused.** Some rules exist only because current models slip. They drift into cleanup nobody asked for, call it done from a green check, or guess the contents of a file they couldn't read.
-  - We tag those rules as shims.
-  - A new idea we're exploring, not doing yet. When a new model comes out, rerun the work without the shim, and drop the rule if it keeps passing.
-  - The rest, authority, scope and what done means, stay no matter how good the models get.
+- **Continuity.** At a handoff or a pause, the primary agent leaves a pickup note in the cockpit.
+- **Lessons.** Every return carries one observation, and lessons become proposed changes to the agreement.
+- **Staying focused.** Some rules exist only because current models slip. We call them shims, and they're meant to go once the models stop slipping.
 
 We could probably write about focus, and human plus agent attention, next time.
 
