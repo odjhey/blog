@@ -42,8 +42,8 @@ We have recently started using a desk, to put several machines to work, minis an
 ## Pulled, never pushed
 
 - Every request becomes a quest card with what's wanted, the access it needs and a few criteria anyone can check.
-- Each machine runs a coordinator that spawns agents and do work.
-- The coordinator looks at the board, claims what it can actually finish, and add a reason for the skips.
+- Each machine runs a coordinator that spawns agents and does work.
+- The coordinator looks at the board, claims what it can actually finish, and adds a reason for the skips.
 - The desk doesn't assign work. A machine that's busy, offline or not suited simply doesn't take it.
 
 <figure class="diagram">
