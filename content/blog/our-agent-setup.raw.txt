@@ -1,0 +1,5 @@
+something about our current agent setup
+
+Simply, a sub agent set up with a single agent who that serves as a communication point that orchestrates the rest of the agents
+
+a A simple agreement document where we write simple Guardrails like authority control, Harness native first, control the scope , Sizing completion criterias, communication methods and formats, What done looks like,  How to maintain continuity,  How to pass along lessons and observations, and other instructions for agents to stay focused.
