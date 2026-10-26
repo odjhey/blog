@@ -15,9 +15,8 @@ This is the loop our primary agent runs inside [our agent setup](/blog/our-agent
 
 ## Fan-out, fold-in
 
-- **Fan-out.** The primary agent splits the work by outcome or by question, not by file count.
+- **Fan-out.** The primary agent splits the work by outcome or by question, not by file count, not by files touched, we accept conflicts.
   - Each piece gets a bounded scope, an output and a check.
-  - Pieces that don't touch the same files run in parallel.
   - Sometimes we fan-out and allow competing ideas as well, then fold-in and see the winner, arena style.
 - **Fold-in.** An agent reads the returns and reconciles what they assumed.
   - It runs the combined thing itself.
@@ -26,12 +25,13 @@ This is the loop our primary agent runs inside [our agent setup](/blog/our-agent
 
 ## Progressive refinement
 
-- **Breadth first.** The first pass is a thin slice across the whole path, from the input to a result I can actually look at. Not one area done deep.
+- **Breadth first.** The first pass is a thin slice across the whole path, from the input to a result I can actually look at and use. Not one area done deep.
 - **Depth comes from refining.** Each round looks at the real result, closes the biggest gap, then runs the whole path again.
+- We allow discovery from each slice. What one slice turns up can reshape the next.
 - No working path yet? Connect the missing pieces before polishing any of them.
 - Outline the whole, detail only the current round.
 - Stop when it's good enough for what I asked, not when it's perfect.
-- The same idea could apply to [studying Japanese](/blog/learning-japanese-the-strategy/), broad strokes before details.
+- The same idea could apply to [studying other things](/blog/learning-japanese-the-strategy/), broad strokes before details.
 
 <figure class="diagram">
 <svg viewBox="0 0 360 150" role="img" aria-label="A grid of four parts from input to result, three rounds deep. The first round is a thin slice across all four parts; the later rounds go deeper across the same parts.">
@@ -105,7 +105,7 @@ Put together, the primary agent runs the same loop every time.
 
 ## The task list stopgap
 
-- Sometimes they forget. Long loops slip: the agent loses which round it's on, drops a piece, redoes finished work, or stops at the first thin slice.
+- Sometimes they forget. Long loops slip: compaction drops things, the agent loses which round it's on, drops a piece, redoes finished work, or stops at the first thin slice.
 - So we make the primary agent keep the loop in the harness's own todo or task list. No new tool.
 - The shape, roughly:
   - the root is the intent

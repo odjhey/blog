@@ -12,7 +12,7 @@ Some notes on how we run coding agents these days.
 
 - One launch point for all the projects we manage. The cockpit.
 - It holds what is not specific to any project: our delivery preferences, how we operate agents, and other generic instructions.
-- Akin to our personal tastes. Then it adjusts to each project's own instructions.
+- Akin to our personal tastes. It then adjusts to each project's own instructions.
 - We also keep a lookup directory of each project, a mixed bag of notes, diagrams, reports and whatever else piles up.
 - We normally run a separate session per project, each in its own terminal pane. Nothing stops one session from handling several projects, I just find it easier to context switch when they're different panes.
 - All markdown, no runtime.
@@ -43,14 +43,14 @@ Some notes on how we run coding agents these days.
 
 ## A primary agent and its sub-agents
 
-- I talk to one agent only, the primary agent. It's the communication point.
-- The primary agent splits the request into pieces and hands each piece to a sub-agent. These are the harness's normal sub-agents, nothing custom.
+- I talk to one agent, the primary agent. It's the communication point.
+- The primary agent splits the request into pieces and hands each piece to a sub-agent. Harness native sub-agents, nothing custom.
 - A sub-agent doesn't get the whole conversation, it gets a brief:
   - which project, and which of its instructions to read
   - the piece it owns, and what it must not touch
   - what it's allowed to do
   - how to show the result, and where to report back
-- It returns something compact: the result, where it is, what proves it, what's left, the next step and observations.
+- It returns something compact: the result, what proves it, what's left, observations.
 - We find the sub-agents still pick up each project's own style. Whether the project is spec-driven, BDD or TDD, the sub-agents follow along.
 
 <figure class="diagram">
@@ -91,7 +91,7 @@ Some notes on how we run coding agents these days.
 
 ## Fan-out, fold-in
 
-We also use this approach, à la mini workgraph.
+We also use a mini workgraph approach.
 
 - **Fan-out.** Split the work into bounded pieces and hand them out, in parallel when they don't touch the same files.
 - **Fold-in.** The primary agent reads the returns, reconciles them, and runs the combined thing itself. A sub-agent saying done is input, not acceptance.
@@ -101,7 +101,7 @@ We also use this approach, à la mini workgraph.
 
 A short doc every agent reads. Just guardrails, nothing fancy.
 
-- **Authority.** To keep them from asking a lot of things, and to stop them from doing bad things.
+- **Authority.** To keep them from asking, and to stop them from doing bad things.
 - **Harness native first.** To not build what the tool already gives us. Use what it has, no new machinery.
 - **Scope & sizing.** To keep work from quietly growing. The request fixes what done is. Tiny work gets done directly. Bigger work gets split by outcome.
 - **Communication.** To keep it readable, for me and for the primary agent's context. Outcomes and decisions, short.
