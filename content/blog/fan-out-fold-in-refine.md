@@ -26,6 +26,7 @@ This is the loop our primary agent runs inside [our agent setup](/blog/our-agent
 - No working path yet? Connect the missing pieces before polishing any of them.
 - Outline the whole, detail only the current round.
 - Stop when it's good enough for what I asked, not when it's perfect.
+- Same idea as how I [study Japanese](/blog/learning-japanese-the-strategy/), broad strokes before details.
 
 <figure class="diagram">
 <svg viewBox="0 0 360 170" role="img" aria-label="Three refinements across the same path from input to result. The first is a thin bar across the whole width; each later one is thicker.">
