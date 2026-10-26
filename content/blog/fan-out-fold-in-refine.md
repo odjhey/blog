@@ -7,7 +7,7 @@ description: "The loop our primary agent runs: hand the work out, fold it back i
 raw_at: "2026-10-26T19:50"
 ---
 
-[The last post](/blog/our-agent-setup/) was the setup. This one is the loop we run inside it. Same deal, take the ideas, not the recipe.
+This is the loop our primary agent runs inside [our agent setup](/blog/our-agent-setup/). Same deal, take the ideas, not the recipe.
 
 ## Fan-out, fold-in
 
@@ -98,7 +98,7 @@ Put together, the primary agent runs the same loop every time.
   - the assessment, loop again or end
 - It gets updated before each fan-out and after each fold-in.
 - Same gap keeps coming back? Change the approach, don't just retry.
-- It's a shim. Once the models stop forgetting, it goes.
+- It's a shim. The idea is to drop it once the models stop forgetting.
 
 ```text
 intent: what was asked, and how we'll know it's done

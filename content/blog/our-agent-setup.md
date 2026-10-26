@@ -44,7 +44,8 @@ Some notes on how we run coding agents these days. This isn't a recipe. Take the
 ## A primary agent and its sub-agents
 
 - I talk to one agent only, the primary agent. It's the communication point.
-- It splits the request into pieces and hands each piece to a sub-agent. These are the harness's normal sub-agents, nothing custom.
+- Requests don't only come from me. The team drops them in chat and pull requests, and our agents pull them from [a desk](/blog/a-desk-not-a-dispatcher/).
+- The primary agent splits the request into pieces and hands each piece to a sub-agent. These are the harness's normal sub-agents, nothing custom.
 - A sub-agent doesn't get the whole conversation, it gets a brief:
   - which project, and which of its instructions to read
   - the piece it owns, and what it must not touch
@@ -95,8 +96,7 @@ That's what we call the approach.
 
 - **Fan-out.** Split the work into bounded pieces and hand them out, in parallel when they don't touch the same files.
 - **Fold-in.** The primary agent reads the returns, reconciles them, and runs the combined thing itself. A sub-agent saying done is input, not acceptance.
-- We run it as a loop with progressive refinement: a thin pass across the whole thing first, then deeper each round.
-- More on that combo, and the task list that keeps the loop honest, in [the next post](/blog/fan-out-fold-in-refine/).
+- We run it as a loop with [progressive refinement](/blog/fan-out-fold-in-refine/), a thin pass across the whole thing first, then deeper each round, with the harness's own task list keeping the loop honest.
 
 ## The agreement
 
@@ -124,15 +124,9 @@ A short doc every agent reads. Just guardrails, nothing fancy.
 - **Lessons.** Every return carries one observation, or "nothing material".
   - Facts about the project go to the project.
   - Lessons about the process become a proposed change to the agreement, never a silent rule change.
+- **Staying focused.** Some rules exist only because current models slip. They drift into cleanup nobody asked for, call it done from a green check, or guess the contents of a file they couldn't read.
+  - We tag those rules as shims.
+  - A new idea we're exploring, not doing yet. When a new model comes out, rerun the work without the shim, and drop the rule if it keeps passing.
+  - The rest, authority, scope and what done means, stay no matter how good the models get.
 
-## Staying focused
-
-- Some rules exist only because current models slip. They:
-  - drift into cleanup nobody asked for
-  - call it done from a green check
-  - guess the contents of a file they couldn't read
-- We tag those rules as shims.
-- When a new model comes out, we rerun the checks without the shim. If it keeps passing, the rule goes.
-- The rest, authority, scope and what done means, stay no matter how good the models get.
-
-More notes as it changes.
+We could probably write about focus, and human plus agent attention, next time.
