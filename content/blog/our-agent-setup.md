@@ -1,21 +1,21 @@
 ---
-title: "Our Agent Setup: A Cockpit and a Primary Agent"
+title: "How I currently run agents"
 date: "2026-10-26"
 tags: ["ai", "programming"]
-description: "One cockpit with our own taste in it, a primary agent that fans work out to sub-agents and folds it back in, and a short agreement that keeps them in line."
+description: "A cockpit with our own taste in it, a long-running primary agent that fans work out to sub-agents and folds it back in, and a short agreement that keeps them in line."
 raw_at: "2026-10-26T19:10"
 ---
 
-Some notes on how we run coding agents these days. This isn't a recipe. Take the ideas, bend them, and turn them into your own.
+Some notes on how we run coding agents these days.
 
 ## The cockpit
 
-- One launch point for all the projects we manage. We call it the cockpit.
-- It holds what isn't specific to any project: our delivery preferences, how we operate agents, and other generic instructions.
-- Think of it as our personal taste. It adapts to each project's own instructions, and inside a project, the project's instructions win. The cockpit grants nothing by itself.
-- It also keeps a directory per project, a mixed bag of notes, diagrams, reports and whatever else piles up.
-- We normally run a separate session per project, each in its own terminal or window pane. Nothing stops one session from handling several projects, I just find it easier to context switch when they're different panes.
-- It's all just markdown, no runtime.
+- One launch point for all the projects we manage. The cockpit.
+- It holds what is not specific to any project: our delivery preferences, how we operate agents, and other generic instructions.
+- Akin to our personal tastes. Then it adjusts to each project's own instructions.
+- We also keep a lookup directory of each project, a mixed bag of notes, diagrams, reports and whatever else piles up.
+- We normally run a separate session per project, each in its own terminal pane. Nothing stops one session from handling several projects, I just find it easier to context switch when they're different panes.
+- All markdown, no runtime.
 
 <figure class="diagram">
 <svg viewBox="0 0 360 180" role="img" aria-label="The cockpit holds one session per pane. Each session works on its own project and follows that project's own instructions.">
@@ -38,7 +38,7 @@ Some notes on how we run coding agents these days. This isn't a recipe. Take the
 	<text x="280" y="117">project b</text>
 	<text class="muted small" x="280" y="132">its own instructions</text>
 </svg>
-<figcaption>One cockpit, one session per project. Each project's own instructions win.</figcaption>
+<figcaption>One cockpit, one session per project. The cockpit adjusts to each project's own instructions.</figcaption>
 </figure>
 
 ## A primary agent and its sub-agents
@@ -50,8 +50,8 @@ Some notes on how we run coding agents these days. This isn't a recipe. Take the
   - the piece it owns, and what it must not touch
   - what it's allowed to do
   - how to show the result, and where to report back
-- It returns something compact: the result, where it is, what proves it, what's left, the next step and one observation.
-- Even with this setup, the sub-agents still pick up each project's own style. Some of our projects are spec-driven, some do BDD or TDD, and the sub-agents follow along.
+- It returns something compact: the result, where it is, what proves it, what's left, the next step and observations.
+- We find the sub-agents still pick up each project's own style. Whether the project is spec-driven, BDD or TDD, the sub-agents follow along.
 
 <figure class="diagram">
 <svg viewBox="0 0 360 270" role="img" aria-label="Me to the primary agent and back. The primary agent, in the cockpit, sends briefs to three sub-agents inside the project and gets returns back.">
@@ -84,33 +84,32 @@ Some notes on how we run coding agents these days. This isn't a recipe. Take the
 
 ## Protecting the primary agent's context
 
-- The primary agent is the long-running one. It stays up across the whole request.
-- So we protect its context. Anything substantial goes to a sub-agent, even reading and searching.
-- The raw logs stay with the sub-agents. The primary only keeps the intent, the decisions and a short summary of each return.
-- A primary agent with a clean context remembers what I asked for. One full of logs starts to drift.
+- The primary agent is the long-running one. It stays up across multiple requests. We normally give it long-horizon work, a set of features, user journeys, etc.
+- We protect its context. Anything substantial goes to a sub-agent, even reading and searching.
+- The raw logs stay with the sub-agents. The primary only keeps the intent, the decisions, a short summary of each return, and the coordination.
+- The sub-agents talk to the primary, and the primary relays to other agents. We could probably change this, but it's working for us for now.
 
 ## Fan-out, fold-in
 
-That's what we call the approach.
+We also use this approach, à la mini workgraph.
 
 - **Fan-out.** Split the work into bounded pieces and hand them out, in parallel when they don't touch the same files.
 - **Fold-in.** The primary agent reads the returns, reconciles them, and runs the combined thing itself. A sub-agent saying done is input, not acceptance.
-- We run it as a loop with [progressive refinement](/blog/fan-out-fold-in-refine/), a thin pass across the whole thing first, then deeper each round, with the harness's own task list keeping the loop honest.
+- We run it as a loop with [progressive refinement](/blog/fan-out-fold-in-refine/), a thin pass across the whole thing first, then deeper each round. So agents don't forget, we ask them to keep the loop in the harness's own task list.
 
 ## The agreement
 
 A short doc every agent reads. Just guardrails, nothing fancy.
 
-- **Authority.** The project's own rules, my intent and what I've already allowed. The agreement itself grants nothing.
-- **Harness native first.** Use what the tool already has. No new machinery.
-- **Scope.** The request fixes what done is.
-- **Sizing.** Tiny work gets done directly. Bigger work gets split by outcome.
-- **Communication.** Outcomes and decisions, short.
-- **What done looks like.** Judged by the outcome, not the activity.
-- **Continuity.** At a handoff or a pause, the primary agent leaves a pickup note in the cockpit.
-- **Lessons.** Every return carries one observation, and lessons become proposed changes to the agreement.
-- **Staying focused.** Some rules exist only because current models slip. We call them shims, and they're meant to go once the models stop slipping.
+- **Authority.** To keep them from asking a lot of things, and to stop them from doing bad things.
+- **Harness native first.** To not build what the tool already gives us. Use what it has, no new machinery.
+- **Scope & sizing.** To keep work from quietly growing. The request fixes what done is. Tiny work gets done directly. Bigger work gets split by outcome.
+- **Communication.** To keep it readable, for me and for the primary agent's context. Outcomes and decisions, short.
+- **What done looks like.** To stop "done" from meaning "tried". Judged by the outcome, not the activity.
+- **Continuity.** To pick up where we left off without re-explaining. At a handoff or a pause, the primary agent leaves a pickup note in the cockpit.
+- **Lessons for learning.** To not repeat mistakes we've already hit. Every return carries one observation, and lessons become proposed changes to the agreement.
+- **Staying focused.** To keep them from drifting. Some rules exist only because current models slip. We call them shims, and they're meant to go once the models stop slipping.
 
-We could probably write about focus, and human plus agent attention, next time.
+We could probably write about focus, and human plus agent attention, next time. Also ledgers, ha... agents and ledgers, they match well together.
 
 We have also recently started using a [desk](/blog/a-desk-not-a-dispatcher/), to put several machines to work, minis and linux boxes inside a tailnet.

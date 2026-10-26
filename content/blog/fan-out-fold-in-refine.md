@@ -3,19 +3,24 @@ title: "Fan-Out, Fold-In, Refine"
 date: "2026-10-26"
 tags: ["ai", "programming"]
 extends: "our-agent-setup"
-description: "The loop our primary agent runs: hand the work out, fold it back in, refine breadth first, and keep the loop in the harness's own task list."
+description: "The loop our primary agent runs: a thin slice first, fan it out, fold it back in, refine breadth first, and keep the loop in the harness's own task list."
 raw_at: "2026-10-26T19:50"
 ---
 
-This is the loop our primary agent runs inside [our agent setup](/blog/our-agent-setup/). Same deal, take the ideas, not the recipe.
+This is the loop our primary agent runs inside [our agent setup](/blog/our-agent-setup/).
+
+## Slices
+
+- A slice is a small one. Broad strokes, breadth first, depth later. Thin slices until refined.
 
 ## Fan-out, fold-in
 
 - **Fan-out.** The primary agent splits the work by outcome or by question, not by file count.
   - Each piece gets a bounded scope, an output and a check.
   - Pieces that don't touch the same files run in parallel.
-- **Fold-in.** The primary agent reads the returns and reconciles what they assumed.
-  - Then it runs the combined thing itself.
+  - Sometimes we fan-out and allow competing ideas as well, then fold-in and see the winner, arena style.
+- **Fold-in.** An agent reads the returns and reconciles what they assumed.
+  - It runs the combined thing itself.
   - A sub-agent saying done is input, not acceptance.
 - Tiny work skips all of this. The primary agent just does it.
 
@@ -26,23 +31,35 @@ This is the loop our primary agent runs inside [our agent setup](/blog/our-agent
 - No working path yet? Connect the missing pieces before polishing any of them.
 - Outline the whole, detail only the current round.
 - Stop when it's good enough for what I asked, not when it's perfect.
-- Same idea as how I [study Japanese](/blog/learning-japanese-the-strategy/), broad strokes before details.
+- The same idea could apply to [studying Japanese](/blog/learning-japanese-the-strategy/), broad strokes before details.
 
 <figure class="diagram">
-<svg viewBox="0 0 360 170" role="img" aria-label="Three refinements across the same path from input to result. The first is a thin bar across the whole width; each later one is thicker.">
+<svg viewBox="0 0 360 150" role="img" aria-label="A grid of four parts from input to result, three rounds deep. The first round is a thin slice across all four parts; the later rounds go deeper across the same parts.">
 	<defs><marker id="refine-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
-	<text class="muted" x="60" y="20" text-anchor="start">input</text>
-	<text class="muted" x="340" y="20" text-anchor="end">result</text>
-	<line x1="60" y1="30" x2="338" y2="30" marker-end="url(#refine-arrow)"/>
-	<text x="48" y="57" text-anchor="end">1st</text>
-	<rect class="solid" x="60" y="50" width="280" height="6"/>
-	<text x="48" y="91" text-anchor="end">2nd</text>
-	<rect class="solid" x="60" y="80" width="280" height="16"/>
-	<text x="48" y="131" text-anchor="end">3rd</text>
-	<rect class="solid" x="60" y="114" width="280" height="28"/>
-	<text class="muted small" x="200" y="162">the whole path every round, deeper each time</text>
+	<text class="muted" x="50" y="20" text-anchor="start">input</text>
+	<text class="muted" x="270" y="20" text-anchor="end">result</text>
+	<line x1="50" y1="30" x2="268" y2="30" marker-end="url(#refine-arrow)"/>
+	<text x="42" y="60" text-anchor="end">1st</text>
+	<rect class="solid" x="50" y="45" width="51" height="22"/>
+	<rect class="solid" x="106" y="45" width="51" height="22"/>
+	<rect class="solid" x="162" y="45" width="51" height="22"/>
+	<rect class="solid" x="218" y="45" width="51" height="22"/>
+	<text class="accent" x="282" y="60" text-anchor="start">thin slice</text>
+	<text x="42" y="90" text-anchor="end">2nd</text>
+	<rect class="dashed" x="50" y="75" width="51" height="22"/>
+	<rect class="dashed" x="106" y="75" width="51" height="22"/>
+	<rect class="dashed" x="162" y="75" width="51" height="22"/>
+	<rect class="dashed" x="218" y="75" width="51" height="22"/>
+	<text x="42" y="120" text-anchor="end">3rd</text>
+	<rect class="dashed" x="50" y="105" width="51" height="22"/>
+	<rect class="dashed" x="106" y="105" width="51" height="22"/>
+	<rect class="dashed" x="162" y="105" width="51" height="22"/>
+	<rect class="dashed" x="218" y="105" width="51" height="22"/>
+	<line x1="288" y1="75" x2="288" y2="125" marker-end="url(#refine-arrow)"/>
+	<text class="muted" x="298" y="105" text-anchor="start">refine</text>
+	<text class="muted small" x="160" y="145">every part in the first slice, deeper each round</text>
 </svg>
-<figcaption>Breadth first. Depth comes from the next refinement, not from finishing one area.</figcaption>
+<figcaption>Breadth first. Depth comes from refining, not from finishing one area.</figcaption>
 </figure>
 
 ## The loop
@@ -50,13 +67,13 @@ This is the loop our primary agent runs inside [our agent setup](/blog/our-agent
 Put together, the primary agent runs the same loop every time.
 
 <figure class="diagram">
-<svg viewBox="0 0 360 272" role="img" aria-label="Orient, divide, fan-out, fold-in, reassess. Reassess loops back to divide for the next refinement, or ends as complete, blocked or paused.">
+<svg viewBox="0 0 360 272" role="img" aria-label="Orient, thin slice, fan-out, fold-in, reassess. Reassess loops back to the next thin slice, or ends as complete, blocked or paused.">
 	<defs><marker id="loop-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
 	<rect x="60" y="10" width="140" height="30" rx="4"/>
 	<text x="130" y="30">orient</text>
 	<line x1="130" y1="40" x2="130" y2="58" marker-end="url(#loop-arrow)"/>
-	<rect x="60" y="60" width="140" height="30" rx="4"/>
-	<text x="130" y="80">divide</text>
+	<rect class="accent" x="60" y="60" width="140" height="30" rx="4"/>
+	<text x="130" y="80">thin slice</text>
 	<line x1="130" y1="90" x2="130" y2="108" marker-end="url(#loop-arrow)"/>
 	<rect x="60" y="110" width="140" height="30" rx="4"/>
 	<text x="130" y="130">fan-out</text>
@@ -79,7 +96,7 @@ Put together, the primary agent runs the same loop every time.
 </figure>
 
 - **Orient.** What was asked, how we'll know it's done, what we're allowed to do.
-- **Divide** and **fan-out**, then **fold-in**.
+- **Thin slice**, then **fan-out**, then **fold-in**.
 - **Reassess.** One of four:
   - complete, the outcome is shown working
   - next, there's a gap and we're allowed to close it, so loop again
@@ -98,7 +115,7 @@ Put together, the primary agent runs the same loop every time.
   - the assessment, loop again or end
 - It gets updated before each fan-out and after each fold-in.
 - Same gap keeps coming back? Change the approach, don't just retry.
-- It's a shim. The idea is to drop it once the models stop forgetting.
+- It's a shim. We could drop it when models stop forgetting.
 
 ```text
 intent: what was asked, and how we'll know it's done
