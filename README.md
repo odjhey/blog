@@ -37,7 +37,7 @@ extends: "parent-slug"        # Groups this note under another in the index tree
 An unedited text dump can be placed alongside a note as `<slug>.raw.txt`. Adding `raw_at` to the post front matter includes the raw verbatim under a `<details class="raw">` fold on the post page.
 
 ### Note graph
-- Author-written internal links like `/blog/<slug>/` automatically generate `→` (links to) and `←` (linked from) navigation rows at the end of connected notes.
+- Author-written internal links like `/blog/<slug>/` automatically generate `→` (links to) and `←` (linked from) navigation rows at the end of connected notes. Each note is listed once per page: a note linked both ways shows under `→` only, and the older/newer links skip notes already in the rows.
 - The `extends: <slug>` field nests child notes under their parent in list views.
 
 ### Tags

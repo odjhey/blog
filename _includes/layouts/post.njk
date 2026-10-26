@@ -18,13 +18,19 @@ layout: layouts/base.njk
 		{%- endif %}
 	</nav>
 	{%- endif %}
-	{#- collections.posts is oldest first, so "previous" is older. #}
+	{#- collections.posts is oldest first, so "previous" is older. A note
+	    already in the → / ← rows is not repeated here. #}
 	{%- set older = collections.posts | getPreviousCollectionItem %}
 	{%- set newer = collections.posts | getNextCollectionItem %}
+	{%- set linked = links.out.concat(links.in) %}
+	{%- if older in linked %}{% set older = null %}{% endif %}
+	{%- if newer in linked %}{% set newer = null %}{% endif %}
+	{%- if older or newer %}
 	<nav class="pager" aria-label="Older and newer posts">
 		{%- if older %}<a rel="prev" href="{{ older.url }}"><span>← Older</span>{{ older.data.title }}</a>{% endif %}
 		{%- if newer %}<a rel="next" href="{{ newer.url }}"><span>Newer →</span>{{ newer.data.title }}</a>{% endif %}
 	</nav>
+	{%- endif %}
 	{%- if raw_at %}
 	<details class="raw">
 		<summary>raw · typed <time datetime="{{ raw_at | htmlDatetimeString }}">{{ raw_at | rawAt }}</time></summary>

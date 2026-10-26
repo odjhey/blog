@@ -382,9 +382,10 @@ async function checkSite(siteDir, { label, posts }) {
 		if(!doc) {
 			continue;
 		}
+		let linkedFrom = published.filter(q => linksOut.get(q).includes(p) && !linksOut.get(p).includes(q));
 		let expected = [
 			["→", linksOut.get(p)],
-			["←", published.filter(q => linksOut.get(q).includes(p))],
+			["←", linkedFrom],
 		].filter(([, list]) => list.length).map(([arrow, list]) => `${arrow} ${list.map(q => q.url).join(" ")}`);
 		let nav = DomUtils.findAll(el => el.name === "nav" && el.attribs.class === "links", doc.children);
 		let shown = nav.flatMap(n => DomUtils.findAll(el => el.name === "div" && el.attribs.class === "row", n.children))
@@ -392,17 +393,20 @@ async function checkSite(siteDir, { label, posts }) {
 		r.ok(nav.length === (expected.length ? 1 : 0) && JSON.stringify(shown) === JSON.stringify(expected), `${p.url}: link rows ${JSON.stringify(shown)}, expected ${JSON.stringify(expected)}`);
 	}
 
-	// Older and newer post by date, after the → / ← rows.
+	// Older and newer post by date, after the → / ← rows, unless already in
+	// them; no pager when both are.
 	published.forEach((p, i) => {
 		let doc = parsed.get(path.join(siteDir, "blog", p.slug, "index.html"));
 		if(!doc) {
 			return;
 		}
-		let expected = `older ${published[i + 1]?.url ?? "-"} newer ${published[i - 1]?.url ?? "-"}`;
+		let linked = (q) => linksOut.get(p).includes(q) || linksOut.get(q).includes(p);
+		let side = (q) => q && !linked(q) ? q.url : "-";
+		let expected = `older ${side(published[i + 1])} newer ${side(published[i - 1])}`;
 		let nav = DomUtils.findAll(el => el.name === "nav" && el.attribs.class === "pager", doc.children);
 		let rel = (name) => nav.flatMap(n => DomUtils.findAll(el => el.name === "a" && el.attribs.rel === name, n.children))[0]?.attribs.href ?? "-";
 		let shown = `older ${rel("prev")} newer ${rel("next")}`;
-		r.ok(nav.length === 1 && shown === expected, `${p.url}: pager "${shown}", expected "${expected}"`);
+		r.ok(nav.length === (expected === "older - newer -" ? 0 : 1) && shown === expected, `${p.url}: pager "${shown}", expected "${expected}"`);
 	});
 
 	// `extends` names an existing note other than itself, without a cycle
