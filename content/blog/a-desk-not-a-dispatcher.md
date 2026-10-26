@@ -7,11 +7,11 @@ description: "How requests from chat and pull requests reach our agents: a share
 raw_at: "2026-10-26T20:01"
 ---
 
-We have recently started using a desk, to put several machines to work, minis and linux boxes inside a tailnet. Our agents don't wait for someone to open a terminal. Requests come in where the team already talks, in chat threads and pull requests.
+We have recently started using a desk, to put several machines to work, minis and linux boxes inside a tailnet. Requests come in where the team already talks, in chat threads and pull requests.
 
 ## The desk
 
-- Every request lands on a desk, a small shared board.
+- Every request lands on a desk, a small shared board, triaged (Jev).
 - It records what was asked, who is working on it, and what came back.
 - The desk doesn't run agents and doesn't decide how the work is done.
 
@@ -42,9 +42,9 @@ We have recently started using a desk, to put several machines to work, minis an
 ## Pulled, never pushed
 
 - Every request becomes a quest card with what's wanted, the access it needs and a few criteria anyone can check.
-- Each machine runs a coordinator that knows its own agents and access.
-- The coordinator looks at the board, claims what it can actually finish, and passes on the rest with a reason.
-- The desk never assigns work to a machine. A machine that's busy, offline or not suited simply doesn't take it.
+- Each machine runs a coordinator that spawns agents and do work.
+- The coordinator looks at the board, claims what it can actually finish, and add a reason for the skips.
+- The desk doesn't assign work. A machine that's busy, offline or not suited simply doesn't take it.
 
 <figure class="diagram">
 <svg viewBox="0 0 360 200" role="img" aria-label="A quest card with what's wanted, the access it needs, criteria marked met, partly met or not yet, who claimed it, progress lines and a short reply.">
@@ -131,13 +131,6 @@ We have recently started using a desk, to put several machines to work, minis an
 - Every request ends with a short reply.
 - When nobody can do something, the request closes with the reasons. That's more useful than silence.
 
-## People keep the authority
-
-- Agents draft, test and comment.
-- Merging and other consequential steps happen only when a person explicitly asks.
-- Agent work goes out under its own bot identity, so it's always clear who did what.
-- A message between agents is information, never permission.
-
 ## Anything can restart
 
 - The desk holds the state.
@@ -163,7 +156,7 @@ We have recently started using a desk, to put several machines to work, minis an
 <figcaption>The state lives on the desk, not in any one coordinator.</figcaption>
 </figure>
 
-## What surprised us
+## Suprisingly
 
 How little of this needs to be clever. The biggest gains came from plain plumbing:
 
