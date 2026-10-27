@@ -4,27 +4,27 @@ date: "2026-10-27T22:43"
 tags: ["ai", "programming"]
 extends: "fan-out-fold-in-refine"
 primary: true
-description: "Still figuring this out. Our agents work a bit like RPG jobs, where the job comes from the main equip. Mostly generalists, a few narrow ones, and a hunch that thin slices are why it works."
+description: "Our agents work like RPG jobs, where the job comes from the main equip. Mostly generalists, narrow ones for a few cases, and maybe thin slices are why it works for us."
 raw_at: "2026-10-27T22:43"
 ---
 
-Still figuring this out. Some notes on how we divide work between agents right now, on top of [how I currently run agents](/blog/our-agent-setup/). A lot of it seems to come back to the thin slices of [progressive refinement](/blog/fan-out-fold-in-refine/). Could be wrong.
+Some notes on how work is divided between agents, on top of [how I currently run agents](/blog/our-agent-setup/). It comes back to the thin slices of [progressive refinement](/blog/fan-out-fold-in-refine/).
 
 ## Jobs (or is this a persona?)
 
-You know jobs in RPGs, where your job depends on your main equip? Swap the weapon and the job changes with it. That's roughly how our agents work, I think. Same agent underneath, and the job comes from what it's equipped with. A build job, a review job, a verify job.
+Like jobs in RPGs, where your job depends on your main equip. Swap the weapon and the job changes with it.
+That's how our agents work. Same general instructions underneath, and the job comes from what it's equipped with. A build job, a review job, a verify job. Is this a persona? Unsure.
 
-Is a job just a persona with extra steps? We don't think so, but we're not fully sure.
-
-- A persona is who the agent pretends to be. "You are a senior engineer with 15 years of experience", plus a voice and a tone.
+- If a persona is the "you are a so and so with 15 years of experience", plus a voice and a tone, then we don't do personas.
 - A job is only what it's equipped to do. No backstory.
 - And we don't do the narrow kind either, a backend agent, a frontend agent.
+- I read somewhere they call this "per context needs", spawning agents per the context they need.
 
-So most of the time it's a generalist with a job. I used to think that was 99% of the time. Writing this down, prolly less. Still the majority, I think.
+Most of the time it's a generalist with a loadout. We observed a side effect, the loadout alone is usually enough for an agent to know its job.
 
 ## Loadouts
 
-A loadout is the main equip, the tools an agent has or the tools it reaches for first. It's mostly about who got access to what, and we manage it per access.
+A loadout is the main equip, the tools an agent has or the tools it reaches for first. It's mostly about who got access to what. We manage it per access.
 
 And by multi-agent we mean it in broad strokes, not just sub-agents.
 
@@ -62,25 +62,25 @@ And by multi-agent we mean it in broad strokes, not just sub-agents.
 
 ## When we go narrow
 
-Some things don't fit a generalist, at least for us.
+Some things don't fit a generalist, and sometimes we want to constrain an agent on purpose.
 
 - Code-blind work, like verifying a feature without looking at the code.
 - When we can't start the entire app stack locally.
 - Specialized checks, like security audits.
 
-There are probably more we haven't noticed yet.
+And a few more edge cases we can't list here.
 
-## Why it seems to work
+## It seems to work, for us
 
-Honestly, not sure. Models getting better and better is probably a big part of it.
+Mostly, prolly, because models are getting better and better.
 
-Aside from that, I think generalists work for us because we also do progressive refinement.
+But maybe also because we do progressive refinement.
 
 - Each pass is a thin, complete slice, MVP style, refined on each loop pass.
-- A slice crosses every part of the path, so whoever carries it has to reach every part. A narrow agent can't carry a whole slice. That's the theory anyway.
+- A slice crosses every part of the path, so whoever carries it has to reach every part.
+- Narrow agents seem to learn less. Generalists pick up more along the way, and each pass can repivot.
 - Our iterate and workgraph methods lean the same way, splitting by journey, not by narrow sub-components.
-
-Could also be that we just haven't hit the cases where narrow agents win.
+- The agents are not mere encoders, and lessons from experience seem to get shared better this way. After all, we're buying them for the intelligence, not for faster typing from a spec. (Btw, I don't write much detailed spec, unless it's architecture.)
 
 <figure class="diagram">
 <svg viewBox="0 0 360 150" role="img" aria-label="Two grids of three parts, ui, api and data, three rounds deep. A narrow agent fills one part all the way down. A thin slice fills the first round across all three parts.">
@@ -118,15 +118,15 @@ Could also be that we just haven't hit the cases where narrow agents win.
 
 ## Human attention
 
-Building stuff has budgets, and one of ours is human attention. That one prolly deserves its own entry someday.
+Aside from the usual budgets, we factor in human attention (should write more about this later).
 
-Thin slices seem to help here too.
+Thin slices help us a ton here too.
 
 - Each refinement is a whole journey I can touch, so I can verify it async, whenever I have time.
 - Less waiting on one narrow part that only makes sense once everything else exists.
 - Plans change with each refinement, [what one slice turns up can reshape the next](/blog/fan-out-fold-in-refine/).
 
-Probably some lite RSI (recursive self-improvement) loop kind of thing. Not sure.
+Wait, is this some RSI-lite (recursive self-improvement) loop kind of thing?
 
 <figure class="diagram">
 <svg viewBox="0 0 360 120" role="img" aria-label="Agents run pass 1, pass 2 and pass 3 in a row. Below, I look at pass 1 and pass 3 later, when I have time.">
