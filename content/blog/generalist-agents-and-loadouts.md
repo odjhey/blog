@@ -4,23 +4,37 @@ date: "2026-10-27T22:43"
 tags: ["ai", "programming"]
 extends: "fan-out-fold-in-refine"
 primary: true
-description: "We don't split agents into personas. Generalists take whole thin slices, loadouts decide who gets access to what, and each refinement is something I can check when I have time."
+description: "Most of our agents are generalists. We split by job and access, not by layer or persona, and thin slices are what make that work, for the agents and for my attention."
 raw_at: "2026-10-27T22:43"
 ---
 
-How we divide work between agents, on top of [how I currently run agents](/blog/our-agent-setup/) and [progressive refinement](/blog/fan-out-fold-in-refine/).
+How we divide work between agents, on top of [how I currently run agents](/blog/our-agent-setup/). Most of it comes back to the thin slices of [progressive refinement](/blog/fan-out-fold-in-refine/).
 
-## No personas
+## Generalists, mostly
 
-- We don't split agents by role. No backend agent, no frontend agent, no personas.
-- Our agents are generalists. Any of them can take a slice from input to result.
-- We do use narrow agents sometimes, for specialized situations like security audits.
-- For broad, medium to long journeys, no.
+- Most of our agents are generalists. Any of them can take a slice from input to result.
+- We do have roles, just not by layer. No backend agent, no frontend agent.
+- And no personas either. No "you are a senior engineer with 15 years of experience", no voice, no tone.
+- A role for us is a job in the loop, like build, review or verify, plus what it can access.
+- I used to think it was generalists 99% of the time. Writing this down, prolly less. Still the majority.
+
+## When we go narrow
+
+- Code-blind work, like verifying a feature without looking at the code.
+- When we can't start the entire app stack locally.
+- Specialized checks, like security audits.
+
+## Why I think it works
+
+- Models getting better and better helps. Aside from that, I think generalists work for us because we also do progressive refinement.
+- Each pass is a thin, complete slice, MVP style, refined on each loop pass.
+- A slice crosses every part of the path, so whoever carries it has to reach every part. An agent that only knows one layer can't carry a whole slice.
+- Our iterate and workgraph methods follow the same idea. They split by journey, not by narrow sub-components.
 
 <figure class="diagram">
-<svg viewBox="0 0 360 150" role="img" aria-label="Two grids of three parts, ui, api and data, three rounds deep. On the left, a persona fills one part all the way down. On the right, a generalist fills the first round across all three parts.">
-	<text x="90" y="14">persona</text>
-	<text x="270" y="14">generalist</text>
+<svg viewBox="0 0 360 150" role="img" aria-label="Two grids of three parts, ui, api and data, three rounds deep. Split by layer, one agent fills one part all the way down. Split by slice, one agent fills the first round across all three parts.">
+	<text x="90" y="14">by layer</text>
+	<text x="270" y="14">by slice</text>
 	<text class="muted small" x="42" y="34">ui</text>
 	<text class="muted small" x="90" y="34">api</text>
 	<text class="muted small" x="138" y="34">data</text>
@@ -48,22 +62,15 @@ How we divide work between agents, on top of [how I currently run agents](/blog/
 	<text class="muted small" x="90" y="130">one part, deep</text>
 	<text class="muted small" x="270" y="130">the whole path, thin</text>
 </svg>
-<figcaption>A persona finishes a part. A generalist finishes a journey, thin.</figcaption>
+<figcaption>Split by layer, an agent finishes a part. Split by slice, it finishes a journey, thin.</figcaption>
 </figure>
 
-## Why generalists work for us
-
-- Because of how progressive refinement works. Each pass is a thin, complete slice, MVP style, and each loop pass refines it.
-- A slice crosses every part of the path, so whoever does it has to touch every part. A narrow agent can't carry a whole slice.
-- Our iterate and workgraph methods are about this too. They split by outcome and journey, not by narrow sub-components.
-- Fan-out still happens, but each piece is a piece of the journey, not a layer of the stack.
-
-## Loadouts, not personas
+## Loadouts
 
 - A loadout is just the tools an agent has available, or the tools it reaches for first.
-- It's more about who got access to what. We manage loadouts per access, not per role.
+- It's more about who got access to what, and we manage it per access.
 - Same generalist, different loadout.
-- And by multi-agent we mean it in broad strokes. Not just sub-agents inside one session, also the primary agents in other panes, and the agents on other machines behind [the desk](/blog/a-desk-not-a-dispatcher/).
+- By multi-agent we mean it in broad strokes. Sub-agents inside one session, primary agents in other panes, and agents on other machines behind [the desk](/blog/a-desk-not-a-dispatcher/).
 
 <figure class="diagram">
 <svg viewBox="0 0 360 120" role="img" aria-label="Three identical generalist agents, each with a different loadout of access underneath.">
@@ -82,16 +89,16 @@ How we divide work between agents, on top of [how I currently run agents](/blog/
 	<rect class="accent" x="245" y="52" width="100" height="44" rx="4"/>
 	<text class="muted small" x="295" y="70">loadout</text>
 	<text class="small" x="295" y="86">read only</text>
-	<text class="muted small" x="180" y="114">who gets what is about access, not role</text>
+	<text class="muted small" x="180" y="114">who gets what is about access</text>
 </svg>
 <figcaption>Same agent, different loadouts.</figcaption>
 </figure>
 
 ## Human attention
 
-- Building stuff has budgets. One of ours is human attention. That one probably deserves its own entry.
-- Progressive refinement helps here too. Each refinement is something I can verify async, whenever I have time.
-- Since we don't focus on one single narrow thing, each pass is a whole journey I can touch. No waiting a long time for a part that only makes sense once everything else exists.
+- Building stuff has budgets. One of ours is human attention, probably its own entry someday.
+- Thin slices help here too. Each refinement is a whole journey I can touch, so I can verify it async, whenever I have time.
+- No waiting a long time for one narrow part that only makes sense once everything else exists.
 - Plans change with each refinement, [what one slice turns up can reshape the next](/blog/fan-out-fold-in-refine/).
 - Probably some lite RSI (recursive self-improvement) loop kind of thing. Not sure.
 
