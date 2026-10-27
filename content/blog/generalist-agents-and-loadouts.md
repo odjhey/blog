@@ -8,19 +8,19 @@ description: "Our agents work like RPG jobs, where the job comes from the main e
 raw_at: "2026-10-27T22:43"
 ---
 
-Some notes on how work is divided between agents, on top of [how I currently run agents](/blog/our-agent-setup/). It comes back to the thin slices of [progressive refinement](/blog/fan-out-fold-in-refine/).
+Some notes on how work is divided between agents, on top of [how I currently run agents](/blog/our-agent-setup/). Looks like it comes back to the thin slices of [progressive refinement](/blog/fan-out-fold-in-refine/).
 
 ## Jobs (or is this a persona?)
 
 Like jobs in RPGs, where your job depends on your main equip. Swap the weapon and the job changes with it.
 That's how our agents work. Same general instructions underneath, and the job comes from what it's equipped with. A build job, a review job, a verify job. Is this a persona? Unsure.
 
-- If a persona is the "you are a so and so with 15 years of experience", plus a voice and a tone, then we don't do personas.
+- If a persona is the "you are a so and so with 15 years of experience", plus a voice and a tone, we don't do personas.
 - A job is only what it's equipped to do. No backstory.
-- And we don't do the narrow kind either, a backend agent, a frontend agent.
+- We also don't do the narrow kind either, a backend agent, a frontend agent.
 - I read somewhere they call this "per context needs", spawning agents per the context they need.
 
-Most of the time it's a generalist with a loadout. We observed a side effect, the loadout alone is usually enough for an agent to know its job.
+Most of the time it's a generalist with a loadout. An observed side effect, the loadout alone is usually enough for an agent to know its job.
 
 ## Loadouts
 
@@ -62,23 +62,22 @@ And by multi-agent we mean it in broad strokes, not just sub-agents.
 
 ## When we go narrow
 
-Some things don't fit a generalist, and sometimes we want to constrain an agent on purpose.
+Things that don't fit a generalist, and sometimes we explicitly want to give agents specific constraints.
 
 - Code-blind work, like verifying a feature without looking at the code.
 - When we can't start the entire app stack locally.
 - Specialized checks, like security audits.
-
-And a few more edge cases we can't list here.
+- And a few more edge cases we forgot.
 
 ## It seems to work, for us
 
-Mostly, prolly, because models are getting better and better.
+Prolly, because models are getting better and better (mostly).
 
-But maybe also because we do progressive refinement.
+Or maybe also because we do progressive refinement.
 
 - Each pass is a thin, complete slice, MVP style, refined on each loop pass.
 - A slice crosses every part of the path, so whoever carries it has to reach every part.
-- Narrow agents seem to learn less. Generalists pick up more along the way, and each pass can repivot.
+- Narrow agents seem to learn less. Generalists pick up more along the way, and each pass can repivot. They gain more exp, they contribute more to the party.
 - Our iterate and workgraph methods lean the same way, splitting by journey, not by narrow sub-components.
 - The agents are not mere encoders, and lessons from experience seem to get shared better this way. After all, we're buying them for the intelligence, not for faster typing from a spec. (Btw, I don't write much detailed spec, unless it's architecture.)
 
@@ -118,13 +117,13 @@ But maybe also because we do progressive refinement.
 
 ## Human attention
 
-Aside from the usual budgets, we factor in human attention (should write more about this later).
+Aside from the usual budgets, we have one that i don't see much discussions around, human attention (should prolly dump my thoughts about this later).
 
 Thin slices help us a ton here too.
 
-- Each refinement is a whole journey I can touch, so I can verify it async, whenever I have time.
+- Each refinement is a whole journey I can touch, I can verify it async, whenever I like.
 - Less waiting on one narrow part that only makes sense once everything else exists.
-- Plans change with each refinement, [what one slice turns up can reshape the next](/blog/fan-out-fold-in-refine/).
+- Plans can and often change with each refinement, [what one slice turns up can reshape the next](/blog/fan-out-fold-in-refine/).
 
 Wait, is this some RSI-lite (recursive self-improvement) loop kind of thing?
 
