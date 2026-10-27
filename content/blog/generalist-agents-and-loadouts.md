@@ -1,40 +1,80 @@
 ---
-title: "Generalist Agents and Loadouts"
+title: "Jobs and Loadouts"
 date: "2026-10-27T22:43"
 tags: ["ai", "programming"]
 extends: "fan-out-fold-in-refine"
 primary: true
-description: "Most of our agents are generalists. We split by job and access, not by layer or persona, and thin slices are what make that work, for the agents and for my attention."
+description: "Still figuring this out. Our agents work a bit like RPG jobs, where the job comes from the main equip. Mostly generalists, a few narrow ones, and a hunch that thin slices are why it works."
 raw_at: "2026-10-27T22:43"
 ---
 
-How we divide work between agents, on top of [how I currently run agents](/blog/our-agent-setup/). Most of it comes back to the thin slices of [progressive refinement](/blog/fan-out-fold-in-refine/).
+Still figuring this out. Some notes on how we divide work between agents right now, on top of [how I currently run agents](/blog/our-agent-setup/). A lot of it seems to come back to the thin slices of [progressive refinement](/blog/fan-out-fold-in-refine/). Could be wrong.
 
-## Generalists, mostly
+## Jobs (or is this a persona?)
 
-- Most of our agents are generalists. Any of them can take a slice from input to result.
-- We do have roles, just not by layer. No backend agent, no frontend agent.
-- And no personas either. No "you are a senior engineer with 15 years of experience", no voice, no tone.
-- A role for us is a job in the loop, like build, review or verify, plus what it can access.
-- I used to think it was generalists 99% of the time. Writing this down, prolly less. Still the majority.
+- Think of jobs in RPGs, where your job depends on your main equip. Swap the weapon and the job changes with it.
+- That's roughly how our agents work, I think. Same agent underneath, the job comes from what it's equipped with. A build job, a review job, a verify job.
+- Is a job just a persona with extra steps? We don't think so, but not fully sure.
+  - A persona is who the agent pretends to be. "You are a senior engineer with 15 years of experience", plus a voice and a tone.
+  - A job is only what it's equipped to do. No backstory.
+- We also don't do the narrow kind, a backend agent, a frontend agent.
+- So most of the time it's a generalist with a job. I used to think 99% of the time. Writing this down, prolly less. Still the majority, I think.
+
+## Loadouts
+
+- A loadout is the main equip. The tools an agent has, or the tools it reaches for first.
+- It's mostly about who got access to what, and we manage it per access.
+- By multi-agent we mean it in broad strokes. Sub-agents in one session, primary agents in other panes, agents on other machines behind [the desk](/blog/a-desk-not-a-dispatcher/).
+
+<figure class="diagram">
+<svg viewBox="0 0 360 140" role="img" aria-label="Three identical agents. Each has a different loadout, and the loadout decides its job: repo and ci for build, a browser for verify, read only for review.">
+	<defs><marker id="job-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
+	<rect x="15" y="10" width="100" height="30" rx="4"/>
+	<text x="65" y="29">agent</text>
+	<rect x="130" y="10" width="100" height="30" rx="4"/>
+	<text x="180" y="29">agent</text>
+	<rect x="245" y="10" width="100" height="30" rx="4"/>
+	<text x="295" y="29">agent</text>
+	<rect class="accent" x="15" y="48" width="100" height="40" rx="4"/>
+	<text class="muted small" x="65" y="64">loadout</text>
+	<text class="small" x="65" y="79">repo, ci</text>
+	<rect class="accent" x="130" y="48" width="100" height="40" rx="4"/>
+	<text class="muted small" x="180" y="64">loadout</text>
+	<text class="small" x="180" y="79">browser</text>
+	<rect class="accent" x="245" y="48" width="100" height="40" rx="4"/>
+	<text class="muted small" x="295" y="64">loadout</text>
+	<text class="small" x="295" y="79">read only</text>
+	<line x1="65" y1="88" x2="65" y2="106" marker-end="url(#job-arrow)"/>
+	<line x1="180" y1="88" x2="180" y2="106" marker-end="url(#job-arrow)"/>
+	<line x1="295" y1="88" x2="295" y2="106" marker-end="url(#job-arrow)"/>
+	<text x="65" y="124">build</text>
+	<text x="180" y="124">verify</text>
+	<text x="295" y="124">review</text>
+</svg>
+<figcaption>Same agent. The equip decides the job.</figcaption>
+</figure>
 
 ## When we go narrow
 
-- Code-blind work, like verifying a feature without looking at the code.
-- When we can't start the entire app stack locally.
-- Specialized checks, like security audits.
+- Some things don't fit a generalist, at least for us.
+  - Code-blind work, like verifying a feature without looking at the code.
+  - When we can't start the entire app stack locally.
+  - Specialized checks, like security audits.
+- There are probably more we haven't noticed yet.
 
-## Why I think it works
+## Why it seems to work
 
-- Models getting better and better helps. Aside from that, I think generalists work for us because we also do progressive refinement.
-- Each pass is a thin, complete slice, MVP style, refined on each loop pass.
-- A slice crosses every part of the path, so whoever carries it has to reach every part. An agent that only knows one layer can't carry a whole slice.
-- Our iterate and workgraph methods follow the same idea. They split by journey, not by narrow sub-components.
+- Honestly not sure. Models getting better and better is probably a big part of it.
+- Aside from that, I think generalists work for us because we also do progressive refinement.
+  - Each pass is a thin, complete slice, MVP style, refined on each loop pass.
+  - A slice crosses every part of the path, so whoever carries it has to reach every part. A narrow agent can't carry a whole slice. That's the theory anyway.
+- Our iterate and workgraph methods lean the same way. They split by journey, not by narrow sub-components.
+- Could also be that we just haven't hit the cases where narrow agents win.
 
 <figure class="diagram">
-<svg viewBox="0 0 360 150" role="img" aria-label="Two grids of three parts, ui, api and data, three rounds deep. Split by layer, one agent fills one part all the way down. Split by slice, one agent fills the first round across all three parts.">
-	<text x="90" y="14">by layer</text>
-	<text x="270" y="14">by slice</text>
+<svg viewBox="0 0 360 150" role="img" aria-label="Two grids of three parts, ui, api and data, three rounds deep. A narrow agent fills one part all the way down. A thin slice fills the first round across all three parts.">
+	<text x="90" y="14">narrow</text>
+	<text x="270" y="14">thin slice</text>
 	<text class="muted small" x="42" y="34">ui</text>
 	<text class="muted small" x="90" y="34">api</text>
 	<text class="muted small" x="138" y="34">data</text>
@@ -62,43 +102,14 @@ How we divide work between agents, on top of [how I currently run agents](/blog/
 	<text class="muted small" x="90" y="130">one part, deep</text>
 	<text class="muted small" x="270" y="130">the whole path, thin</text>
 </svg>
-<figcaption>Split by layer, an agent finishes a part. Split by slice, it finishes a journey, thin.</figcaption>
-</figure>
-
-## Loadouts
-
-- A loadout is just the tools an agent has available, or the tools it reaches for first.
-- It's more about who got access to what, and we manage it per access.
-- Same generalist, different loadout.
-- By multi-agent we mean it in broad strokes. Sub-agents inside one session, primary agents in other panes, and agents on other machines behind [the desk](/blog/a-desk-not-a-dispatcher/).
-
-<figure class="diagram">
-<svg viewBox="0 0 360 120" role="img" aria-label="Three identical generalist agents, each with a different loadout of access underneath.">
-	<rect x="15" y="10" width="100" height="34" rx="4"/>
-	<text x="65" y="31">generalist</text>
-	<rect x="130" y="10" width="100" height="34" rx="4"/>
-	<text x="180" y="31">generalist</text>
-	<rect x="245" y="10" width="100" height="34" rx="4"/>
-	<text x="295" y="31">generalist</text>
-	<rect class="accent" x="15" y="52" width="100" height="44" rx="4"/>
-	<text class="muted small" x="65" y="70">loadout</text>
-	<text class="small" x="65" y="86">repo, ci</text>
-	<rect class="accent" x="130" y="52" width="100" height="44" rx="4"/>
-	<text class="muted small" x="180" y="70">loadout</text>
-	<text class="small" x="180" y="86">repo, browser</text>
-	<rect class="accent" x="245" y="52" width="100" height="44" rx="4"/>
-	<text class="muted small" x="295" y="70">loadout</text>
-	<text class="small" x="295" y="86">read only</text>
-	<text class="muted small" x="180" y="114">who gets what is about access</text>
-</svg>
-<figcaption>Same agent, different loadouts.</figcaption>
+<figcaption>A narrow agent finishes a part. A thin slice finishes a journey, roughly.</figcaption>
 </figure>
 
 ## Human attention
 
 - Building stuff has budgets. One of ours is human attention, probably its own entry someday.
-- Thin slices help here too. Each refinement is a whole journey I can touch, so I can verify it async, whenever I have time.
-- No waiting a long time for one narrow part that only makes sense once everything else exists.
+- Thin slices seem to help here too. Each refinement is a whole journey I can touch, so I can verify it async, whenever I have time.
+- Less waiting on one narrow part that only makes sense once everything else exists.
 - Plans change with each refinement, [what one slice turns up can reshape the next](/blog/fan-out-fold-in-refine/).
 - Probably some lite RSI (recursive self-improvement) loop kind of thing. Not sure.
 
