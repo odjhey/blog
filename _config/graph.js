@@ -79,7 +79,9 @@ function build(posts, md) {
 		if(root) {
 			children.get(root).push(p);
 			roots.set(p, root);
-		} else {
+		}
+		// `primary`: a child that also gets its own top-level row.
+		if(!root || p.data.primary) {
 			top.push(p);
 		}
 	}
@@ -113,11 +115,12 @@ export default function(eleventyConfig) {
 
 	// The `n` newest notes, newest first. A note sits under its parent only
 	// when the parent is among them too; otherwise it keeps its date's place.
+	// A `primary` note keeps its date's place either way.
 	eleventyConfig.addFilter("latestRows", (posts, n) => {
 		let graph = graphOf(posts || []);
 		let kept = [...(posts || [])].reverse().slice(0, n);
 		let shown = new Set(kept);
-		return kept.filter(p => !shown.has(graph.roots.get(p))).flatMap(p => [
+		return kept.filter(p => !shown.has(graph.roots.get(p)) || p.data.primary).flatMap(p => [
 			{ post: p, child: false },
 			...graph.children.get(p).filter(c => shown.has(c)).map(c => ({ post: c, child: true })),
 		]);

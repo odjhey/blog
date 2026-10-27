@@ -30,6 +30,7 @@ description: "Optional summary for meta description and feed."
 # Optional:
 raw_at: "2026-10-25T12:00"   # When content/blog/<slug>.raw.txt was typed (to the minute)
 extends: "parent-slug"        # Groups this note under another in the index tree
+primary: true                 # With extends: also listed as its own row at its date
 ---
 ```
 
@@ -38,7 +39,7 @@ An unedited text dump can be placed alongside a note as `<slug>.raw.txt`. Adding
 
 ### Note graph
 - Author-written internal links like `/blog/<slug>/` automatically generate `→` (links to) and `←` (linked from) navigation rows at the end of connected notes. Each note is listed once per page: a note linked both ways shows under `→` only, and the older/newer links skip notes already in the rows.
-- The `extends: <slug>` field nests child notes under their parent in list views.
+- The `extends: <slug>` field nests child notes under their parent in list views. Add `primary: true` to also list the child as its own top-level row at its date.
 
 ### Tags
 Tags are declared in front matter. The site generates `/tags/` as an index of all tags and `/tags/<tag>/` for each tag.

@@ -72,6 +72,7 @@ async function readPosts(root) {
 			tags: (Array.isArray(data.tags) ? data.tags : data.tags ? [data.tags] : []).filter(t => t !== "posts"),
 			raw_at: typeof data.raw_at === "string" ? data.raw_at : null,
 			extends: typeof data.extends === "string" ? data.extends : null,
+			primary: data.primary === true,
 			bodyLength: content.trim().length,
 		});
 	}
@@ -294,7 +295,7 @@ async function checkSite(siteDir, { label, posts }) {
 		}
 		return undefined;
 	};
-	let indexTree = published.filter(p => !rootOf(p)).flatMap(p => [
+	let indexTree = published.filter(p => !rootOf(p) || p.primary).flatMap(p => [
 		{ href: p.url, child: false },
 		...published.filter(c => rootOf(c) === p).map(c => ({ href: c.url, child: true })),
 	]);
@@ -324,7 +325,7 @@ async function checkSite(siteDir, { label, posts }) {
 		let latest = listed(home);
 		let newest = published.slice(0, metadata.latest);
 		let row = (p, child) => `${(rootOf(p) && child ? rootOf(p) : p).date.slice(0, 4)} ${listDate(p.date)} ${child ? "└ " : ""}${p.url}`;
-		let expectedLatest = newest.filter(p => !newest.includes(rootOf(p))).flatMap(p => [
+		let expectedLatest = newest.filter(p => !newest.includes(rootOf(p)) || p.primary).flatMap(p => [
 			row(p, false),
 			...newest.filter(c => rootOf(c) === p).map(c => row(c, true)),
 		]);
@@ -412,7 +413,8 @@ async function checkSite(siteDir, { label, posts }) {
 		r.ok(nav.length === (expected === "older - newer -" ? 0 : 1) && shown === expected, `${p.url}: pager "${shown}", expected "${expected}"`);
 	});
 
-	// `extends` names an existing note other than itself, without a cycle
+	// `extends` names an existing note other than itself, without a cycle;
+	// `primary` only means something on a note that extends another
 	for(let p of published.filter(q => q.extends)) {
 		let parent = published.find(q => q.slug === p.extends);
 		r.ok(parent && parent !== p, `${p.file}: extends "${p.extends}", which is not another note`);
@@ -423,6 +425,9 @@ async function checkSite(siteDir, { label, posts }) {
 			}
 			seen.add(q);
 		}
+	}
+	for(let p of published.filter(q => q.primary && !q.extends)) {
+		r.ok(false, `${p.file}: primary is set without extends`);
 	}
 
 	// Each tag page lists exactly the published posts with that tag, newest first

@@ -3,6 +3,7 @@ title: "Generalist Agents and Loadouts"
 date: "2026-10-27T22:43"
 tags: ["ai", "programming"]
 extends: "fan-out-fold-in-refine"
+primary: true
 description: "We don't split agents into personas. Generalists take whole thin slices, loadouts decide who gets access to what, and each refinement is something I can check when I have time."
 raw_at: "2026-10-27T22:43"
 ---
